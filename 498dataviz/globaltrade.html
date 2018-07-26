@@ -1,0 +1,248 @@
+<!doctype html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>CS498 DV Final D3.js Visualization - Naseer Batt</title>
+	<meta name="author" content="Naseer Batt" />
+	<meta name="description" content="interactive  Visualization of global trade statistics." />
+	<meta name="keywords" content="narrative,data visualization,global trade statistics" />
+	<meta name="Resource-type" content="Document" />
+
+	<script src="https://d3js.org/d3.v4.min.js"></script>
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha256-3edrmyuQ0w65f8gfBsqowzjJe2iM6n0nKciPUp8y+7E="
+	 crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/3.0.1/fullpage.js"></script>
+
+	<style>
+		.bar {
+			fill: steelblue;
+		}
+
+		.bar:hover {
+			fill: brown;
+		}
+
+		.axis--x path {
+			display: none;
+		}
+	</style>
+
+	<style>
+		/* set the CSS */
+
+		body {
+			font: 12px Arial;
+		}
+
+		path {
+			stroke: steelblue;
+			stroke-width: 2;
+			fill: none;
+		}
+
+		.axis path,
+		.axis line {
+			fill: none;
+			stroke: grey;
+			stroke-width: 1;
+			shape-rendering: crispEdges;
+		}
+
+		.legend {
+			font-size: 16px;
+			font-weight: bold;
+			text-anchor: middle;
+		}
+	</style>
+</head>
+
+<body>
+	<div id="fullpage">
+		<div class="section" id="title">
+			<div id="title_text">
+				<h1>Visualization of stackoverlow developer survey</h1>
+				<h3>A d3.js data visualization project using the Stackoverflow developer survery 2017
+					<br />Naseer BATT - UIUC CS498 Data Visualization</h3>
+			</div>
+		</div>
+		<div class="section" id="about">
+			<div id="content_div">
+				<h1>About the Visualization</h1>
+				<p>This visualization is an interactive slideshow which takes the user through the Dataset of the stackoverflwo developer
+					Survery fof the year 2018.</p>
+				<h2>Recommended Settings</h2>
+				<p>As the visualizations use a preset static canvas of 1024x768 pixels, the viewing size of the interactive visualization
+					is at least 1280x800 pixels to accommodate the surrounding text and scene elements.</p>
+				<h2>Managing the Dataset</h2>
+				<p>With such a large dataset, creating a visualization with the raw data turned out to be very difficult. The first step
+					for created this visualization was to process the dataset and focus on the data pertaining restaurants in the United
+					States only.</p>
+				<h2>Templates Scene</h2>
+				<p>The use of CSS and FullPage.js allows for a cohesive template look for the interactive visualization. Each page is transitioned
+					using the same method and text elements are kept the same (font size and family). Additionally there is a page navigation
+					bar on the right side which allows users to skip between different slides. The tooltips which are triggered when a user
+					moves their mouse over the navigation alters the display parameters for each navigation menu item.</p>
+				<h2>Annotations</h2>
+				<p>Annotations have been used in all three visualizations with a similar process of using triggers to change the hidden
+					paramenter of the annotation. For example, the Line Chart Visualization has an initial state of the hidden parameter
+					which controls the display of the annotations set to false. As a user uses the brush bar to trigger changes to the line
+					chart visualization x-axis parameters, it also changes this hidden parameter to true. In turn the annotations disappear
+					until the user resets the brush bar to zero - thus zooming out back to the default visualization parameters.</p>
+				<h2>Parameters and Triggers</h2>
+				<p>Both parameters and triggers are used in all of the three visualizations. For the Bubble Chart Visualization, parameters
+					for the x,y co-ordinates of each bubble are set to an initial central position for the All Reviews Visualization. As
+					a user selects menu items to chose between All Reviews, Reviews by State and Reviews by Stars, it triggers the change
+					of bubble’s x,y co-ordinates parameter to their respective groupings.</p>
+				<br />
+				<p>In Zoomable Sunburst Visualization, each mouse click on a region is a trigger for the path and arc parameters. By clicking
+					within a region, you can zoom into the data to take a look at the information underneath. Clicking the centre circle
+					will trigger the parameters to return to its values one up in the hierarchy.</p>
+				<br />
+				<p>For Line Chart Visualization.</p>
+			</div>
+		</div>
+		<div class="section" id="chart1">
+			<div id="content_div">
+				<h1>Salary Vs Experience.</h1>
+				<svg width="960" height="500"></svg>
+				<div class="Bar" />
+				</p>
+			</div>
+		</div>
+		<div class="section" id="chart2">
+			<div id="content_div2">
+				<svg id="visualisation" width="1000" height="500"></svg>
+			</div>
+		</div>
+</body>
+<script>
+	$(document).ready(function () {
+		$('#fullpage').fullpage({ licenseKey: "OPEN-SOURCE-GPLV3-LICENSE" });
+	});
+</script>
+<script src="https://d3js.org/d3.v4.min.js"></script>
+
+<script>
+	// set the dimensions and margins of the graph
+	var margin = { top: 20, right: 20, bottom: 30, left: 50 },
+		width = 960 - margin.left - margin.right,
+		height = 500 - margin.top - margin.bottom;
+
+	// parse the date / time
+	var parseTime = d3.timeParse("%d-%b-%y");
+
+	// set the ranges
+	var x = d3.scaleTime().range([0, width]);
+	var y = d3.scaleLinear().range([height, 0]);
+
+	// // Define the axes
+	// var xAxis = d3.svg.axis().scale(x)
+	// 	.orient("bottom").ticks(5);
+
+	// var yAxis = d3.svg.axis().scale(y)
+	// 	.orient("left").ticks(5);
+	
+	var xAxis = d3.axisBottom(x).tickFormat(d3.format('.4')); // .4 is for 4 digit year.// tickFormat(function(d){ return d.x;});
+    var yAxis = d3.axisLeft(y).tickFormat(d3.format("1", 1e9));
+
+	// define the line
+	var priceline = d3.line()
+	
+		.x(function (d) { console.log('year = ', d.year); return x(d.year); })
+		.y(function (d) { console.log('tradeinbillions = ', d.tradeinbillions); return y(d.tradeinbillions); });
+
+	// append the svg obgect to the body of the page
+	// appends a 'group' element to 'svg'
+	// moves the 'group' element to the top left margin
+	var svg = d3.select("#visualisation").append("svg")
+		.attr("width", width + margin.left + margin.right)
+		.attr("height", height + margin.top + margin.bottom)
+		.append("g")
+		.attr("transform",
+			"translate(" + margin.left + "," + margin.top + ")");
+	
+	svg.append('text').html('Top Global Traders').attr('x', 400);
+
+	// Get the data
+	d3.csv("./data/trade_stats.csv", function (error, data) {
+		if (error) throw error;
+
+		// format the data
+		//   data.forEach(function(d) {
+		//       d.date = parseTime(d.date);
+		//       d.close = +d.close;
+		//   });
+
+		// Scale the range of the data
+		x.domain(d3.extent(data, function (d) { return d.year; }));
+		y.domain([900,7200]);
+		// y.domain([0, d3.max(data, function (d) { return d.tradeinbillions; })]);
+
+		// Nest the entries by symbol
+		var dataNest = d3.nest()
+			.key(function (d) { return d.country; })
+			.entries(data);
+			
+		console.log(dataNest);
+
+		var color = d3.scaleOrdinal(d3.schemeCategory10);  // set the colour scale	
+
+		var legendSpace = width / dataNest.length; // spacing for legend
+
+		// Loop through each symbol / key
+		dataNest.forEach(function (d, i) {
+
+			svg.append("path")
+			    .data([d])
+				.attr("class", "line")
+				.style("stroke", function () { // Add the colours dynamically
+					return d.color = color(d.key);
+				})
+				.attr("d", priceline(d.values));
+
+			// Add the Legend
+			svg.append("text")
+				.attr("x", (legendSpace / 2) + i * legendSpace) // spacing
+				.attr("y", height + (margin.bottom / 2) + 5)
+				.attr("class", "legend")    // style the legend
+				.style("fill", function () { // dynamic colours
+					return d.color = color(d.key);
+				})
+				.text(d.key);
+
+		});
+
+		// Add the X Axis
+		svg.append("g")
+			.attr("class", "x axis")
+			.attr("transform", "translate(0," + height + ")")
+			.call(xAxis);
+
+		// Add the Y Axis
+		svg.append("g")
+			.attr("class", "y axis")
+			.call(yAxis);
+
+		//   // Add the valueline path.
+		//   svg.append("path")
+		//       .data([data])
+		//       .attr("class", "line")
+		//       .attr("d", valueline);
+
+		//   // Add the X Axis
+		//   svg.append("g")
+		//       .attr("transform", "translate(0," + height + ")")
+		//       .call(d3.axisBottom(x));
+
+		//   // Add the Y Axis
+		//   svg.append("g")
+		//       .call(d3.axisLeft(y));
+
+	});
+
+</script>
+
+</script>
+
+</html>
