@@ -94,24 +94,18 @@
                         <a class="nav-link" data-target="#CA" role="tab" data-toggle="tab">CANADA</a>
                     </li>
                 </ul>
-
-                <!-- <div id = "container">  
-                    <a href="#US" id="btn_us" class="button active">United States</a>
-					<a href="#UK" id="btn_gb" class="button">United Kingdom</a>
-					<a href="#CA" id="btn_ca" class="button">Canada</a>
-                </div> -->
-
                 <div class="tab-content">
                     <div id="US" class="tab-pane fade in active">
                         <h3>UNITED STATES</h3>
+                        ''
                         <svg id="us_cat_svg" width="960" height="600" style="padding-left:45px;"></svg>
                     </div>
                     <div id="UK" class="tab-pane fade">
                         <h3>UNITED KINGDOM</h3>
-                        <svg id="uk_cat_svg" width="960" height="600"style="padding-left:45px;"></svg>
+                        <svg id="uk_cat_svg" width="960" height="600" style="padding-left:45px;"></svg>
                     </div>
                     <div id="CA" class="tab-pane fade">
-                            <h3>CANADA</h3>
+                        <h3>CANADA</h3>
                         <svg id="ca_cat_svg" width="960" height="600" style="padding-left:45px;"></svg>
                     </div>
                 </div>
@@ -124,12 +118,15 @@
             <svg id="visualisation" width="1000" height="500"></svg>
         </div>
     </div>
+
+    <script src="scripts/summaryplots.js" />
 </body>
 <script>
     $(document).ready(function () {
         $('#fullpage').fullpage({ licenseKey: "OPEN-SOURCE-GPLV3-LICENSE" });
     });
 
+/*
     // set the ranges
     var x = d3.scaleTime().range([0, width]);
     var y = d3.scaleLinear().range([height, 0]);
@@ -215,65 +212,7 @@
         .style("text-anchor", "middle")
         .style("font", "18px sans-serif")
         .text(ylabel); 
-
         
-
-
-    // var svg = d3.select("#ca_cat_svg");
-    // var margin = { top: 20, right: 20, bottom: 40, left: 40 };
-    // var width = svg.attr("width") - margin.left - margin.right;
-    // var height = svg.attr("height") - margin.top - margin.bottom;
-
-    // var g = svg.append("g")
-    // 	.attr("transform", "translate(" + margin.left + "," + margin.top + ")");
-
-    // plotCatData("./498dataviz/data/yt_ca_popcategories.csv", g,height, width);
-
-    // d3.csv("./498dataviz/data/yt_us_popcategories.csv", function (error, data) {
-    // 	if (error) throw error;
-
-    // 	var x = d3.scaleBand().rangeRound([0, width]).padding(0.1),
-    // 		y = d3.scaleLinear().rangeRound([height, 0]);
-
-    // 	// sort the data based on years of experience.
-    // 	//data.sort(function(a,b ) {return d3.ascending(a.YearsCoding, b.YearsCoding)});
-
-    // 	x.domain(data.map(function (d) { return d.category_title; }));
-    // 	y.domain([0, d3.max(data, function (d) { return d.Metric; })]).nice();
-
-    // 	g.append("g")
-    // 		.attr("class", "axis axis--x")
-    // 		.attr("transform", "translate(0," + height + ")")
-    // 		.call(d3.axisBottom(x));
-
-    // 	g.append("g")
-    // 		.attr("class", "axis axis--y")
-    // 		// .call(d3.axisLeft(y).ticks(10, "%"))
-    // 		.call(d3.axisLeft(y))
-    // 		.append("text")
-    // 		.attr("transform", "rotate(-90)")
-    // 		.attr("y", 6)
-    // 		.attr("dy", "0.71em")
-    // 		.attr("text-anchor", "end")
-    // 		.text("Frequency");
-
-    // 	g.selectAll(".bar")
-    // 		.data(data)
-    // 		.enter().append("rect")
-    // 		.attr("class", "bar")
-    // 		.attr("x", function (d) { return x(d.category_title); })
-    // 		.attr("y", function (d) { return y(d.Metric); })
-    // 		.attr("width", x.bandwidth())
-    // 		.attr("height", function (d) { return height - y(d.Metric); });
-
-    //         // text label for the x axis
-    // 	svg.append("text")
-    // 		.attr("transform", "translate(" + (width / 2) + " ," + (height + 55) + ")")
-    // 		.style("text-anchor", "middle")
-    // 		.style("font-size", "14px")
-    // 		.html("Youtube Video Category");
-    // });
-
     function plotCatData(file, g, height, width) {
         d3.csv(file, function (error, data) {
             if (error) throw error;
@@ -319,7 +258,7 @@
                 // .text("Frequency");
         })
     };
-
+*/
 </script>
 
 </html>

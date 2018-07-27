@@ -1,795 +1,140 @@
-"rank","category_title","channel_title","Metric"
+"","category_title","channel_title","Metric"
 "1","Autos & Vehicles","Doug DeMuro",41
 "2","Autos & Vehicles","Engineering Explained",19
-"3","Autos & Vehicles","HyundaiUSA",11
-"4","Autos & Vehicles","Jimmy Built",11
-"5","Autos & Vehicles","LexusVehicles",12
-"6","Autos & Vehicles","WHAT'S INSIDE? FAMILY",13
-"7","Comedy","acaciacutie",15
-"8","Comedy","Anna Akana",18
-"9","Comedy","AnthonyPadilla",29
-"10","Comedy","Anwar Jibawi",41
-"11","Comedy","Bad Lip Reading",67
-"12","Comedy","Berd",15
-"13","Comedy","Bethany Wilhelm",12
-"14","Comedy","CalebCity",19
-"15","Comedy","Casually Explained",15
-"16","Comedy","Colleen Ballinger",19
-"17","Comedy","CollegeHumor",106
-"18","Comedy","Comedy Central",21
-"19","Comedy","DamonAndJo",27
-"20","Comedy","Domics",88
-"21","Comedy","Drew Lynch",11
-"22","Comedy","DuckSoss",12
-"23","Comedy","ExplosmEntertainment",37
-"24","Comedy","GingerPale",17
-"25","Comedy","Gus Johnson",47
-"26","Comedy","Hannah Stocking",74
-"27","Comedy","IISuperwomanII",61
-"28","Comedy","Inanna Sarkis",11
-"29","Comedy","Jack and Dean",15
-"30","Comedy","jacksfilms",107
-"31","Comedy","JelloApocalypse",34
-"32","Comedy","JennaMarbles",45
-"33","Comedy","Jimmy Kimmel Live",59
-"34","Comedy","Late Night with Seth Meyers",132
-"35","Comedy","Lele Pons",38
-"36","Comedy","Lenarr Young",14
-"37","Comedy","Liza Koshy",30
-"38","Comedy","Liza Koshy Too",34
-"39","Comedy","LOL Network",80
-"40","Comedy","Lucas",19
-"41","Comedy","MamaMiaMakeup",18
-"42","Comedy","Mamrie Hart",14
-"43","Comedy","Matthias",46
-"44","Comedy","merrelltwins",37
-"45","Comedy","MyHarto",46
-"46","Comedy","notnotryan",12
-"47","Comedy","RM Videos",14
-"48","Comedy","Rudy Mancuso",29
-"49","Comedy","Sailor J",20
-"50","Comedy","Smosh",99
-"51","Comedy","SomeThingElseYT",18
-"52","Comedy","Studio C",74
-"53","Comedy","Talking Kitty Cat",14
-"54","Comedy","Team Coco",96
-"55","Comedy","Team Edge",59
-"56","Comedy","ThatcherJoe",15
-"57","Comedy","The Daily Show with Trevor Noah",61
-"58","Comedy","The Tonight Show Starring Jimmy Fallon",146
-"59","Comedy","TheOdd2sOut",27
-"60","Comedy","Thomas Sanders",19
-"61","Education","3Blue1Brown",14
-"62","Education","CGP Grey",18
-"63","Education","Extra Credits",14
-"64","Education","Half as Interesting",60
-"65","Education","It's Okay To Be Smart",16
-"66","Education","jacksepticeye",21
-"67","Education","Kris Harbour",13
-"68","Education","Kurzgesagt – In a Nutshell",88
-"69","Education","Life Noggin",114
-"70","Education","MatthewSantoro",22
-"71","Education","Mental Floss",13
-"72","Education","PBS Space Time",12
-"73","Education","Physics Girl",22
-"74","Education","PolyMatter",17
-"75","Education","Practical Engineering",25
-"76","Education","SciShow",115
-"77","Education","TED-Ed",140
-"78","Education","The Infographics Show",40
-"79","Education","The King of Random",116
-"80","Education","The School of Life",37
-"81","Education","Today I Found Out",19
-"82","Education","Tom Scott",115
-"83","Education","Townsends",17
-"84","Education","TurboTax",11
-"85","Education","Tyler, The Creator",22
-"86","Education","Vsauce2",17
-"87","Education","Wendover Productions",25
-"88","Entertainment","1MILLION Dance Studio",33
-"89","Entertainment","ABC Television Network",20
-"90","Entertainment","Access",15
-"91","Entertainment","Allure",40
-"92","Entertainment","amc",11
-"93","Entertainment","America's Got Talent",15
-"94","Entertainment","American Idol",87
-"95","Entertainment","Architectural Digest",13
-"96","Entertainment","AzzyLand",15
-"97","Entertainment","Bachelor Nation on ABC",21
-"98","Entertainment","BANGTANTV",13
-"99","Entertainment","Battle Universe",22
-"100","Entertainment","Battle Universe!",11
-"101","Entertainment","BBC Radio 1",18
-"102","Entertainment","BBC Three",21
-"103","Entertainment","Billy Graham Evangelistic Association",12
-"104","Entertainment","Binging with Babish",87
-"105","Entertainment","Bon Appétit",53
-"106","Entertainment","Brad Mondo",26
-"107","Entertainment","BrainfooTV",13
-"108","Entertainment","Breakfast Club Power 105.1 FM",42
-"109","Entertainment","Brian Hull",12
-"110","Entertainment","Britain's Got Talent",61
-"111","Entertainment","brutalmoose",11
-"112","Entertainment","BURGER KING",20
-"113","Entertainment","Calvin Klein",12
-"114","Entertainment","Carter Sharer",18
-"115","Entertainment","Chris Stuckmann",13
-"116","Entertainment","Clevver News",16
-"117","Entertainment","Cobra Kai",47
-"118","Entertainment","colinfurze",43
-"119","Entertainment","ColliderVideos",35
-"120","Entertainment","Complex",88
-"121","Entertainment","Cut",51
-"122","Entertainment","Daily Dose Of Internet",46
-"123","Entertainment","Dancing With The Stars",27
-"124","Entertainment","DanTDM",31
-"125","Entertainment","Davie504",31
-"126","Entertainment","devinsupertramp",11
-"127","Entertainment","Discovery UK",29
-"128","Entertainment","Disney On Broadway",14
-"129","Entertainment","DONG",28
-"130","Entertainment","Dragonfoxgirl",24
-"131","Entertainment","E! Entertainment",67
-"132","Entertainment","E! Live from the Red Carpet",18
-"133","Entertainment","E! News",11
-"134","Entertainment","ElleOfTheMills",18
-"135","Entertainment","Entertainment Tonight",54
-"136","Entertainment","EverythingApplePro",63
-"137","Entertainment","FBE",112
-"138","Entertainment","FC Barcelona",16
-"139","Entertainment","FliteTest",14
-"140","Entertainment","Focus Features",68
-"141","Entertainment","FoundFlix",17
-"142","Entertainment","FoxStarHindi",32
-"143","Entertainment","FX Networks",19
-"144","Entertainment","G-Eazy",13
-"145","Entertainment","Gibi ASMR",48
-"146","Entertainment","Glamour Magazine",48
-"147","Entertainment","Global Road Entertainment",15
-"148","Entertainment","Good Morning America",58
-"149","Entertainment","Good Mythical MORE",34
-"150","Entertainment","Good Mythical Morning",109
-"151","Entertainment","Gordon Ramsay",23
-"152","Entertainment","GPhase",13
-"153","Entertainment","GQ",42
-"154","Entertainment","Guava Juice",72
-"155","Entertainment","HellthyJunkFood",124
-"156","Entertainment","Hulu",30
-"157","Entertainment","IGN",26
-"158","Entertainment","Illumination",16
-"159","Entertainment","Impulse",32
-"160","Entertainment","INSIDER",33
-"161","Entertainment","Iris",11
-"162","Entertainment","jacksepticeye",12
-"163","Entertainment","James Charles",87
-"164","Entertainment","jennxpenn",28
-"165","Entertainment","Jeopardy!",21
-"166","Entertainment","Jeremy Jahns",18
-"167","Entertainment","Jess Conte",17
-"168","Entertainment","Jimmy Kimmel Live",95
-"169","Entertainment","JOE.ie",13
-"170","Entertainment","John Campea",13
-"171","Entertainment","Julien Solomita",19
-"172","Entertainment","Kaplamino",23
-"173","Entertainment","Kitchen Nightmares",19
-"174","Entertainment","KYLE HANAGAMI",11
-"175","Entertainment","Lip Sync Battle",52
-"176","Entertainment","LIVEKellyandRyan",24
-"177","Entertainment","Lucas and Marcus",43
-"178","Entertainment","Markiplier",15
-"179","Entertainment","Marvel Entertainment",105
-"180","Entertainment","Matt Stonie",81
-"181","Entertainment","MatthewSantoro",32
-"182","Entertainment","MBCentertainment",23
-"183","Entertainment","MeganBatoon",12
-"184","Entertainment","Michelle Khare",66
-"185","Entertainment","Mike Boyd",50
-"186","Entertainment","mmschocolate",15
-"187","Entertainment","Morgan Adams",24
-"188","Entertainment","Mr Sunday Movies",14
-"189","Entertainment","MTV",23
-"190","Entertainment","Natalies Outlet",18
-"191","Entertainment","NBC",19
-"192","Entertainment","Nerdist",25
-"193","Entertainment","Nerdwriter1",43
-"194","Entertainment","Netflix",147
-"195","Entertainment","Nickelodeon",14
-"196","Entertainment","nigahiga",70
-"197","Entertainment","Nikki Glamour",16
-"198","Entertainment","OmarGoshTV",25
-"199","Entertainment","Omaze",15
-"200","Entertainment","Papa Jake",55
-"201","Entertainment","Pepsi",11
-"202","Entertainment","PewDiePie",22
-"203","Entertainment","Queen Naija",12
-"204","Entertainment","REACT",89
-"205","Entertainment","Reaction Time",15
-"206","Entertainment","Rita Ora",34
-"207","Entertainment","RM Videos",13
-"208","Entertainment","Ryland Adams",31
-"209","Entertainment","samfryltd",13
-"210","Entertainment","Saturday Night Live",128
-"211","Entertainment","ScreenJunkies News",16
-"212","Entertainment","SHAYTARDS",14
-"213","Entertainment","Sidemen",25
-"214","Entertainment","Simply Nailogical",13
-"215","Entertainment","Sister Circle Live",14
-"216","Entertainment","Sony Pictures Entertainment",65
-"217","Entertainment","Star Wars",83
-"218","Entertainment","STARZ",17
-"219","Entertainment","Steve1989MREInfo",14
-"220","Entertainment","Sugar Pine 7",14
-"221","Entertainment","TBS",27
-"222","Entertainment","Teen Vogue",31
-"223","Entertainment","The Action Lab",40
-"224","Entertainment","The CW Television Network",27
-"225","Entertainment","The Graham Norton Show",80
-"226","Entertainment","The Hollywood Reporter",21
-"227","Entertainment","The Late Late Show with James Corden",98
-"228","Entertainment","The Late Show with Stephen Colbert",124
-"229","Entertainment","The New Yorker",18
-"230","Entertainment","The Real Daytime",24
-"231","Entertainment","The Slow Mo Guys",54
-"232","Entertainment","The Talk",13
-"233","Entertainment","The View",53
-"234","Entertainment","The Voice",84
-"235","Entertainment","The Wendy Williams Show",15
-"236","Entertainment","TheEllenShow",155
-"237","Entertainment","TheReportOfTheWeek",50
-"238","Entertainment","TheTimTracker",12
-"239","Entertainment","Tim Milgram",19
-"240","Entertainment","TMZ",52
-"241","Entertainment","todrickhall",14
-"242","Entertainment","TRL",21
-"243","Entertainment","truTV",31
-"244","Entertainment","Tyler Oakley",36
-"245","Entertainment","Universal Pictures",79
-"246","Entertainment","Vanity Fair",113
-"247","Entertainment","Variety",21
-"248","Entertainment","Vat19",27
-"249","Entertainment","VH1",46
-"250","Entertainment","Vogue",24
-"251","Entertainment","Warner Bros. Pictures",107
-"252","Entertainment","Warped Perception",13
-"253","Entertainment","Wassabi Productions",12
-"254","Entertainment","Watch What Happens Live with Andy Cohen",61
-"255","Entertainment","WatchMojo.com",18
-"256","Entertainment","Wendy Williams",50
-"257","Entertainment","Will Smith",75
-"258","Entertainment","WIRED",75
-"259","Entertainment","Wong Fu Productions",32
-"260","Entertainment","WOWPresents",69
-"261","Entertainment","Yes Theory",21
-"262","Entertainment","Zach King",13
-"263","Film & Animation","20th Century Fox",94
-"264","Film & Animation","A24",46
-"265","Film & Animation","Amazon Studios",36
-"266","Film & Animation","Anna Akana",11
-"267","Film & Animation","Annapurna Channel",12
-"268","Film & Animation","BBC News",12
-"269","Film & Animation","Bleecker Street",22
-"270","Film & Animation","CinemaSins",58
-"271","Film & Animation","Comicbook.com",15
-"272","Film & Animation","Disney Movie Trailers",39
-"273","Film & Animation","Disney•Pixar",30
-"274","Film & Animation","Film Independent",13
-"275","Film & Animation","googledoodles",12
-"276","Film & Animation","Hamilton: An American Musical",20
-"277","Film & Animation","HBO",87
-"278","Film & Animation","How To Cook That",29
-"279","Film & Animation","IFC Films",15
-"280","Film & Animation","itsAlexClark",74
-"281","Film & Animation","Jaiden Animations",51
-"282","Film & Animation","Jenny Nicholson",27
-"283","Film & Animation","Johnny Jansen",11
-"284","Film & Animation","Kensuke Koike",16
-"285","Film & Animation","Lionsgate Movies",54
-"286","Film & Animation","Lucas the Spider",72
-"287","Film & Animation","Magnolia Pictures & Magnet Releasing",11
-"288","Film & Animation","McDonald's",17
-"289","Film & Animation","Movieclips Trailers",63
-"290","Film & Animation","ONE Media",33
-"291","Film & Animation","Paramount Pictures",45
-"292","Film & Animation","ProZD",31
-"293","Film & Animation","RoadsideFlix",15
-"294","Film & Animation","Rooster Teeth",53
-"295","Film & Animation","Screen Junkies",136
-"296","Film & Animation","ScreenPrism",15
-"297","Film & Animation","Selena Gomez",28
-"298","Film & Animation","Simon's Cat",18
-"299","Film & Animation","STX Entertainment",11
-"300","Film & Animation","Tanner Fox",13
-"301","Film & Animation","The Film Theorists",86
-"302","Film & Animation","Unbox Therapy",20
-"303","Film & Animation","Walt Disney Animation Studios",25
-"304","Film & Animation","Никита Ордынский",13
-"305","Gaming","Call of Duty",41
-"306","Gaming","Clash Royale",40
-"307","Gaming","DidYouKnowGaming?",20
-"308","Gaming","FaZe Rug",56
-"309","Gaming","Fortnite",30
-"310","Gaming","GameXplain",12
-"311","Gaming","IGN",18
-"312","Gaming","iHasCupquake",11
-"313","Gaming","League of Legends",13
-"314","Gaming","Markiplier",38
-"315","Gaming","miniminter",25
-"316","Gaming","Nintendo",72
-"317","Gaming","PlayOverwatch",23
-"318","Gaming","Sonic the Hedgehog",14
-"319","Gaming","The Game Theorists",43
-"320","Gaming","The Official Pokémon YouTube channel",15
-"321","Gaming","The Official Pokémon YouTube Channel",30
-"322","Gaming","The Sims",20
-"323","Gaming","TmarTn2",13
-"324","Gaming","videogamedunkey",42
-"325","Howto & Style","AdelaineMorin",19
-"326","Howto & Style","Alex French Guy Cooking",11
-"327","Howto & Style","AlishaMarie",25
-"328","Howto & Style","Amber Scholl",60
-"329","Howto & Style","Architectural Digest",26
-"330","Howto & Style","Blossom",18
-"331","Howto & Style","Bobby Duke Arts",14
-"332","Howto & Style","Bon Appétit",69
-"333","Howto & Style","Bramty Juliette",12
-"334","Howto & Style","Business Insider",27
-"335","Howto & Style","BuzzFeed Nifty",19
-"336","Howto & Style","Carli Bybel",56
-"337","Howto & Style","Casey Holmes",51
-"338","Howto & Style","Christen Dominique",39
-"339","Howto & Style","Claire Marshall",12
-"340","Howto & Style","Clevver Style",36
-"341","Howto & Style","Clicknetwork",13
-"342","Howto & Style","colinfurze",13
-"343","Howto & Style","Cosmopolitan.com",18
-"344","Howto & Style","DaveHax",17
-"345","Howto & Style","Denitslava Makeup",20
-"346","Howto & Style","Desi Perkins",28
-"347","Howto & Style","Eater",18
-"348","Howto & Style","ELLE",28
-"349","Howto & Style","emmymadeinjapan",54
-"350","Howto & Style","Epicurious",43
-"351","Howto & Style","Feast Of Fiction",35
-"352","Howto & Style","First We Feast",104
-"353","Howto & Style","Food Wishes",36
-"354","Howto & Style","Gabbie Hanna",49
-"355","Howto & Style","Gentle Whispering ASMR",15
-"356","Howto & Style","Gigi Gorgeous",15
-"357","Howto & Style","Glam&Gore",12
-"358","Howto & Style","GQ",18
-"359","Howto & Style","grav3yardgirl",31
-"360","Howto & Style","Harper's BAZAAR",24
-"361","Howto & Style","heyitsfeiii",22
-"362","Howto & Style","Hometalk",15
-"363","Howto & Style","How To Cake It",63
-"364","Howto & Style","How To Cook That",15
-"365","Howto & Style","HowToBasic",13
-"366","Howto & Style","I Like To Make Stuff",13
-"367","Howto & Style","iJustine",14
-"368","Howto & Style","Ingrid Nilsen",13
-"369","Howto & Style","INSIDER",11
-"370","Howto & Style","Jackie Aina",39
-"371","Howto & Style","Jaclyn Hill",40
-"372","Howto & Style","jeffreestar",38
-"373","Howto & Style","Jenn Im",12
-"374","Howto & Style","JerryRigEverything",20
-"375","Howto & Style","Jessica Clements",13
-"376","Howto & Style","Joan Kim",16
-"377","Howto & Style","Jon B.",12
-"378","Howto & Style","JunsKitchen",43
-"379","Howto & Style","Kandee Johnson",36
-"380","Howto & Style","Karina Garcia",12
-"381","Howto & Style","KathleenLights",62
-"382","Howto & Style","Kayley Melissa",16
-"383","Howto & Style","Kristen Hancher",11
-"384","Howto & Style","Laura Kampf",16
-"385","Howto & Style","Laura Lee",94
-"386","Howto & Style","LaurDIY",81
-"387","Howto & Style","Lisa Eldridge",17
-"388","Howto & Style","Living Big In A Tiny House",16
-"389","Howto & Style","Man About Cake",16
-"390","Howto & Style","Matthias Wandel",13
-"391","Howto & Style","Mr. Kate",54
-"392","Howto & Style","My Virgin Kitchen",20
-"393","Howto & Style","MyLifeAsEva",22
-"394","Howto & Style","Nicol Concilio",21
-"395","Howto & Style","Nicole Guerriero",13
-"396","Howto & Style","NikkieTutorials",93
-"397","Howto & Style","Olivia Jade",23
-"398","Howto & Style","PatrickStarrr",22
-"399","Howto & Style","Peter Brown",18
-"400","Howto & Style","RachhLoves",14
-"401","Howto & Style","Refinery29",41
-"402","Howto & Style","Rosanna Pansino",72
-"403","Howto & Style","Roxette Arisa",12
-"404","Howto & Style","Sprinkleofglitter",16
-"405","Howto & Style","Sylvia Gani",35
-"406","Howto & Style","Tanya Burr",14
-"407","Howto & Style","Tasty",109
-"408","Howto & Style","Tati",93
-"409","Howto & Style","thataylaa",11
-"410","Howto & Style","The Scran Line",16
-"411","Howto & Style","TheSorryGirls",32
-"412","Howto & Style","ThreadBanger",47
-"413","Howto & Style","Tia Mowry's Quick Fix",14
-"414","Howto & Style","Tina Yong",27
-"415","Howto & Style","Vogue",52
-"416","Howto & Style","You Suck At Cooking",81
-"417","Howto & Style","Zoella",28
-"418","Music","1theK (원더케이)",16
-"419","Music","5SOSVEVO",32
-"420","Music","AbrahamMateoVEVO",18
-"421","Music","Alan Walker",23
-"422","Music","AlisonWonderlandVEVO",11
-"423","Music","ANDREW HUANG",29
-"424","Music","Ariana Grande`",18
-"425","Music","ArianaGrandeVevo",43
-"426","Music","Atlantic Records",27
-"427","Music","AzealiaBanksVEVO",20
-"428","Music","BackstreetBoysVEVO",27
-"429","Music","BANGTANTV",26
-"430","Music","BBC Radio 1",44
-"431","Music","BBCRadio1VEVO",33
-"432","Music","Beats 1 Radio",16
-"433","Music","Bebe Rexha",22
-"434","Music","BeckyGVEVO",20
-"435","Music","Big Marvel",36
-"436","Music","bill wurtz",18
-"437","Music","Billboard",38
-"438","Music","Billie Eilish",19
-"439","Music","BillieEilishVEVO",17
-"440","Music","Blake Shelton",14
-"441","Music","Bobby Bones",17
-"442","Music","BØRNSmusicVEVO",14
-"443","Music","BrettYoungVEVO",13
-"444","Music","CAguileraVEVO",42
-"445","Music","CalumScottVEVO",54
-"446","Music","CalvinHarrisVEVO",43
-"447","Music","Camila Cabello",21
-"448","Music","CamilaCabelloVEVO",22
-"449","Music","Cardi B",16
-"450","Music","Carrie Underwood",16
-"451","Music","carrieunderwoodVEVO",42
-"452","Music","CelineDionVEVO",22
-"453","Music","ChainsmokersVEVO",54
-"454","Music","Charlie Puth",84
-"455","Music","ChildishGambinoVEVO",25
-"456","Music","ChloexHalleVEVO",14
-"457","Music","ChrisStapletonVEVO",17
-"458","Music","Christina Aguilera",12
-"459","Music","ChrisYoungVEVO",16
-"460","Music","ChvrchesVEVO",20
-"461","Music","Cimorelli",12
-"462","Music","CJENMMUSIC Official",11
-"463","Music","Clean Bandit",14
-"464","Music","Daddy Yankee",25
-"465","Music","Dan And Shay",24
-"466","Music","davematthewsbandVEVO",23
-"467","Music","David Guetta",39
-"468","Music","Diplo",54
-"469","Music","DisneyMusicVEVO",24
-"470","Music","DJKhaledVEVO",14
-"471","Music","doddleoddle",11
-"472","Music","Don Diablo",26
-"473","Music","DrakeVEVO",14
-"474","Music","Ed Sheeran",30
-"475","Music","EllieGouldingVEVO",12
-"476","Music","EnriqueIglesiasVEVO",32
-"477","Music","FallOutBoyVEVO",13
-"478","Music","fantano",18
-"479","Music","FifthHarmonyVEVO",26
-"480","Music","FiftyShadesVEVO",25
-"481","Music","FlorenceMachineVEVO",38
-"482","Music","fosterthepeopleVEVO",15
-"483","Music","Fueled By Ramen",19
-"484","Music","Gallant",23
-"485","Music","Genius",28
-"486","Music","GeorgeEzraVEVO",23
-"487","Music","Gorillaz",14
-"488","Music","GraceVanderWaalVEVO",18
-"489","Music","H O N N E",18
-"490","Music","HalseyVEVO",35
-"491","Music","iamAURORAVEVO",15
-"492","Music","ibighit",67
-"493","Music","ImagineDragonsVEVO",23
-"494","Music","J. Cole",18
-"495","Music","JackWhiteVEVO",12
-"496","Music","JamesBayVEVO",35
-"497","Music","Janelle Monáe",42
-"498","Music","Jason Derulo",30
-"499","Music","Jason Mraz",15
-"500","Music","JasonAldeanVEVO",19
-"501","Music","JenniferLopezVEVO",40
-"502","Music","Jess Glynne",20
-"503","Music","John Mayer",21
-"504","Music","johnlegendVEVO",12
-"505","Music","johnmayerVEVO",28
-"506","Music","JohnNewmanVEVO",12
-"507","Music","JuliaMichaelsVEVO",17
-"508","Music","justintimberlakeVEVO",34
-"509","Music","jypentertainment",40
-"510","Music","K-MUSIC",13
-"511","Music","Kacey Musgraves - Topic",11
-"512","Music","KaceyMusgravesVEVO",29
-"513","Music","Kanye West - Topic",30
-"514","Music","KeithUrbanVEVO",33
-"515","Music","Kelly Clarkson",49
-"516","Music","KendrickLamarVEVO",19
-"517","Music","keshaVEVO",20
-"518","Music","KhalidVEVO",12
-"519","Music","Kid Rock",12
-"520","Music","KylieMinogueOnVEVO",16
-"521","Music","LadyGagaVEVO",20
-"522","Music","Lauv",39
-"523","Music","LewisCapaldiVEVO",12
-"524","Music","LiamPayneVEVO",20
-"525","Music","Lindsey Stirling",15
-"526","Music","Maggie Lindemann",11
-"527","Music","MaggieRogersVEVO",12
-"528","Music","MalumaVEVO",32
-"529","Music","Maroon5VEVO",33
-"530","Music","Marshmello",37
-"531","Music","Mason Ramsey",15
-"532","Music","MeghanTrainorVEVO",59
-"533","Music","MiguelVEVO",17
-"534","Music","Mike Shinoda",18
-"535","Music","MustardVEVO",20
-"536","Music","NiallHoranVEVO",16
-"537","Music","Nicki Minaj",18
-"538","Music","NickiMinajAtVEVO",40
-"539","Music","NickyJamTV",20
-"540","Music","OVO Sound",11
-"541","Music","Panic! At The Disco",22
-"542","Music","PostmodernJukebox",13
-"543","Music","Prince",19
-"544","Music","PTXofficial",77
-"545","Music","radiodisney",11
-"546","Music","Ranz Kyle",12
-"547","Music","RemyMaVEVO",16
-"548","Music","Rob Scallon",23
-"549","Music","Rudimental",19
-"550","Music","Rudy Mancuso",23
-"551","Music","SabrinaCarpenterVEVO",17
-"552","Music","SadeVEVO",12
-"553","Music","SamSmithWorldVEVO",29
-"554","Music","Shawn Mendes",31
-"555","Music","ShawnMendesVEVO",50
-"556","Music","Shoshana Bean",12
-"557","Music","SiaVEVO",32
-"558","Music","SigridVEVO",34
-"559","Music","SMTOWN",49
-"560","Music","SnoopDoggVEVO",21
-"561","Music","SnowPatrolVEVO",14
-"562","Music","SugarlandVEVO",18
-"563","Music","SUMERIAN",14
-"564","Music","SZAVEVO",25
-"565","Music","TaylorSwiftVEVO",42
-"566","Music","Ten Second Songs",13
-"567","Music","The Weeknd",15
-"568","Music","theneedledrop",23
-"569","Music","TheWeekndVEVO",19
-"570","Music","TinasheOfficialVEVO",27
-"571","Music","ToniBraxtonVEVO",17
-"572","Music","TroyeSivanVEVO",57
-"573","Music","TWICE JAPAN OFFICIAL YouTube Channel",18
-"574","Music","U2VEVO",14
-"575","Music","Vance Joy",13
-"576","Music","ViralHog",11
-"577","Music","weezer",16
-"578","Music","XAmbassadorsVEVO",13
-"579","Music","ZaynVEVO",39
-"580","Music","ZEDDVEVO",12
-"581","Music","杰威爾音樂 JVR Music",29
-"582","News & Politics","ABC Action News",15
-"583","News & Politics","ABC News",85
-"584","News & Politics","ABC News (Australia)",25
-"585","News & Politics","Asian Boss",17
-"586","News & Politics","Associated Press",28
-"587","News & Politics","BBC",13
-"588","News & Politics","BBC News",38
-"589","News & Politics","Beme News",14
-"590","News & Politics","Business Insider",14
-"591","News & Politics","C-SPAN",33
-"592","News & Politics","CBC News",36
-"593","News & Politics","CBS Los Angeles",31
-"594","News & Politics","CBS Miami",12
-"595","News & Politics","CBS News",60
-"596","News & Politics","CBS This Morning",51
-"597","News & Politics","CNBC",21
-"598","News & Politics","CNN",141
-"599","News & Politics","CNNMoney",14
-"600","News & Politics","euronews (in English)",12
-"601","News & Politics","FOX 17 WXMI",15
-"602","News & Politics","Fox News",30
-"603","News & Politics","Guardian News",36
-"604","News & Politics","Inside Edition",72
-"605","News & Politics","MLive",16
-"606","News & Politics","MSNBC",33
-"607","News & Politics","NBC News",81
-"608","News & Politics","News 5 Cleveland",12
-"609","News & Politics","NJ.com",18
-"610","News & Politics","PBS NewsHour",20
-"611","News & Politics","Philip DeFranco",12
-"612","News & Politics","The New York Times",50
-"613","News & Politics","The Royal Family Channel",15
-"614","News & Politics","TIME",48
-"615","News & Politics","TODAY",70
-"616","News & Politics","USA TODAY",27
-"617","News & Politics","VICE News",15
-"618","News & Politics","Vox",142
-"619","News & Politics","Wall Street Journal",16
-"620","News & Politics","Washington Post",85
-"621","Nonprofits & Activism","Bill Gates",15
-"622","People & Blogs","AlishaMarieVlogs",16
-"623","People & Blogs","As/Is",76
-"624","People & Blogs","bill wurtz",23
-"625","People & Blogs","BuzzFeed Celeb",46
-"626","People & Blogs","BuzzFeedBlue",67
-"627","People & Blogs","BuzzFeedVideo",131
-"628","People & Blogs","Cammie Scott",16
-"629","People & Blogs","CaseyNeistat",62
-"630","People & Blogs","CatCreature",23
-"631","People & Blogs","CBS This Morning",13
-"632","People & Blogs","Charlie Corts",15
-"633","People & Blogs","Daisy Marquez",26
-"634","People & Blogs","Dobre Brothers",19
-"635","People & Blogs","Doctor Mike",28
-"636","People & Blogs","Eh Bee Family",19
-"637","People & Blogs","Erika Costell",15
-"638","People & Blogs","Full Frontal with Samantha Bee",28
-"639","People & Blogs","Glam&Gore",14
-"640","People & Blogs","Grace Helbig",41
-"641","People & Blogs","Great Big Story",91
-"642","People & Blogs","H3 Podcast Highlights",18
-"643","People & Blogs","How to DAD",24
-"644","People & Blogs","iJustine",28
-"645","People & Blogs","Jack Coyne",11
-"646","People & Blogs","Jake Paul",20
-"647","People & Blogs","Joey Graceffa",13
-"648","People & Blogs","Kanye West",23
-"649","People & Blogs","Kim Kardashian West",13
-"650","People & Blogs","KKandbabyJ",19
-"651","People & Blogs","Klossy",22
-"652","People & Blogs","Kylie Cosmetics",11
-"653","People & Blogs","Ladylike",37
-"654","People & Blogs","Madelaine Petsch",14
-"655","People & Blogs","Marzia",24
-"656","People & Blogs","Mean Girls on Broadway",11
-"657","People & Blogs","Molly Burke",20
-"658","People & Blogs","Nikita Dragun",13
-"659","People & Blogs","Peter McKinnon",22
-"660","People & Blogs","Primitive Survival Tool",26
-"661","People & Blogs","Primitive Technology",36
-"662","People & Blogs","Queen Naija",12
-"663","People & Blogs","Riverdale",11
-"664","People & Blogs","RomanAtwoodVlogs",26
-"665","People & Blogs","Safiya Nygaard",113
-"666","People & Blogs","Sam O'Nella Academy",15
-"667","People & Blogs","SELF",12
-"668","People & Blogs","ShibSibs",11
-"669","People & Blogs","Skip and Shannon: UNDISPUTED",11
-"670","People & Blogs","Special Books by Special Kids",16
-"671","People & Blogs","SuperCarlinBrothers",25
-"672","People & Blogs","SuperwomanVlogs",16
-"673","People & Blogs","Tasty",16
-"674","People & Blogs","TED",24
-"675","People & Blogs","The Late Late Show with James Corden",26
-"676","People & Blogs","The Late Show with Stephen Colbert",26
-"677","People & Blogs","The Slow Mo Guys",53
-"678","People & Blogs","Tyler Williams",14
-"679","People & Blogs","UFC ON FOX",12
-"680","People & Blogs","Unecht Erfunden",15
-"681","People & Blogs","vlogbrothers",25
-"682","People & Blogs","Vogue",18
-"683","People & Blogs","zefrank1",50
-"684","Pets & Animals","AaronsAnimals",65
-"685","Pets & Animals","AnimalWised",12
-"686","Pets & Animals","AntsCanada",24
-"687","Pets & Animals","BBC Earth",15
-"688","Pets & Animals","Brave Wilderness",92
-"689","Pets & Animals","camelsandfriends",21
-"690","Pets & Animals","Cat Man Chris",12
-"691","Pets & Animals","CatPusic",11
-"692","Pets & Animals","Cole and Marmalade",43
-"693","Pets & Animals","Helpful Vancouver Vet",22
-"694","Pets & Animals","Hope For Paws - Official Rescue Channel",20
-"695","Pets & Animals","ignoramusky",14
-"696","Pets & Animals","Nat Geo WILD",21
-"697","Pets & Animals","National Geographic",21
-"698","Pets & Animals","Recanto Ecológico Rio da Prata",12
-"699","Pets & Animals","Rock me, Joey Santiago.",14
-"700","Pets & Animals","Simon's Cat",64
-"701","Pets & Animals","The Dodo",47
-"702","Pets & Animals","TheMeanKitty",14
-"703","Pets & Animals","ViralHog",11
-"704","Science & Technology","Apple",30
-"705","Science & Technology","AsapSCIENCE",117
-"706","Science & Technology","AusAntarctic",11
-"707","Science & Technology","Austin Evans",42
-"708","Science & Technology","Because Science",35
-"709","Science & Technology","Ben Katz",14
-"710","Science & Technology","BostonDynamics",44
-"711","Science & Technology","Chubbyemu",17
-"712","Science & Technology","CNET",24
-"713","Science & Technology","CrazyRussianHacker",96
-"714","Science & Technology","Deep Look",15
-"715","Science & Technology","ElectroBOOM",12
-"716","Science & Technology","Everyday Astronaut",13
-"717","Science & Technology","Google",12
-"718","Science & Technology","Google Developers",15
-"719","Science & Technology","Hydraulic Press Channel",68
-"720","Science & Technology","iJustine",12
-"721","Science & Technology","INSIDER",16
-"722","Science & Technology","Kitty Hawk",12
-"723","Science & Technology","Linus Tech Tips",60
-"724","Science & Technology","Mark Rober",24
-"725","Science & Technology","Marques Brownlee",93
-"726","Science & Technology","Microsoft Surface",16
-"727","Science & Technology","MinuteEarth",48
-"728","Science & Technology","NASA Goddard",15
-"729","Science & Technology","Numberphile",37
-"730","Science & Technology","PBS Eons",54
-"731","Science & Technology","PressTube",20
-"732","Science & Technology","Samsung",13
-"733","Science & Technology","Science Magazine",16
-"734","Science & Technology","Simone Giertz",57
-"735","Science & Technology","SpaceX",68
-"736","Science & Technology","Strange Parts",15
-"737","Science & Technology","Tech Insider",26
-"738","Science & Technology","TechCrunch",11
-"739","Science & Technology","Tested",15
-"740","Science & Technology","the Hacksmith",13
-"741","Science & Technology","The Verge",77
-"742","Science & Technology","Unbox Therapy",54
-"743","Science & Technology","United Launch Alliance",13
-"744","Science & Technology","Waterjet Channel",20
-"745","Science & Technology","What's Inside?",34
-"746","Science & Technology","William Osman",35
-"747","Science & Technology","WIRED",39
-"748","Science & Technology","圧倒的不審者の極み!",12
-"749","Shows","Bleacher Report",41
-"750","Sports","Australian Open TV",17
-"751","Sports","BBC Sport",11
-"752","Sports","Chris Smoove",23
-"753","Sports","CrossFit®",13
-"754","Sports","DALLMYD",35
-"755","Sports","Dude Perfect",115
-"756","Sports","ESPN",155
-"757","Sports","FC Barcelona",29
-"758","Sports","FORMULA 1",22
-"759","Sports","FOX Soccer",68
-"760","Sports","GRB rally",12
-"761","Sports","Highlight Heaven",15
-"762","Sports","How Ridiculous",75
-"763","Sports","Major League Soccer",13
-"764","Sports","Matt Bentkowski",15
-"765","Sports","MLB",16
-"766","Sports","MLG Highlights",46
-"767","Sports","NBA",134
-"768","Sports","NBA on TNT",23
-"769","Sports","NBC Sports",63
-"770","Sports","NCAA March Madness",23
-"771","Sports","NFL",73
-"772","Sports","NHL",26
-"773","Sports","Olympic",17
-"774","Sports","Real Madrid C.F.",12
-"775","Sports","Red Bull",31
-"776","Sports","SB Nation",28
-"777","Sports","Skip and Shannon: UNDISPUTED",33
-"778","Sports","SPORTSNET",13
-"779","Sports","Teen Vogue",11
-"780","Sports","UFC - Ultimate Fighting Championship",19
-"781","Sports","UFC ON FOX",14
-"782","Sports","USA Gymnastics",17
-"783","Sports","What's Inside?",22
-"784","Sports","WIRED",12
-"785","Sports","WWE",119
-"786","Travel & Events","Condé Nast Traveler",24
-"787","Travel & Events","Disney Parks",16
-"788","Travel & Events","FOOD INSIDER",14
-"789","Travel & Events","INSIDER",44
-"790","Travel & Events","Mark Wiens",11
-"791","Travel & Events","oregon",13
-"792","Travel & Events","Simon and Martina",16
-"793","Travel & Events","Strictly Dumpling",63
-"794","Travel & Events","The Food Ranger",31
+"3","Autos & Vehicles","WHAT'S INSIDE? FAMILY",13
+"4","Autos & Vehicles","LexusVehicles",12
+"5","Autos & Vehicles","HyundaiUSA",11
+"6","Autos & Vehicles","Jimmy Built",11
+"7","Comedy","The Tonight Show Starring Jimmy Fallon",146
+"8","Comedy","Late Night with Seth Meyers",132
+"9","Comedy","jacksfilms",107
+"10","Comedy","CollegeHumor",106
+"11","Comedy","Smosh",99
+"12","Comedy","Team Coco",96
+"13","Comedy","Domics",88
+"14","Comedy","LOL Network",80
+"15","Comedy","Hannah Stocking",74
+"16","Comedy","Studio C",74
+"17","Education","TED-Ed",140
+"18","Education","The King of Random",116
+"19","Education","SciShow",115
+"20","Education","Tom Scott",115
+"21","Education","Life Noggin",114
+"22","Education","Kurzgesagt – In a Nutshell",88
+"23","Education","Half as Interesting",60
+"24","Education","The Infographics Show",40
+"25","Education","The School of Life",37
+"26","Education","Practical Engineering",25
+"27","Education","Wendover Productions",25
+"28","Entertainment","TheEllenShow",155
+"29","Entertainment","Netflix",147
+"30","Entertainment","Saturday Night Live",128
+"31","Entertainment","HellthyJunkFood",124
+"32","Entertainment","The Late Show with Stephen Colbert",124
+"33","Entertainment","Vanity Fair",113
+"34","Entertainment","FBE",112
+"35","Entertainment","Good Mythical Morning",109
+"36","Entertainment","Warner Bros. Pictures",107
+"37","Entertainment","Marvel Entertainment",105
+"38","Film & Animation","Screen Junkies",136
+"39","Film & Animation","20th Century Fox",94
+"40","Film & Animation","HBO",87
+"41","Film & Animation","The Film Theorists",86
+"42","Film & Animation","itsAlexClark",74
+"43","Film & Animation","Lucas the Spider",72
+"44","Film & Animation","Movieclips Trailers",63
+"45","Film & Animation","CinemaSins",58
+"46","Film & Animation","Lionsgate Movies",54
+"47","Film & Animation","Rooster Teeth",53
+"48","Gaming","Nintendo",72
+"49","Gaming","FaZe Rug",56
+"50","Gaming","The Game Theorists",43
+"51","Gaming","videogamedunkey",42
+"52","Gaming","Call of Duty",41
+"53","Gaming","Clash Royale",40
+"54","Gaming","Markiplier",38
+"55","Gaming","Fortnite",30
+"56","Gaming","The Official Pokémon YouTube Channel",30
+"57","Gaming","miniminter",25
+"58","Howto & Style","Tasty",109
+"59","Howto & Style","First We Feast",104
+"60","Howto & Style","Laura Lee",94
+"61","Howto & Style","NikkieTutorials",93
+"62","Howto & Style","Tati",93
+"63","Howto & Style","LaurDIY",81
+"64","Howto & Style","You Suck At Cooking",81
+"65","Howto & Style","Rosanna Pansino",72
+"66","Howto & Style","Bon Appétit",69
+"67","Howto & Style","How To Cake It",63
+"68","Music","Charlie Puth",84
+"69","Music","PTXofficial",77
+"70","Music","ibighit",67
+"71","Music","MeghanTrainorVEVO",59
+"72","Music","TroyeSivanVEVO",57
+"73","Music","CalumScottVEVO",54
+"74","Music","ChainsmokersVEVO",54
+"75","Music","Diplo",54
+"76","Music","ShawnMendesVEVO",50
+"77","Music","Kelly Clarkson",49
+"78","Music","SMTOWN",49
+"79","News & Politics","Vox",142
+"80","News & Politics","CNN",141
+"81","News & Politics","ABC News",85
+"82","News & Politics","Washington Post",85
+"83","News & Politics","NBC News",81
+"84","News & Politics","Inside Edition",72
+"85","News & Politics","TODAY",70
+"86","News & Politics","CBS News",60
+"87","News & Politics","CBS This Morning",51
+"88","News & Politics","The New York Times",50
+"89","Nonprofits & Activism","Bill Gates",15
+"90","People & Blogs","BuzzFeedVideo",131
+"91","People & Blogs","Safiya Nygaard",113
+"92","People & Blogs","Great Big Story",91
+"93","People & Blogs","As/Is",76
+"94","People & Blogs","BuzzFeedBlue",67
+"95","People & Blogs","CaseyNeistat",62
+"96","People & Blogs","The Slow Mo Guys",53
+"97","People & Blogs","zefrank1",50
+"98","People & Blogs","BuzzFeed Celeb",46
+"99","People & Blogs","Grace Helbig",41
+"100","Pets & Animals","Brave Wilderness",92
+"101","Pets & Animals","AaronsAnimals",65
+"102","Pets & Animals","Simon's Cat",64
+"103","Pets & Animals","The Dodo",47
+"104","Pets & Animals","Cole and Marmalade",43
+"105","Pets & Animals","AntsCanada",24
+"106","Pets & Animals","Helpful Vancouver Vet",22
+"107","Pets & Animals","camelsandfriends",21
+"108","Pets & Animals","Nat Geo WILD",21
+"109","Pets & Animals","National Geographic",21
+"110","Science & Technology","AsapSCIENCE",117
+"111","Science & Technology","CrazyRussianHacker",96
+"112","Science & Technology","Marques Brownlee",93
+"113","Science & Technology","The Verge",77
+"114","Science & Technology","Hydraulic Press Channel",68
+"115","Science & Technology","SpaceX",68
+"116","Science & Technology","Linus Tech Tips",60
+"117","Science & Technology","Simone Giertz",57
+"118","Science & Technology","PBS Eons",54
+"119","Science & Technology","Unbox Therapy",54
+"120","Shows","Bleacher Report",41
+"121","Sports","ESPN",155
+"122","Sports","NBA",134
+"123","Sports","WWE",119
+"124","Sports","Dude Perfect",115
+"125","Sports","How Ridiculous",75
+"126","Sports","NFL",73
+"127","Sports","FOX Soccer",68
+"128","Sports","NBC Sports",63
+"129","Sports","MLG Highlights",46
+"130","Sports","DALLMYD",35
+"131","Travel & Events","Strictly Dumpling",63
+"132","Travel & Events","INSIDER",44
+"133","Travel & Events","The Food Ranger",31
+"134","Travel & Events","Condé Nast Traveler",24
+"135","Travel & Events","Disney Parks",16
+"136","Travel & Events","Simon and Martina",16
+"137","Travel & Events","FOOD INSIDER",14
+"138","Travel & Events","oregon",13
+"139","Travel & Events","Mark Wiens",11

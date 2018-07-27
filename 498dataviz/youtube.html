@@ -1,0 +1,271 @@
+<!doctype html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="Naseer Batt" />
+    <meta name="description" content="fullPage youtube visualization." />
+    <meta name="keywords" content="fullpage,youtube,interactive,Visualization" />
+    <meta name="Resource-type" content="Document" />
+
+    <title>CS498 DDV Final D3.js Visualization - Naseer Batt</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/3.0.1/fullpage.js"></script>
+
+    <script src="https://d3js.org/d3.v4.min.js"></script>
+
+    <style>
+        .bar1 {
+            fill: steelblue;
+        }
+
+        .bar:hover {
+            fill: brown;
+        }
+
+        .axis--x path {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="fullpage">
+        <div class="section" id="title">
+            <div id="title_text">
+                <h1>Visualization of youtube content statistics</h1>
+                <h3>A d3.js data visualization project using the Youtube content statistics7
+                    <br />Naseer BATT - UIUC CS498 Data Visualization</h3>
+            </div>
+        </div>
+        <div class="section" id="about">
+            <div id="content_div">
+                <h1>About the Visualization</h1>
+                <p>This visualization is an interactive slideshow which takes the user through the Dataset of the stackoverflwo
+                    developer Survery fof the year 2018.</p>
+                <h2>Recommended Settings</h2>
+                <p>As the visualizations use a preset static canvas of 1024x768 pixels, the viewing size of the interactive
+                    visualization is at least 1280x800 pixels to accommodate the surrounding text and scene elements.</p>
+                <h2>Managing the Dataset</h2>
+                <p>With such a large dataset, creating a visualization with the raw data turned out to be very difficult. The
+                    first step for created this visualization was to process the dataset and focus on the data pertaining
+                    restaurants in the United States only.</p>
+                <h2>Templates Scene</h2>
+                <p>The use of CSS and FullPage.js allows for a cohesive template look for the interactive visualization. Each
+                    page is transitioned using the same method and text elements are kept the same (font size and family).
+                    Additionally there is a page navigation bar on the right side which allows users to skip between different
+                    slides. The tooltips which are triggered when a user moves their mouse over the navigation alters the
+                    display parameters for each navigation menu item.</p>
+                <h2>Annotations</h2>
+                <p>Annotations have been used in all three visualizations with a similar process of using triggers to change
+                    the hidden paramenter of the annotation. For example, the Line Chart Visualization has an initial state
+                    of the hidden parameter which controls the display of the annotations set to false. As a user uses the
+                    brush bar to trigger changes to the line chart visualization x-axis parameters, it also changes this
+                    hidden parameter to true. In turn the annotations disappear until the user resets the brush bar to zero
+                    - thus zooming out back to the default visualization parameters.</p>
+                <h2>Parameters and Triggers</h2>
+                <p>Both parameters and triggers are used in all of the three visualizations. For the Bubble Chart Visualization,
+                    parameters for the x,y co-ordinates of each bubble are set to an initial central position for the All
+                    Reviews Visualization. As a user selects menu items to chose between All Reviews, Reviews by State and
+                    Reviews by Stars, it triggers the change of bubble’s x,y co-ordinates parameter to their respective groupings.</p>
+                <br />
+                <p>In Zoomable Sunburst Visualization, each mouse click on a region is a trigger for the path and arc parameters.
+                    By clicking within a region, you can zoom into the data to take a look at the information underneath.
+                    Clicking the centre circle will trigger the parameters to return to its values one up in the hierarchy.</p>
+                <br />
+                <p>For Line Chart Visualization.</p>
+            </div>
+        </div>
+        <div class="section" id="chart1">
+
+            <div id="content_div">
+                <ul class="nav nav-pills nav-fill">
+                    <li class="nav-item">
+                        <a class="nav-link active" data-target="#US" role="tab" data-toggle="tab">UNITED STATES</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-target="#UK" role="tab" data-toggle="tab">UNITED KINGDOM</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-target="#CA" role="tab" data-toggle="tab">CANADA</a>
+                    </li>
+                </ul>
+
+                <!-- <div id = "container">  
+                    <a href="#US" id="btn_us" class="button active">United States</a>
+					<a href="#UK" id="btn_gb" class="button">United Kingdom</a>
+					<a href="#CA" id="btn_ca" class="button">Canada</a>
+                </div> -->
+
+                <div class="tab-content">
+                    <div id="US" class="tab-pane fade in active">
+                        <h3>UNITED STATES</h3>
+                        ''
+                        <svg id="us_cat_svg" width="960" height="600" style="padding-left:45px;"></svg>
+                    </div>
+                    <div id="UK" class="tab-pane fade">
+                        <h3>UNITED KINGDOM</h3>
+                        <svg id="uk_cat_svg" width="960" height="600" style="padding-left:45px;"></svg>
+                    </div>
+                    <div id="CA" class="tab-pane fade">
+                        <h3>CANADA</h3>
+                        <svg id="ca_cat_svg" width="960" height="600" style="padding-left:45px;"></svg>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="section" id="chart2">
+        <div id="content_div2">
+            <svg id="visualisation" width="1000" height="500"></svg>
+        </div>
+    </div>
+
+    <script src="scripts/summaryplots.js" />
+</body>
+<script>
+    $(document).ready(function () {
+        $('#fullpage').fullpage({ licenseKey: "OPEN-SOURCE-GPLV3-LICENSE" });
+    });
+
+/*
+    // set the ranges
+    var x = d3.scaleTime().range([0, width]);
+    var y = d3.scaleLinear().range([height, 0]);
+
+    var yAxis = d3.axisLeft(y).tickFormat(d3.format("1", 1e1));
+
+    var svg = d3.select("#us_cat_svg");
+    var margin = { top: 20, right: 20, bottom: 40, left: 40 };
+    var width = svg.attr("width") - margin.left - margin.right;
+    var height = svg.attr("height") - margin.top - margin.bottom;
+    var xlabel = "Video Category";
+    var ylabel = "Number of Videos";
+
+    var g = svg.append("g")
+        .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+    plotCatData("./498dataviz/data/yt_us_popcategories.csv", g, height, width);
+    
+    // text label for the x axis
+    svg.append("text")
+        .attr("transform", "translate(" + (width / 2) + " ," + (height + 55) + ")")
+        .style("text-anchor", "middle")
+        .style("font", "18px sans-serif")
+        .style("padding-top", "10px")
+        .html(xlabel);
+
+    // text label for the y axis
+    svg.append("text")
+        .attr("transform", "rotate(-90)")
+        .attr("y", 0 - margin.left)
+        .attr("x",0 - (height / 2))
+        .attr("dy", "1em")
+        .style("text-anchor", "middle")
+        .style("font", "18px sans-serif")
+        .text(ylabel); 
+    
+    var svg_uk = d3.select("#uk_cat_svg");
+    var g_uk = svg_uk.append("g")
+        .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+    plotCatData("./498dataviz/data/yt_gb_popcategories.csv", g_uk, height, width);
+    
+    // text label for the x axis
+    svg_uk.append("text")
+        .attr("transform", "translate(" + (width / 2) + " ," + (height + 55) + ")")
+        .style("text-anchor", "middle")
+        .style("font", "18px sans-serif")
+        .style("padding-top", "10px")
+        .html(xlabel);
+    // text label for the y axis
+    svg_uk.append("text")
+        .attr("transform", "rotate(-90)")
+        .attr("y", 0 - margin.left)
+        .attr("x",0 - (height / 2))
+        .attr("dy", "1em")
+        .style("font", "18px sans-serif")
+        .style("text-anchor", "middle")
+        .text(ylabel); 
+
+    var svg_ca = d3.select("#ca_cat_svg");
+    // var margin = { top: 20, right: 20, bottom: 40, left: 100 };
+    // var width = 960 - margin.left - margin.right;
+    // var height = 600 - margin.top - margin.bottom;
+
+    var g_ca = svg_ca.append("g")
+        .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+    plotCatData("./498dataviz/data/yt_ca_popcategories.csv", svg_ca, height, width);
+    // text label for the x axis
+    svg_ca.append("text")
+        .attr("transform", "translate(" + (width / 2) + " ," + (height + 55) + ")")
+        .style("text-anchor", "middle")
+        .style("font", "18px sans-serif")
+        .style("padding-top", "-10px")
+        .html(xlabel);
+    
+    // text label for the y axis
+    svg_ca.append("text")
+        .attr("transform", "rotate(-90)")
+        .attr("y", 0 - margin.left)
+        .attr("x",0 - (height / 2))
+        .attr("dy", "1em")
+        .style("text-anchor", "middle")
+        .style("font", "18px sans-serif")
+        .text(ylabel); 
+        
+    function plotCatData(file, g, height, width) {
+        d3.csv(file, function (error, data) {
+            if (error) throw error;
+
+            var x = d3.scaleBand().rangeRound([0, width]).padding(0.1),
+                y = d3.scaleLinear().rangeRound([height, 0]),
+                colorScale = d3.scaleOrdinal(d3.schemeCategory20);  // set the colour scale
+            
+            // sort the data based on years of experience.
+            //data.sort(function(a,b ) {return d3.descending(a.Metric)});
+
+            x.domain(data.map(function (d) { return d.category_title; }));
+            y.domain([d3.min(data, function (d) { return parseInt(d.Metric); }) - 100, d3.max(data, function (d) { return parseInt(d.Metric);})]);
+            colorScale.domain(data.map(function (d){ console.log("category =>" , d.category_title, " Rank => ", d.rank); return d.rank; }));
+          
+            // add bars.
+            g.selectAll(".xbar")
+                .data(data)
+                .enter().append("rect")
+                .attr("class", "bar")
+                .attr("x", function (d) { return x(d.category_title); })
+                .attr("y", function (d) { return y(parseInt(d.Metric)); })
+                .attr("width", x.bandwidth())
+                .attr("height", function (d) { return height - y(parseInt(d.Metric)); })
+                .style("fill", function (d)  { return colorScale(d.rank);   });
+
+            // add x-axis
+            g.append("g")
+                .attr("class", "axis axis--x")
+                .attr("transform", "translate(0," + height + ")")
+                .call(d3.axisBottom(x));
+
+            // add y-axis
+            g.append("g")
+                .attr("class", "axis axis--y")
+                // .call(d3.axisLeft(y).ticks(10, "%"))
+                .call(d3.axisLeft(y))
+                .append("text")
+                .attr("transform", "rotate(-90)")
+                .attr("y", 6)
+                .attr("dy", "0.71em")
+                .attr("text-anchor", "end");
+                // .text("Frequency");
+        })
+    };
+*/
+</script>
+
+</html>
