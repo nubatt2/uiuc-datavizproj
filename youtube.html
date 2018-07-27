@@ -19,7 +19,7 @@
     <script src="https://d3js.org/d3.v4.min.js"></script>
 
     <style>
-        .bar {
+        .bar1 {
             fill: steelblue;
         }
 
@@ -244,15 +244,18 @@
             if (error) throw error;
 
             var x = d3.scaleBand().rangeRound([0, width]).padding(0.1),
-                y = d3.scaleLinear().rangeRound([height, 0]);
-
+                y = d3.scaleLinear().rangeRound([height, 0]),
+                colorScale = d3.scaleOrdinal(d3.schemeCategory20);  // set the colour scale
+            
             // sort the data based on years of experience.
             //data.sort(function(a,b ) {return d3.descending(a.Metric)});
 
             x.domain(data.map(function (d) { return d.category_title; }));
             // y.domain([d3.min(data, function (d) { return d.Metric; }), d3.max(data, function (d) { return d.Metric; })]).nice();
             y.domain([500, 11000]).nice();
+            colorScale.domain(data.map(function (d){ console.log("category =>" , d.category_title, " Rank => ", d.rank); return d.rank; }));
 
+            // move cursor to position of drawing.
             g.append("g")
                 .attr("class", "axis axis--x")
                 .attr("transform", "translate(0," + height + ")")
@@ -268,7 +271,8 @@
                 .attr("dy", "0.71em")
                 .attr("text-anchor", "end")
                 .text("Frequency");
-
+            
+            // add bars.
             g.selectAll(".xbar")
                 .data(data)
                 .enter().append("rect")
@@ -276,7 +280,11 @@
                 .attr("x", function (d) { return x(d.category_title); })
                 .attr("y", function (d) { return y(d.Metric); })
                 .attr("width", x.bandwidth())
-                .attr("height", function (d) { return height - y(d.Metric); });
+                .attr("height", function (d) { return height - y(d.Metric); })
+                .style("fill", function (d) { // dynamic colours
+					console.log("chosen color =>", colorScale(d.rank), "rank is =>" , d);
+                    return colorScale(d.rank);
+				});
         })
     };
 
