@@ -1,0 +1,278 @@
+<!doctype html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>CS498 DV Final D3.js Visualization - Naseer Batt</title>
+	<meta name="author" content="Naseer Batt" />
+	<meta name="description" content="interactive  Visualization of global trade statistics." />
+	<meta name="keywords" content="narrative,data visualization,global trade statistics" />
+	<meta name="Resource-type" content="Document" />
+
+	<script src="https://d3js.org/d3.v4.min.js"></script>
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha256-3edrmyuQ0w65f8gfBsqowzjJe2iM6n0nKciPUp8y+7E="
+	 crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/3.0.1/fullpage.js"></script>
+
+	<style>
+		.bar {
+			fill: steelblue;
+		}
+
+		.bar:hover {
+			fill: brown;
+		}
+
+		.axis--x path {
+			display: none;
+		}
+	</style>
+
+	<style>
+		/* set the CSS */
+
+		body {
+			font: 12px Arial;
+		}
+
+		path {
+			stroke: steelblue;
+			stroke-width: 2;
+			fill: none;
+		}
+
+		.axis path,
+		.axis line {
+			fill: none;
+			stroke: grey;
+			stroke-width: 1;
+			shape-rendering: crispEdges;
+		}
+
+		.grid line {
+			stroke: lightgrey;
+			stroke-opacity: 0.7;
+			shape-rendering: crispEdges;
+		}
+
+		.grid path {
+			stroke-width: 0;
+		}
+
+		div.tooltip {
+			position: absolute;
+			text-align: center;
+			width: 60px;
+			height: 28px;
+			padding: 2px;
+			font: 12px sans-serif;
+			background: lightsteelblue;
+			border: 0px;
+			border-radius: 8px;
+			pointer-events: none;
+		}
+	</style>
+</head>
+
+<body>
+	<div class="section" id="chart2">
+		<div id="content_div2">
+			<svg id="visualisation" width="1000" height="500"></svg>
+			<div id='tooltip' style='position:absolute;background-color:lightgray;padding:5px'></div>
+		</div>
+	</div>
+</body>
+<script>
+	$(document).ready(function () {
+		$('#fullpage').fullpage({ licenseKey: "OPEN-SOURCE-GPLV3-LICENSE" });
+	});
+</script>
+<script src="https://d3js.org/d3.v4.min.js"></script>
+
+<script>
+	// gridlines in x axis function
+	function make_x_gridlines() {
+		return d3.axisBottom(x).ticks(10)
+	}
+
+	// gridlines in y axis function
+	function make_y_gridlines() {
+		return d3.axisLeft(y).ticks(10)
+	}
+
+	// set the dimensions and margins of the graph
+	var margin = { top: 20, right: 20, bottom: 30, left: 50 },
+		width = 960 - margin.left - margin.right,
+		height = 500 - margin.top - margin.bottom;
+
+	// parse the date / time
+	var parseTime = d3.timeParse("%d-%b-%y");
+
+	// set the ranges
+	var x = d3.scaleTime().range([0, width]);
+	var y = d3.scaleLinear().range([height, 0]);
+
+	var xAxis = d3.axisBottom(x).tickFormat(d3.format('.4')); // .4 is for 4 digit year.// tickFormat(function(d){ return d.x;});
+	var yAxis = d3.axisLeft(y).tickFormat(d3.format("1", 1e9));
+
+	// define the line
+	var priceline = d3.line()
+		.x(function (d) { return x(d.year); })
+		.y(function (d) { return y(d.tradeinbillions); });
+
+
+	// append the svg obgect to the body of the page
+	// appends a 'group' element to 'svg'
+	// moves the 'group' element to the top left margin
+	var svg = d3.select("#visualisation").append("svg")
+		.attr("width", width + margin.left + margin.right + 200)
+		.attr("height", height + margin.top + margin.bottom)
+		.append("g")
+		.attr("transform",
+			"translate(" + margin.left + "," + margin.top + ")");
+
+	// add chart title
+	svg.append('text').html('Top Global Traders').attr('x', 400).style("font-size", "18px")
+
+	// setup tooltip
+	const tooltip = d3.select('#tooltip');
+	const tooltipLine = svg.append('line');
+	
+	// required for tooltip.
+	let states, tipBox;
+
+	// Get the data
+	d3.csv("./data/trade_stats.csv", function (error, data) {
+		if (error) throw error;
+
+		// Scale the range of the data
+		x.domain(d3.extent(data, function (d) { return d.year; }));
+		y.domain([900, 7200]);
+		// y.domain([0, d3.max(data, function (d) { return d.tradeinbillions; })]);
+
+		// add the X gridlines
+		svg.append("g")
+			.attr("class", "grid")
+			.attr("transform", "translate(0," + height + ")")
+			.call(make_x_gridlines()
+				.tickSize(-height)
+				.tickFormat("")
+			)
+
+		// add the Y gridlines
+		svg.append("g")
+			.attr("class", "grid")
+			.call(make_y_gridlines()
+				.tickSize(-width)
+				.tickFormat("")
+			)
+
+		// Nest the entries by symbol
+		var dataNest = d3.nest()
+			.key(function (d) { return d.country; })
+			.entries(data);
+
+		var color = d3.scaleOrdinal(d3.schemeCategory10);  // set the colour scale
+
+		// Loop through each symbol / key
+		dataNest.forEach(function (data, i) {
+			svg.append("path")
+				.data([data])
+				.attr("class", "line")
+				.style("stroke", function () { // Add the colours dynamically
+					return data.color = color(data.key);
+				})
+				.attr("d", priceline(data.values));
+
+			var currentCountry = data.key;
+			var currentTradeValue = data.values[data.values.length - 1].tradeinbillions;
+			var currentYear = data.values[data.values.length - 1].year;
+
+			// add legend.
+			svg.append("text")
+				.data([data])
+				// .attr("transform", function (d) { return "translate(" + x(d.value.year) + "," + y(d.value.tradeinbillions) + ")"; })
+				.attr('y', y(currentTradeValue))
+				.attr("x", x(currentYear))
+				.attr("dy", "0.35em")
+				.style("fill", function () { // dynamic colours
+					return data.color = color(data.key);
+				})
+				.style("font", "10px sans-serif")
+				.text(currentCountry);
+
+            // tooltip for later analyis.
+			states = data;
+			tipBox = svg.append('rect')
+				.attr('width', width)
+				.attr('height', height)
+				.attr('opacity', 0)
+				.on('mousemove', drawTooltip)
+				.on('mouseout', removeTooltip);
+		});
+
+
+		// Add the X Axis
+		svg.append("g")
+			.attr("class", "x axis")
+			.attr("transform", "translate(0," + height + ")")
+			.call(xAxis)
+			.append("text")
+			.text("Year");
+
+		// text label for the x axis
+		svg.append("text")
+			.attr("transform", "translate(" + (width / 2) + " ," + (height + margin.top + 10) + ")")
+			.style("text-anchor", "middle")
+			.style("font-size", "20px")
+			.html("Year");
+
+		// Add the Y Axis and it's label.
+		svg.append("g")
+			.attr("class", "y axis")
+			.call(yAxis)
+			.append("text")
+			.attr("transform", "rotate(-90)")
+			.attr("y", 6)
+			.attr("dy", "0.71em")
+			.attr("fill", "#000")
+			.style("font-size", "14px")
+			.text("Trading Volume, USD (Billions)");
+
+	});
+
+
+	function removeTooltip() {
+		if (tooltip) tooltip.style('display', 'none');
+		if (tooltipLine) tooltipLine.attr('stroke', 'none');
+	}
+
+	function drawTooltip() {
+		const year = Math.floor((x.invert(d3.mouse(tipBox.node())[0]) + 5) / 10) * 10;
+
+		states.sort((a, b) => {
+			return b.values.find(h => h.year == year).tradeinbillions - a.values.find(h => h.year == year).tradeinbillions;
+		})
+
+		tooltipLine.attr('stroke', 'black')
+			.attr('x1', x(year))
+			.attr('x2', x(year))
+			.attr('y1', 0)
+			.attr('y2', height);
+
+		tooltip.html(year)
+			.style('display', 'block')
+			.style('left', d3.event.pageX + 20)
+			.style('top', d3.event.pageY - 20)
+			.selectAll()
+			.data(data).enter()
+			.append('div')
+			.style('color', d => d.color)
+			.html(d => d.key + ': ' + d.values.find(h => h.year == year).tradeinbillions);
+	}
+
+</script>
+
+</script>
+
+</html>

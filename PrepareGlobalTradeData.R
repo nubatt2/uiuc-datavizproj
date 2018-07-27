@@ -10,6 +10,7 @@ overalltrade$WeightKg = overalltrade$`Weight Kg`
 
 # subset and take columns of interest
 trade_stats = overalltrade[, c(6,2,5,7)]
+trade_stats = trade_stats[order(TradeUsd),]
 
 # add a new column for trade in billions.
 trade_stats$TradeInBillions =  as.numeric(format(round(trade_stats$TradeUsd / 1e9, 0), trim = TRUE))
@@ -19,7 +20,7 @@ trade_stats$WeightInMegaTonnes =  as.numeric(format(round(trade_stats$WeightKg /
 
 trade_stats
 # print min and max - to be used for y-xis domain
-c(min(trade_stats$TradeUsd), max(trade_stats$TradeUsd))
+c(min(trade_stats$TradeInBillions), max(trade_stats$TradeInBillions))
 
 dir = getwd()
 filePath = file.path(dir, "trade_stats.csv")
