@@ -1,131 +1,140 @@
-"rank","category_title","channel_title","Metric"
-"1","Autos & Vehicles","Doug DeMuro",79
-"2","Autos & Vehicles","Mighty Car Mods",26
-"3","Autos & Vehicles","Adam LZ",19
-"4","Autos & Vehicles","Tavarish",18
-"5","Autos & Vehicles","Donut Media",15
-"6","Autos & Vehicles","SnowTrax Television",13
-"7","Autos & Vehicles","TheHoonigans",11
-"8","Comedy","Comment Awards",135
-"9","Comedy","CollegeHumor",113
-"10","Comedy","LN with Seth Meyers",108
-"11","Comedy","Team Edge",100
-"12","Comedy","TNS Jimmy Fallon",98
-"13","Comedy","Comedy Central UK",95
-"14","Comedy","Smosh",72
-"15","Comedy","FailArmy",71
-"16","Comedy","LOL Network",57
-"17","Comedy","SootHouse",53
-"18","Education","SciShow",76
-"19","Education","The King of Random",70
-"20","Education","TED-Ed",47
-"21","Education","MatthewSantoro",33
-"22","Education","Poisson Fécond",29
-"23","Education","#Mind Warehouse",26
-"24","Education","Kurzgesagt – In a Nutshell",26
-"25","Education","7-Second Riddles",23
-"26","Education","The Infographics Show",23
-"27","Education","Did You Know ?",22
-"28","Entertainment","SET India",153
-"29","Entertainment","FBE",142
-"30","Entertainment","REACT",135
-"31","Entertainment","RadaanMedia",122
-"32","Entertainment","ARY Digital",121
-"33","Entertainment","Daily Dose Of Internet",120
-"34","Entertainment","SAB TV",120
-"35","Entertainment","TheEllenShow",120
-"36","Entertainment","Good MM",117
-"37","Entertainment","Breakfast Club 105.1 FM",116
-"38","Film & Animation","CinemaSins",100
-"39","Film & Animation","大劇獨播",84
-"40","Film & Animation","Rooster Teeth",72
-"41","Film & Animation","The Film Theorists",68
-"42","Film & Animation","Screen Junkies",60
-"43","Film & Animation","Real Time with Bill Maher",58
-"44","Film & Animation","Unbox Therapy",37
-"45","Film & Animation","优优独播剧场—",37
-"46","Film & Animation","20th Century Fox",31
-"47","Film & Animation","Movieclips Trailers",31
-"48","Gaming","Cow Chop",83
-"49","Gaming","GameGrumps",67
-"50","Gaming","The Game Theorists",46
-"51","Gaming","Markiplier",33
-"52","Gaming","Smosh Games",33
-"53","Gaming","Achievement Hunter",31
-"54","Gaming","jacksepticeye",30
-"55","Gaming","PlayOverwatch",27
-"56","Gaming","penguinz0",26
-"57","Gaming","Nintendo",19
-"58","Howto & Style","Troom Troom",92
-"59","Howto & Style","First We Feast",85
-"60","Howto & Style","Tasty",76
-"61","Howto & Style","5-Minute Crafts",61
-"62","Howto & Style","BRIGHT SIDE",59
-"63","Howto & Style","Troom Troom FR",57
-"64","Howto & Style","Bon Appétit",55
-"65","Howto & Style","Food Wishes",50
-"66","Howto & Style","TheSorryGirls",42
-"67","Howto & Style","Tati",41
-"68","Music","Speed Records",80
-"69","Music","T-Series",65
-"70","Music","WORLDSTARHIPHOP",63
-"71","Music","T-Series Apna Punjab",60
-"72","Music","Humble Music",49
-"73","Music","White Hill Music",34
-"74","Music","SagaHits",31
-"75","Music","Genius",30
-"76","Music","Geet MP3",29
-"77","Music","VehliJantaRecords",28
-"78","News & Politics","CNN",154
-"79","News & Politics","MSNBC",148
-"80","News & Politics","The Young Turks",138
-"81","News & Politics","DramaAlert",88
-"82","News & Politics","Vox",88
-"83","News & Politics","The View",86
-"84","News & Politics","CBC News",79
-"85","News & Politics","Raffy Tulfo in Action",79
-"86","News & Politics","Philip DeFranco",70
-"87","News & Politics","Jason A",58
-"88","People & Blogs","BuzzFeedVideo",126
-"89","People & Blogs","BuzzFeedBlue",109
-"90","People & Blogs","PowerfulJRE",92
-"91","People & Blogs","H3 Podcast Highlights",50
-"92","People & Blogs","HUM TV Dramas",49
-"93","People & Blogs","CaseyNeistat",48
-"94","People & Blogs","Full Frontal Sam Bee",46
-"95","People & Blogs","Sorrow TV",46
-"96","People & Blogs","The Slow Mo Guys",46
-"97","People & Blogs","JRE Clips",42
-"98","People & Blogs","感谢订阅中剧独播",42
-"99","Pets & Animals","Brave Wilderness",68
-"100","Pets & Animals","AntsCanada",40
-"101","Pets & Animals","The king of DIY",39
-"102","Pets & Animals","Hope For Paws - Official Rescue Channel",23
-"103","Pets & Animals","The Dodo",21
-"104","Science & Technology","Linus Tech Tips",103
-"105","Science & Technology","secureteam10",92
-"106","Science & Technology","CrazyRussianHacker",80
-"107","Science & Technology","Dr Nozman",79
-"108","Science & Technology","Marques Brownlee",63
-"109","Science & Technology","AsapSCIENCE",50
-"110","Science & Technology","Unbox Therapy",38
-"111","Science & Technology","SpaceX",23
-"112","Science & Technology","US Military News",19
-"113","Science & Technology","CRYPTOSHELDON",17
-"114","Shows","VikatanTV",67
-"115","Sports","MLG Highlights",121
-"116","Sports","ESPN",120
-"117","Sports","NHL",109
-"118","Sports","WWE",85
-"119","Sports","Rapid Highlights",84
-"120","Sports","UNDISPUTED",82
-"121","Sports","Motion Station",75
-"122","Sports","SPORTSNET",65
-"123","Sports","Dude Perfect",48
-"124","Sports","GOLAZO TV",44
-"125","Travel & Events","Strictly Dumpling",98
-"126","Travel & Events","Mark Wiens",67
-"127","Travel & Events","The Food Ranger",46
-"128","Travel & Events","Best Ever Food Review Show",21
-"129","Travel & Events","Travel Thirsty",12
-"130",NA,"Tele Shekinah",17
+"rank","category_title","channel_title","Metric","ViewsCount","LikesCount","CommentsCount"
+"1","Autos & Vehicles","Doug DeMuro",79,54500710,1343538,420756
+"2","Autos & Vehicles","Mighty Car Mods",26,12175272,463623,53031
+"3","Autos & Vehicles","Adam LZ",19,4148579,182781,19102
+"4","Autos & Vehicles","Tavarish",18,5361794,244920,43753
+"5","Autos & Vehicles","Donut Media",15,4676118,260211,33373
+"6","Autos & Vehicles","SnowTrax Television",13,130762,2178,576
+"7","Autos & Vehicles","TheHoonigans",11,3039690,114013,14321
+"8","Comedy","Comment Awards",135,58321928,1677821,435564
+"9","Comedy","Team Edge",100,97780987,2271341,522541
+"10","Comedy","Smosh",72,78874279,3081416,268213
+"11","Comedy","Jimmy Kimmel Live",50,95134330,1751405,308662
+"12","Comedy","jacksfilms",42,47880761,3694383,940538
+"13","Comedy","Domics",38,59248821,3871698,438414
+"14","Comedy","Lele Pons",32,89709292,4878100,330378
+"15","Comedy","SQUEEZIE",31,99242421,9785737,692422
+"16","Comedy","PewDiePie",30,125542554,8971779,1026384
+"17","Comedy","CYR!L",28,18210583,2013515,303381
+"18","Comedy","Matthias",23,33818719,1071122,298281
+"19","Education","SciShow",76,13695123,538023,79595
+"20","Education","The King of Random",70,44796339,1000618,237332
+"21","Education","Poisson Fécond",29,11087033,791458,70029
+"22","Education","#Mind Warehouse",26,29554422,410442,299387
+"23","Education","Kurzgesagt",26,64230315,3986519,395429
+"24","Education","7-Second Riddles",23,20436477,109577,55460
+"25","Education","TheInfographics",23,13252333,312785,95018
+"26","Education","StrangerThanFiction",20,7344160,145195,54734
+"27","Education","Life Noggin",18,7116756,299029,61630
+"28","Education","Tyler, The Creator",14,22657977,1818345,109919
+"29","Education","Doctor Mike",12,11607956,740643,100839
+"30","Entertainment","FBE",142,140216135,4561626,1060840
+"31","Entertainment","Breakfast Club 105.1 FM",116,93530936,1629378,1077570
+"32","Entertainment","Philip DeFranco",67,94134991,4582763,847182
+"33","Entertainment","TMZ",50,97617128,1735783,675214
+"34","Entertainment","h3h3Productions",46,126295175,9755180,1047179
+"35","Entertainment","PewDiePie",34,132409130,9674947,1291789
+"36","Entertainment","MrBeast",32,107134548,3993259,684390
+"37","Entertainment","nigahiga",31,117177525,8486872,733418
+"38","Entertainment","KSI",30,151894130,8334827,787697
+"39","Entertainment","Marvel Entertainment",27,428523417,13733911,1547831
+"40","Entertainment","Sony Pictures",23,424538054,10213323,1155901
+"41","Film & Animation","CinemaSins",100,104606016,3039510,439935
+"42","Film & Animation","The Film Theorists",68,170954425,5904955,1046869
+"43","Film & Animation","Screen Junkies",60,96189517,2863869,384363
+"44","Film & Animation","Unbox Therapy",37,55111556,2462044,347327
+"45","Film & Animation","20th Century Fox",31,334617809,7111440,411525
+"46","Film & Animation","Lucas the Spider",25,86644083,5207528,392865
+"47","Film & Animation","Jaiden Animations",18,41420540,3684476,960233
+"48","Film & Animation","Disney•Pixar",15,196384878,3969072,418014
+"49","Film & Animation","Paramount Pictures",15,150130512,2096289,259922
+"51","Film & Animation","Walt Disney Studios",11,107518218,2183801,413326
+"52","Gaming","Cow Chop",83,16009342,1033739,81718
+"53","Gaming","GameGrumps",67,23793682,1531856,160278
+"54","Gaming","The Game Theorists",46,106310393,4617571,1540881
+"55","Gaming","Markiplier",33,29731650,1706113,308578
+"56","Gaming","jacksepticeye",30,27432275,1384050,365979
+"57","Gaming","PlayOverwatch",27,29731510,1245233,259220
+"58","Gaming","Nintendo",19,69270464,2121469,611212
+"59","Gaming","League of Legends",17,34183081,1456601,240327
+"60","Gaming","videogamedunkey",17,43335328,2485498,178822
+"61","Gaming","DanTDM",13,17758822,546932,228598
+"62","Gaming","FaZe Rug",13,19390115,1246478,316024
+"63","Howto & Style","Troom Troom",92,150517453,1922398,187265
+"64","Howto & Style","First We Feast",85,93049801,3894417,466493
+"65","Howto & Style","Tasty",76,70774129,2493306,144704
+"66","Howto & Style","5-Minute Crafts",61,138136588,1423693,86847
+"67","Howto & Style","BRIGHT SIDE",59,33957998,657220,138372
+"68","Howto & Style","Tati",41,26127509,1541727,186903
+"69","Howto & Style","Manny Mua",35,30687742,1618704,146517
+"70","Howto & Style","Draw with Jazza",28,9200065,608293,98540
+"71","Howto & Style","jeffreestar",20,25544745,1910637,1552908
+"72","Howto & Style","JunsKitchen",13,18984682,1376300,108336
+"73","Howto & Style","NikkieTutorials",12,18146058,1305395,120476
+"74","Music","Speed Records",80,302900152,8995249,690005
+"75","Music","T-Series",65,612749584,11230194,812320
+"76","Music","WORLDSTARHIPHOP",63,233455778,9535398,1480421
+"77","Music","Maroon5VEVO",18,222731516,12306557,758580
+"78","Music","ibighit",14,421272966,40096534,7190032
+"79","Music","TaylorSwiftVEVO",14,373747399,18155788,1633866
+"80","Music","EminemVEVO",13,98774491,6356113,507920
+"81","Music","Cardi B",12,212467872,8941532,639966
+"82","Music","NickiMinajAtVEVO",12,107037365,4528476,522013
+"83","Music","SMTOWN",12,49684108,5254736,650382
+"84","Music","Lil pump",11,169781316,9378647,1095438
+"85","News & Politics","CNN",154,72942945,714211,852634
+"86","News & Politics","MSNBC",148,39331164,404909,240075
+"87","News & Politics","The Young Turks",138,19262088,477286,263943
+"88","News & Politics","DramaAlert",88,125558360,6304554,1033496
+"89","News & Politics","Vox",88,40183545,1300045,201021
+"90","News & Politics","The View",86,18809240,167563,130004
+"91","News & Politics","Philip DeFranco",70,77404472,4085894,745935
+"92","News & Politics","Fox News",53,17874865,164604,192215
+"93","News & Politics","ABC News",46,36711652,332512,187819
+"94","News & Politics","Mark Dice",45,11545285,1139709,276710
+"95","News & Politics","Channel 4 News",12,14696623,399334,171122
+"96","People & Blogs","BuzzFeedVideo",126,283827944,6670843,753005
+"97","People & Blogs","BuzzFeedBlue",109,137968754,4311536,480549
+"98","People & Blogs","PowerfulJRE",92,50996929,878802,245176
+"99","People & Blogs","CaseyNeistat",48,73544116,4161441,412456
+"100","People & Blogs","JRE Clips",42,18764487,189233,151572
+"101","People & Blogs","Jake Paul",35,93003923,4272312,1109125
+"102","People & Blogs","Safiya Nygaard",34,101985517,5494610,1050476
+"103","People & Blogs","ComedyShortsGamer",18,19875443,975063,162554
+"104","People & Blogs","GamingWithJen",17,8604566,309333,139711
+"105","People & Blogs","вДудь",15,33757163,1580368,391804
+"106","People & Blogs","Primitive Technology",13,36745367,1567143,134793
+"107","Pets & Animals","Brave Wilderness",68,51346470,1618032,274777
+"108","Pets & Animals","AntsCanada",40,20926146,1094479,534563
+"109","Pets & Animals","The king of DIY",39,7652646,309506,61111
+"110","Pets & Animals","Hope For Paws - Official Rescue Channel",23,15109947,749624,64925
+"111","Pets & Animals","The Dodo",21,5437224,268285,17523
+"112","Science & Technology","Linus Tech Tips",103,75649757,3007996,432509
+"113","Science & Technology","secureteam10",92,35163327,1358187,563880
+"114","Science & Technology","CrazyRussianHacker",80,48333535,1417627,191448
+"115","Science & Technology","Dr Nozman",79,85566090,6219355,1032282
+"116","Science & Technology","Marques Brownlee",63,59124648,2994170,353276
+"117","Science & Technology","AsapSCIENCE",50,202336373,3624613,984213
+"118","Science & Technology","Unbox Therapy",38,66977501,2086940,271332
+"119","Science & Technology","SpaceX",23,140664931,3062207,277159
+"120","Science & Technology","The Verge",14,14879555,303779,37658
+"121","Science & Technology","Simone Giertz",13,12905689,1145816,215423
+"122","Science & Technology","WIRED",11,11246248,297831,46529
+"123","Shows","VikatanTV",67,41996973,230702,35434
+"124","Sports","MLG Highlights",121,289227515,1261885,670522
+"125","Sports","ESPN",120,63000399,568935,259479
+"126","Sports","WWE",85,149686615,2557700,337553
+"127","Sports","UNDISPUTED",82,30876190,322018,148418
+"128","Sports","Dude Perfect",48,532382525,20561270,1537818
+"129","Sports","GOLAZO TV",44,98962347,750185,111118
+"130","Sports","MMA WORLD",33,12034396,142430,90733
+"131","Sports","DALLMYD",30,24795280,1642372,127631
+"132","Sports","Tibo InShape",29,31079265,2248057,115907
+"133","Sports","How Ridiculous",21,172898444,4343280,770890
+"134","Sports","NFL",19,78615161,1000286,297235
+"135","Travel & Events","Strictly Dumpling",98,32495358,954554,138633
+"136","Travel & Events","Mark Wiens",67,19994897,709224,86141
+"137","Travel & Events","The Food Ranger",46,16389921,502740,111907
+"138","Travel & Events","Best Ever Food Review Show",21,2459535,101939,15911
+"139","Travel & Events","Travel Thirsty",12,13521048,81638,15942
+"140",NA,"Tele Shekinah",17,1115785,26631,576
