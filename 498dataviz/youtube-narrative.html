@@ -9,15 +9,12 @@
     <meta name="keywords" content="fullpage,youtube,interactive,Visualization" />
     <meta name="Resource-type" content="Document" />
 
-    <title>CS498 DDV Final D3.js Visualization - Naseer Batt</title>
+    <title>CS498 DV D3.js Narrative Visualization</title>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/3.0.1/fullpage.js"></script>
     <link rel="stylesheet" href="https://alvarotrigo.com/fullPage/fullpage.css" />
 
     <script src="https://d3js.org/d3.v4.min.js"></script>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
     <link rel="stylesheet" href="css/narrative.css">
 </head>
@@ -28,21 +25,25 @@
             <div class="intro">
                 <img src="./img/YT_BackGround.jpg" alt="Youtube">
                 <p class="left-center">
-                    <font size="6">Youtube Videos Statistics</font>
+                    <font size="6">Youtube - Which categories trend?</font>
                     <br>
-                    <font size="3">
-                        This visualization will walkthrough Youtube videos statistics. This dataset is mined from youtube API for the first half
-                        of this calendar year, 2018.
+                    <font size="4">
+                        This narrative visualization gives a walkthrough of the categories whose videos often trend.
+                        <br/> This dataset is mined from youtube API and filtered for the first half of this calendar year, 2018.
+                        It has daily records of the videos that trended on youtube.
                         <br/>
                         <br/>
-                        <font size="5">This interactive slideshow will explore video category stats for 3 countries - USA, UK and Canada</font>
-                        <br> - What are the top categories of vidoes that users upload to youtube. Is Entertainment category
-                        dominant?
-                        <br> - With-in each categories, what are the top channels. How dominant are the big media brands?
+                        <font size="5">This interactive slideshow will explore trending video category stats for 3 countries - USA, UK and
+                            Canada.
+                            <br/>we will be plotting in terms of video count.</font>
+                        <br> - In terms of trending video content, what are the top cateogories? Is Entertainment dominant? what
+                        about games?
+                        <br> - User can explore, for each category, what are the top channels and figure how dominant are the
+                        corporate channels/brands?
                     </font>
                     <br>
                     <br>
-                    <font size="4">T0 scroll down, can use mouse or keyboard.</font>
+                    <font size="4">To scroll down, can use mouse or keyboard.</font>
                     <br>
                     <br>
                     <br>
@@ -50,56 +51,74 @@
                 </p>
             </div>
         </div>
+
         <div class="section" id="section1">
             <div class="center-align">
-                <ul class="nav nav-pills nav-fill">
-                    <li class="nav-item active">
-                        <a class="nav-link active" data-target="#US" role="tab" data-toggle="tab">UNITED STATES</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" data-target="#UK" role="tab" data-toggle="tab">UNITED KINGDOM</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" data-target="#CA" role="tab" data-toggle="tab">CANADA</a>
-                    </li>
-                </ul>
+                <div class="tab">
+                    <button class="tablinks" onclick="openCountry(event, 'US')" id="btn_us">United States</button>
+                    <button class="tablinks" onclick="openCountry(event, 'UK')" id="btn_uk">United Kingdom</button>
+                    <button class="tablinks" onclick="openCountry(event, 'CA')" id="btn_ca">Canada</button>
+                </div>
 
                 <div class="tab-content">
-                    <div id="US" class="tab-pane fade in active">
-                        <svg id="us_cat_svg" width="960" height="600" style="padding-left:45px;"></svg>
-                        <div>
-                            Running commentary, in context of united states.
+                    <div id="US" class="tabcontent">
+                        <div style="margin-left:40%">
+                            <h3>Categories with most trending videos</h3>
                         </div>
-                        <span>
-                            <a class="see-more btn btn-info" onclick="drawDrilldown('US')" href="#channelDrilldown">Click me to explore more for USA!</a>
+                        <svg id="us_cat_svg" width="960" height="600" style="padding-left:45px;"></svg>
+                        <div style="margin-bottom:15px">
+                            <p>For united states, in terms of number of videos which trend, Entertainment is at the top position.</p>
+                            <p>I expect gaming to have more trending vidoes but other categories including education trump it.
+                                Plausable reason for this is that the online gaming have secondary platforms like steam,
+                                xbox live etc. Professional sports has also it's own category "sports".
+                            </p>
+
+                        </div>
+                        <span style="padding-top:20px">
+                            <a class="see-more see-more-btn" onclick="drawDrilldown('US')" href="#channelDrilldown">Click me to explore more for United States!</a>
                         </span>
                     </div>
-                    <div id="UK" class="tab-pane fade">
+                    <div id="UK" class="tabcontent">
+                        <div style="margin-left:40%">
+                            <h3>Categories with most trending videos</h3>
+                        </div>
                         <svg id="uk_cat_svg" width="960" height="600" style="padding-left:45px;"></svg>
-                        <div>
-                            Running commentary, in context of united kingdom.
+                        <div style="margin-bottom:15px">
+                            <p>For United Kingdom, as annotated, music videos beat entertainment videos.</p>
+                            <p>Gaming category is dominant as well, given sports leagues like EPL i expected more sports videos
+                                trending than gaming.
+                            </p>
+                            <p>As annotated, Pets & Animals are in top 10. This is unique for UK, i don't see this category
+                                in top 10 in united states and Canada.</p>
                         </div>
                         <div>
-                            <a class="see-more btn btn-info" onclick="drawDrilldown('UK')" href="#channelDrilldown">Click me to explore more for UK!</a>
+                            <a class="see-more see-more-btn" onclick="drawDrilldown('UK')" href="#channelDrilldown">Click me to explore more for United Kingdom!</a>
                         </div>
                     </div>
-                    <div id="CA" class="tab-pane fade">
+                    <div id="CA" class="tabcontent">
+                        <div style="margin-left:40%">
+                            <h3>Categories with most trending videos</h3>
+                        </div>
                         <svg id="ca_cat_svg" width="960" height="600" style="padding-left:65px;"></svg>
-                        <div>
-                            Running commentary, in context of canada.
+                        <div style="margin-bottom:15px">
+                            <p>For canada, Like united states, Entertainment category has the most trending videos.</p>
+                            <p> News & Politics stand-out too. It's at number#2, For USA and UK this category is not as dominant.</p>
+
                         </div>
-                        <div>
-                            <a class="see-more btn btn-info" onclick="drawDrilldown('CA')" href="#channelDrilldown">Click me to explore more for Canada!</a>
-                        </div>
+                        <span>
+                            <a class="see-more see-more-btn" onclick="drawDrilldown('CA')" href="#channelDrilldown">Click me to explore more for Canada!</a>
+                        </span>
                     </div>
                 </div>
             </div>
         </div>
+
         <div class="section" id="section2">
             <div clas="center-align" style="margin-left:10%">
-                <div id="dropdowns-d">
+                <div id="dropdowns-d" class="tab" style="padding:15px">
                     <span style="margin-right: 5px">
-                        <b>Showing TOP channels by videos, for country:</b>
+                        <!-- <b>Showing Top channels by videos, for country:</b> -->
+                        <b>Country:</b>
                     </span>
                     </span>
                     <select class="selectpicker" id="country_index" onchange="addDetailsGraphC()">
@@ -107,13 +126,22 @@
                         <option value="UK" id="UK">United Kingdom</option>
                         <option value="CA" id="CA">Canada</option>
                     </select>
-                    <span>
-                        <b>And Video category</b>
+                    <span style="padding-left:50px">
+                        <b>Video category:</b>
                     </span>
                     <select class="selectpicker" id="category_index" onchange="addDetailedGraph()"></select>
                 </div>
+                <div style="margin-left:30%">
+                    <h3>
+                        <div id="tending_channel_txt">Trending Channels for selected country & category</div>
+                    </h3>
+                </div>
                 <div id="bar-charts-channels">
                     <svg id="detailSvg" width="1050" height="500" style="padding-left:30px;"></svg>
+                </div>
+                <div style="margin:30px">
+                    <p>Hint: For major entertainment and related categories, across countries, big media brands are in mix with independent content creators. They don't appear to dominate as such. </p>
+                    <p>There are several independent youtube channels like casey neistat, 'bad lip reading', 'PewDiePie', who also trend along with big media names.</p>
                 </div>
             </div>
         </div>
@@ -121,30 +149,27 @@
             <div class="">
                 <div>
                     <h2>About the Visualization</h2>
-                    <p>This visualization is an interactive slideshow which takes the user through the Dataset of the stackoverflwo
-                        Youtube vdeo for the year 2018 from January 2018 to June 2018.</p>
+                    <p>This visualization is an interactive slideshow which takes the user through the youtube dataset of the trending
+                        Videos for the first half of the calendar year, 2018. I have chosen three countries for this walkthrough: United States, United Kingdom and Canada, reason being that youtube culture is similar in these countries.</p>
+                        We want to explore how dominant is entertainment ? How is gaming fairing and which categories stand-out in these three countries.
+                        <p>User can also explore, for each country, and each trending category, what are the top trending channels (in terms of number of trending videos) explore if big media channels dominate trending videos and how are independent content creators faring.</p>
+                        <p>I have also tried to follow elements of visualization covered in the first half of the course. For example, Bar chart for categorical, right color palette for categorical data etc.</p>
                 </div>
 
-                <h1>Recommended Settings</h1>
-                <p>As the visualizations use a preset static canvas of 1024x768 pixels, the viewing size of the interactive
+                <h2>Recommended Settings</h2>
+                <p>This visualizations use a preset static canvas of 1024x768 pixels, the viewing size of the interactive
                     visualization is at least 1280x800 pixels to accommodate the surrounding text and scene elements.</p>
-                <h2>Managing the Dataset</h2>
-                <p>With such a large dataset, creating a visualization with the raw data turned out to be very difficult. The
-                    first step for created this visualization was to process the dataset and focus on the data pertaining
-                    restaurants in the United States only.</p>
-                <h2>Templates Scene</h2>
-                <p>The use of CSS and FullPage.js allows for a cohesive template look for the interactive visualization. Each
+                <h2>Template Scenes</h2>
+                <p>I have used custom css and  <a href="https://alvarotrigo.com/fullPage/">FullPage.js</a> which provides a consistent template for the interactive visualization. Each
                     page is transitioned using the same method and text elements are kept the same (font size and family).
-                    Additionally there is a page navigation bar on the right side which allows users to skip between different
-                    slides. The tooltips which are triggered when a user moves their mouse over the navigation alters the
-                    display parameters for each navigation menu item.</p>
+                    There is page navigation bar on the right side which allows users to skip and move between different
+                    pages. User can use either mouse of keyboard.</p>
                 <h2>Annotations</h2>
-                <p>Annotations have been used in all three visualizations with a similar process of using triggers to change
-                    the hidden paramenter of the annotation. For example, the Line Chart Visualization has an initial state
-                    of the hidden parameter which controls the display of the annotations set to false. As a user uses the
-                    brush bar to trigger changes to the line chart visualization x-axis parameters, it also changes this
-                    hidden parameter to true. In turn the annotations disappear until the user resets the brush bar to zero
-                    - thus zooming out back to the default visualization parameters.</p>
+                <p>Annotations have been used in all three visualizations for the main story - the category with most trending videos. They are used to highlight interesting data points.
+                On this category visualization page, visual cues are present to tell user chart is representing data for which country.
+                </p>
+                <p>The second page of charts, with is the channels drilldown. This is for user exploration. Dynamic tooltip is provided.</p>
+
                 <h2>Parameters and Triggers</h2>
                 <p>Both parameters and triggers are used in all of the three visualizations. For the Bubble Chart Visualization,
                     parameters for the x,y co-ordinates of each bubble are set to an initial central position for the All
@@ -156,6 +181,18 @@
                     Clicking the centre circle will trigger the parameters to return to its values one up in the hierarchy.</p>
                 <br />
                 <p>For Line Chart Visualization.</p>
+                
+                <h2>Dataset</h2>
+                <div>This dataset is available on Kaggle and mined from youtube API. I used R langugae to further subset this data and filter for first half of this calendar
+                    year, 2018.</div>
+                <div>It has daily records of the videos that trended on youtube.</div>
+                <div>
+                    <a href="https://www.kaggle.com/datasnaek/youtube-new">https://www.kaggle.com/datasnaek/youtube-new</a>
+                </div>
+                <div>
+                    <a href='https://developers.google.com/youtube'>https://developers.google.com/youtube</a>
+                </div>
+
             </div>
         </div>
     </div>
@@ -173,7 +210,7 @@
     var myFullpage = new fullpage('#fullpage', {
         licenseKey: "OPEN-SOURCE-GPLV3-LICENSE",
         anchors: ['firstPage', 'categoryStats', 'channelDrilldown', 'about'],
-        sectionsColor: ['#C63D0F','###E7F729', '##C0C0C0', '#CCEDD2', '#CCEDD2' ,'#7E8F7C'],
+        sectionsColor: ['#C63D0F', '###E7F729', '##C0C0C0', '#f1f1f1  ','#CCEDD2', '#CCEDD2', '#7E8F7C'],
         navigation: true,
         navigationPosition: 'right',
         navigationTooltips: ['First page', 'Second page', 'Third and last page'],

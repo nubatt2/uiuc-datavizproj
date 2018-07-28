@@ -7,9 +7,11 @@ function addCategoryDropdown(categoryFile, channelsFile) {
         // remove everything that already exists.
         d3.select("#category_index").selectAll("*").remove();
 
+
+        let plotData = data.filter(function (d) { return d.category_title != 'Technology' });
         // add new stuff.
         select.selectAll('option')
-            .data(data).enter()
+            .data(plotData).enter()
             .append('option')
             .text(function (d) { return d.category_title; });
 
@@ -78,9 +80,10 @@ function addbarChart(file, selectedCategory) {
                     .style("left", d3.event.pageX - 50 + "px")
                     .style("top", d3.event.pageY - 70 + "px")
                     .style("display", "inline-block")
+                    .html((d.channel_title) + "<br>" + "Videos#" + (d.Metric));
                     // .html((d.channel_title) + "<br>" + "Videos#" + (d.Metric)+ "<br>" + "Views#" + (d.ViewsCount) + "<br>" + "Likes#" + (d.LikesCount)+ "<br>" + "Comments#" + (d.CommentsCount));
                     // .html((d.channel_title) + "<br>" + "Videos#" + (d.Metric) + "<br>" + "Views#" + (d.ViewsCount) + "<br>" + "Comments#" + (d.CommentsCount));
-                    .html("Comments#" + (d.CommentsCount) + "<br>" + "Views#" + (d.ViewsCount));
+                    //.html("Comments#" + (d.CommentsCount) + "<br>" + "Views#" + (d.ViewsCount));
             })
             .on("mouseout", function (d) { tooltip.style("display", "none"); });
         // g.select(".overlay").on("mousemove", mousemove);
@@ -185,4 +188,5 @@ var defaultCategory = "Entertainment";
 let currentSummaryFileName = defaultSummaryFileName;
 let currentDetailsFileName = defaultDetailsFileName;
 
+//default on page load.
 addCategoryDropdown(defaultSummaryFileName, currentDetailsFileName);
