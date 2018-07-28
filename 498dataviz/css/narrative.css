@@ -1,0 +1,74 @@
+.left-center {
+    position: absolute;
+    top: 15%;
+    left: 4%;
+    color: white;
+    text-align: left;
+}
+
+   .bar1 {
+    fill: steelblue;
+}
+
+.bar:hover {
+    fill: brown;
+}
+
+.axis--x path {
+    display: none;
+}
+
+.axis path,
+.axis line {
+    fill: none;
+    stroke: grey;
+    stroke-width: 1;
+    shape-rendering: crispEdges;
+}
+
+.left-center {
+    position: absolute;
+    top: 13%; 
+    left: 16px;
+    color: white;
+    text-align: left;
+}
+
+.about-this {
+    position: absolute;
+    left: 16px;
+    text-align: left;
+    font: bold 14px Arial;
+    text-decoration: none;
+    background-color: #EEEEEE;
+    color: #333333;
+    padding: 6px 6px 6px 6px;
+}
+
+.toolTip {
+    position: absolute;
+    text-align: center;
+    width: 150px;
+    height: 40px;
+    padding: 2px;
+    font: 12px sans-serif;
+    background: lightsteelblue;
+    border: 0px;
+    border-radius: 8px;
+    pointer-events: none;
+}
+
+.center-align {
+    margin: auto;
+    margin-left:15%;
+}
+
+.see-more {
+    position: absolute;
+    text-align: left;
+    font: bold 14px Arial;
+    text-decoration: none;
+    background-color: #EEEEEE;
+    color: #333333;
+    padding: 6px 6px 6px 6px;
+}

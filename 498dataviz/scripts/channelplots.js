@@ -13,10 +13,12 @@ function addCategoryDropdown(categoryFile, channelsFile) {
             .append('option')
             .text(function (d) { return d.category_title; });
 
-
+        let selectedText;
         let detailsList = document.getElementById("category_index");
-        detailsList.selectedIndex = 0;
-        let selectedText = detailsList.options[detailsList.selectedIndex].text;
+        if(detailsList) {
+            detailsList.selectedIndex = 0;
+            selectedText = detailsList.options[detailsList.selectedIndex].text;
+        }
 
         addbarChart(channelsFile, selectedText);
     });
@@ -154,18 +156,25 @@ function addDetailsGraphC() {
     // this function adds dropdown and populated default bar.
     addCategoryDropdown(currentSummaryFileName, currentDetailsFileName);
 
-    console.log("Selected value = ", selectedValue, "Selected cat file = ", currentSummaryFileName, "Selected channels file", currentDetailsFileName);
+    //console.log("Selected value = ", selectedValue, "Selected cat file = ", currentSummaryFileName, "Selected channels file", currentDetailsFileName);
+}
+
+function drawDrilldown(country){
+    document.getElementById("country_index").options.namedItem(country).selected=true;
+
+    // now that index is set. let it flow through regular.
+    addDetailsGraphC();
 }
 
 let country_catmap = new Map();
 // setting the values
-country_catmap.set("USA", "./data/yt_us_popcategories.csv");
+country_catmap.set("US", "./data/yt_us_popcategories.csv");
 country_catmap.set("UK", './data/yt_gb_popcategories.csv');
 country_catmap.set("CA", './data/yt_ca_popcategories.csv');
 
 let country_channelmap = new Map();
 // setting the values
-country_channelmap.set("USA", "./data/yt_us_popchannels.csv");
+country_channelmap.set("US", "./data/yt_us_popchannels.csv");
 country_channelmap.set("UK", './data/yt_gb_popchannels.csv');
 country_channelmap.set("CA", './data/yt_ca_popchannels.csv');
 

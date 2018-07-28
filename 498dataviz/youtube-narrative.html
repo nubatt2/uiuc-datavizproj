@@ -1,0 +1,189 @@
+<!doctype html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="Naseer Batt" />
+    <meta name="description" content="fullPage youtube visualization." />
+    <meta name="keywords" content="fullpage,youtube,interactive,Visualization" />
+    <meta name="Resource-type" content="Document" />
+
+    <title>CS498 DDV Final D3.js Visualization - Naseer Batt</title>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/3.0.1/fullpage.js"></script>
+    <link rel="stylesheet" href="https://alvarotrigo.com/fullPage/fullpage.css" />
+
+    <script src="https://d3js.org/d3.v4.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <link rel="stylesheet" href="css/narrative.css">
+</head>
+
+<body>
+    <div id="fullpage">
+        <div class="section " id="section0">
+            <div class="intro">
+                <img src="./img/YT_BackGround.jpg" alt="Youtube">
+                <p class="left-center">
+                    <font size="6">Youtube Videos Statistics</font>
+                    <br>
+                    <font size="3">
+                        This visualization will walkthrough Youtube videos statistics. This dataset is mined from youtube API for the first half
+                        of this calendar year, 2018.
+                        <br/>
+                        <br/>
+                        <font size="5">This interactive slideshow will explore video category stats for 3 countries - USA, UK and Canada</font>
+                        <br> - What are the top categories of vidoes that users upload to youtube. Is Entertainment category
+                        dominant?
+                        <br> - With-in each categories, what are the top channels. How dominant are the big media brands?
+                    </font>
+                    <br>
+                    <br>
+                    <font size="4">T0 scroll down, can use mouse or keyboard.</font>
+                    <br>
+                    <br>
+                    <br>
+                    <a class="about-this" href="#about">About this visualization</a>
+                </p>
+            </div>
+        </div>
+        <div class="section" id="section1">
+            <div class="center-align">
+                <ul class="nav nav-pills nav-fill">
+                    <li class="nav-item active">
+                        <a class="nav-link active" data-target="#US" role="tab" data-toggle="tab">UNITED STATES</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-target="#UK" role="tab" data-toggle="tab">UNITED KINGDOM</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-target="#CA" role="tab" data-toggle="tab">CANADA</a>
+                    </li>
+                </ul>
+
+                <div class="tab-content">
+                    <div id="US" class="tab-pane fade in active">
+
+                        <svg id="us_cat_svg" width="960" height="600" style="padding-left:45px;"></svg>
+                        <div>
+                            Running commentary, in context of united states.
+                        </div>
+                        <span>
+                            <a class="see-more" onclick="drawDrilldown('US')" href="#channelDrilldown">Click me to see more!</a>
+                        </span>
+                    </div>
+                    <div id="UK" class="tab-pane fade">
+                        <svg id="uk_cat_svg" width="960" height="600" style="padding-left:45px;"></svg>
+                        <div>
+                            Running commentary, in context of united kingdom.
+                        </div>
+                        <div>
+                            <a class="see-more" onclick="drawDrilldown('UK')" href="#channelDrilldown">Click me to see more!</a>
+                        </div>
+                    </div>
+                    <div id="CA" class="tab-pane fade">
+                        <svg id="ca_cat_svg" width="960" height="600" style="padding-left:45px;"></svg>
+                        <div>
+                            Running commentary, in context of canada.
+                        </div>
+                        <div>
+                            <a class="see-more" onclick="drawDrilldown('CA')" href="#channelDrilldown">Click me to see more!</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="section" id="section2">
+            <div clas="center-align" style="margin-left:10%">
+                <div id="dropdowns-d">
+                    <span style="margin-right: 5px">
+                        <b>Showing TOP channels by videos, for country:</b>
+                    </span>
+                    </span>
+                    <select class="selectpicker" id="country_index" onchange="addDetailsGraphC()">
+                        <option value="US" id="US">United States</option>
+                        <option value="UK" id="UK">United Kingdom</option>
+                        <option value="CA" id="CA">Canada</option>
+                    </select>
+                    <span>
+                        <b>And Video category</b>
+                    </span>
+                    <select class="selectpicker" id="category_index" onchange="addDetailedGraph()"></select>
+                </div>
+                <div id="bar-charts-channels">
+                    <svg id="detailSvg" width="1050" height="500" style="padding-left:30px;"></svg>
+                </div>
+            </div>
+        </div>
+        <div class="section" id="section3">
+            <div class="">
+                <div>
+                    <h2>About the Visualization</h2>
+                    <p>This visualization is an interactive slideshow which takes the user through the Dataset of the stackoverflwo
+                        Youtube vdeo for the year 2018 from January 2018 to June 2018.</p>
+                </div>
+
+                <h1>Recommended Settings</h1>
+                <p>As the visualizations use a preset static canvas of 1024x768 pixels, the viewing size of the interactive
+                    visualization is at least 1280x800 pixels to accommodate the surrounding text and scene elements.</p>
+                <h2>Managing the Dataset</h2>
+                <p>With such a large dataset, creating a visualization with the raw data turned out to be very difficult. The
+                    first step for created this visualization was to process the dataset and focus on the data pertaining
+                    restaurants in the United States only.</p>
+                <h2>Templates Scene</h2>
+                <p>The use of CSS and FullPage.js allows for a cohesive template look for the interactive visualization. Each
+                    page is transitioned using the same method and text elements are kept the same (font size and family).
+                    Additionally there is a page navigation bar on the right side which allows users to skip between different
+                    slides. The tooltips which are triggered when a user moves their mouse over the navigation alters the
+                    display parameters for each navigation menu item.</p>
+                <h2>Annotations</h2>
+                <p>Annotations have been used in all three visualizations with a similar process of using triggers to change
+                    the hidden paramenter of the annotation. For example, the Line Chart Visualization has an initial state
+                    of the hidden parameter which controls the display of the annotations set to false. As a user uses the
+                    brush bar to trigger changes to the line chart visualization x-axis parameters, it also changes this
+                    hidden parameter to true. In turn the annotations disappear until the user resets the brush bar to zero
+                    - thus zooming out back to the default visualization parameters.</p>
+                <h2>Parameters and Triggers</h2>
+                <p>Both parameters and triggers are used in all of the three visualizations. For the Bubble Chart Visualization,
+                    parameters for the x,y co-ordinates of each bubble are set to an initial central position for the All
+                    Reviews Visualization. As a user selects menu items to chose between All Reviews, Reviews by State and
+                    Reviews by Stars, it triggers the change of bubble’s x,y co-ordinates parameter to their respective groupings.</p>
+                <br />
+                <p>In Zoomable Sunburst Visualization, each mouse click on a region is a trigger for the path and arc parameters.
+                    By clicking within a region, you can zoom into the data to take a look at the information underneath.
+                    Clicking the centre circle will trigger the parameters to return to its values one up in the hierarchy.</p>
+                <br />
+                <p>For Line Chart Visualization.</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="infoMenu">
+
+        <!--Script to draw summary charts.-->
+        <!-- <script src="scripts/summaryplots.js"></script> -->
+        <script src="scripts/categoryplots.js"></script>
+
+        <!--Script to draw channel charts.-->
+        <script src="scripts/channelplots.js"></script>
+</body>
+<script>
+    var myFullpage = new fullpage('#fullpage', {
+        licenseKey: "OPEN-SOURCE-GPLV3-LICENSE",
+        anchors: ['firstPage', 'categoryStats', 'channelDrilldown', 'about'],
+        sectionsColor: ['#C63D0F','#E6F0E8', '##C0C0C0', '#CCEDD2', '#CCEDD2' ,'#7E8F7C'],
+        navigation: true,
+        navigationPosition: 'right',
+        navigationTooltips: ['First page', 'Second page', 'Third and last page'],
+        responsiveWidth: 1100,
+        afterResponsive: function (isResponsive) {
+
+        }
+
+    });
+</script>
+
+</html>
