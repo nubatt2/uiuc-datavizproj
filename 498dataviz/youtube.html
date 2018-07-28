@@ -30,18 +30,117 @@
         .axis--x path {
             display: none;
         }
+
+        .axis path,
+        .axis line {
+            fill: none;
+            stroke: grey;
+            stroke-width: 1;
+            shape-rendering: crispEdges;
+        }
+
+        .left-center {
+            position: absolute;
+            top: 1%;
+            left: 16px;
+            color: white;
+            text-align: left;
+        }
+
+        .about-this {
+            position: absolute;
+            left: 16px;
+            text-align: left;
+            font: bold 14px Arial;
+            text-decoration: none;
+            background-color: #EEEEEE;
+            color: #333333;
+            padding: 6px 6px 6px 6px;
+        }
     </style>
 </head>
 
 <body>
     <div id="fullpage">
         <div class="section" id="title">
-            <div id="title_text">
-                <h1>Visualization of youtube content statistics</h1>
-                <h3>A d3.js data visualization project using the Youtube content statistics7
-                    <br />Naseer BATT - UIUC CS498 Data Visualization</h3>
+            <div>
+                <img src="./img/YT_BackGround.jpg" alt="Youtube">
+                <p class="left-center">
+                    <font size="6">Youtube Videos Statistics</font>
+                    <br>
+                    <font size="4">
+                        This visualization will walkthrough Youtube videos statistics. This dataset is covers stats for the first half of this calendar
+                        year, 2018.
+                        <br/>
+                        <br/>
+                        <font size="5">This interactive slideshow will explore stats for 3 countries - USA, UK and Canada</font>
+                        <br> - What are the top categories of vidoes that users upload to youtube. Is Entertainment category
+                        dominant?
+                        <br> - With-in each categories, what are the top channels. How dominant are the big media brands?
+                    </font>
+                    <br>
+                    <br>
+                    <font size="4">Use your mouse to scroll down the pages</font>
+                    <br>
+                    <br>
+                    <br>
+                    <a class="about-this" href="#about">About this visualization</a>
+                </p>
+
             </div>
         </div>
+
+        <div class="section" id="summary">
+            <div id="content_div">
+                <ul class="nav nav-pills nav-fill">
+                    <li class="nav-item">
+                        <a class="nav-link active" data-target="#US" role="tab" data-toggle="tab">UNITED STATES</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-target="#UK" role="tab" data-toggle="tab">UNITED KINGDOM</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-target="#CA" role="tab" data-toggle="tab">CANADA</a>
+                    </li>
+                </ul>
+
+                <div class="tab-content">
+                    <div id="US" class="tab-pane fade in active">
+                        <h3>UNITED STATES</h3>
+                        <svg id="us_cat_svg" width="960" height="600" style="padding-left:45px;"></svg>
+                    </div>
+                    <div id="UK" class="tab-pane fade">
+                        <h3>UNITED KINGDOM</h3>
+                        <svg id="uk_cat_svg" width="960" height="600" style="padding-left:45px;"></svg>
+                    </div>
+                    <div id="CA" class="tab-pane fade">
+                        <h3>CANADA</h3>
+                        <svg id="ca_cat_svg" width="960" height="600" style="padding-left:45px;"></svg>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section" id="details">
+            <div id="content_div2">
+                <div>
+                    <span style="margin-right: 5px">
+                        <b>Showing TOP channels by videos, for country:</b>
+                    </span>
+                    </span>
+                    <select class="selectpicker" id="country_index" onchange="addDetailsGraphC()">
+                        <option value="USA">United States</option>
+                        <option value="UK">United Kingdom</option>
+                        <option value="CA">Canada</option>
+                    </select>
+                    <span><b>And Video category</b></span>
+                    <select class="selectpicker" id="category_index" onchange="addDetailedGraph()"></select>
+                </div>
+
+                <svg id="detailSvg" width="1050" height="500" style="padding-left:30px;"></svg>
+            </div>
+        </div>
+
         <div class="section" id="about">
             <div id="content_div">
                 <h1>About the Visualization</h1>
@@ -80,177 +179,116 @@
                 <p>For Line Chart Visualization.</p>
             </div>
         </div>
-        <div class="section" id="chart1">
-
-            <div id="content_div">
-                <ul class="nav nav-pills nav-fill">
-                    <li class="nav-item">
-                        <a class="nav-link active" data-target="#US" role="tab" data-toggle="tab">UNITED STATES</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" data-target="#UK" role="tab" data-toggle="tab">UNITED KINGDOM</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" data-target="#CA" role="tab" data-toggle="tab">CANADA</a>
-                    </li>
-                </ul>
-
-                <!-- <div id = "container">  
-                    <a href="#US" id="btn_us" class="button active">United States</a>
-					<a href="#UK" id="btn_gb" class="button">United Kingdom</a>
-					<a href="#CA" id="btn_ca" class="button">Canada</a>
-                </div> -->
-
-                <div class="tab-content">
-                    <div id="US" class="tab-pane fade in active">
-                        <h3>UNITED STATES</h3>
-                        ''
-                        <svg id="us_cat_svg" width="960" height="600" style="padding-left:45px;"></svg>
-                    </div>
-                    <div id="UK" class="tab-pane fade">
-                        <h3>UNITED KINGDOM</h3>
-                        <svg id="uk_cat_svg" width="960" height="600" style="padding-left:45px;"></svg>
-                    </div>
-                    <div id="CA" class="tab-pane fade">
-                        <h3>CANADA</h3>
-                        <svg id="ca_cat_svg" width="960" height="600" style="padding-left:45px;"></svg>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-    </div>
-    <div class="section" id="chart2">
-        <div id="content_div2">
-            <svg id="visualisation" width="1000" height="500"></svg>
-        </div>
     </div>
 
+    <!--Script to draw charts.-->
     <script src="scripts/summaryplots.js" />
 </body>
 <script>
+    // Full page related layout configuration.
     $(document).ready(function () {
-        $('#fullpage').fullpage({ licenseKey: "OPEN-SOURCE-GPLV3-LICENSE" });
+        $('#fullpage').fullpage({
+            licenseKey: "OPEN-SOURCE-GPLV3-LICENSE",
+            navigation: false,
+            navigationPosition: 'right',
+            navigationTooltips: ['Intro', 'summary', 'details', 'about'],
+            showActiveTooltip: false,
+            slidesNavigation: false,
+            slidesNavPosition: 'bottom'
+        });
     });
 
-/*
-    // set the ranges
-    var x = d3.scaleTime().range([0, width]);
-    var y = d3.scaleLinear().range([height, 0]);
-
-    var yAxis = d3.axisLeft(y).tickFormat(d3.format("1", 1e1));
-
-    var svg = d3.select("#us_cat_svg");
-    var margin = { top: 20, right: 20, bottom: 40, left: 40 };
-    var width = svg.attr("width") - margin.left - margin.right;
-    var height = svg.attr("height") - margin.top - margin.bottom;
-    var xlabel = "Video Category";
-    var ylabel = "Number of Videos";
-
-    var g = svg.append("g")
-        .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
-
-    plotCatData("./498dataviz/data/yt_us_popcategories.csv", g, height, width);
+    //detailsChart.append("g").attr("transform", function(d, i) { return "translate(0," + i * height + ")"; });
     
-    // text label for the x axis
-    svg.append("text")
-        .attr("transform", "translate(" + (width / 2) + " ," + (height + 55) + ")")
-        .style("text-anchor", "middle")
-        .style("font", "18px sans-serif")
-        .style("padding-top", "10px")
-        .html(xlabel);
-
-    // text label for the y axis
-    svg.append("text")
-        .attr("transform", "rotate(-90)")
-        .attr("y", 0 - margin.left)
-        .attr("x",0 - (height / 2))
-        .attr("dy", "1em")
-        .style("text-anchor", "middle")
-        .style("font", "18px sans-serif")
-        .text(ylabel); 
-    
-    var svg_uk = d3.select("#uk_cat_svg");
-    var g_uk = svg_uk.append("g")
-        .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
-
-    plotCatData("./498dataviz/data/yt_gb_popcategories.csv", g_uk, height, width);
-    
-    // text label for the x axis
-    svg_uk.append("text")
-        .attr("transform", "translate(" + (width / 2) + " ," + (height + 55) + ")")
-        .style("text-anchor", "middle")
-        .style("font", "18px sans-serif")
-        .style("padding-top", "10px")
-        .html(xlabel);
-    // text label for the y axis
-    svg_uk.append("text")
-        .attr("transform", "rotate(-90)")
-        .attr("y", 0 - margin.left)
-        .attr("x",0 - (height / 2))
-        .attr("dy", "1em")
-        .style("font", "18px sans-serif")
-        .style("text-anchor", "middle")
-        .text(ylabel); 
-
-    var svg_ca = d3.select("#ca_cat_svg");
-    // var margin = { top: 20, right: 20, bottom: 40, left: 100 };
-    // var width = 960 - margin.left - margin.right;
-    // var height = 600 - margin.top - margin.bottom;
-
-    var g_ca = svg_ca.append("g")
-        .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
-
-    plotCatData("./498dataviz/data/yt_ca_popcategories.csv", svg_ca, height, width);
-    // text label for the x axis
-    svg_ca.append("text")
-        .attr("transform", "translate(" + (width / 2) + " ," + (height + 55) + ")")
-        .style("text-anchor", "middle")
-        .style("font", "18px sans-serif")
-        .style("padding-top", "-10px")
-        .html(xlabel);
-    
-    // text label for the y axis
-    svg_ca.append("text")
-        .attr("transform", "rotate(-90)")
-        .attr("y", 0 - margin.left)
-        .attr("x",0 - (height / 2))
-        .attr("dy", "1em")
-        .style("text-anchor", "middle")
-        .style("font", "18px sans-serif")
-        .text(ylabel); 
-        
-    function plotCatData(file, g, height, width) {
-        d3.csv(file, function (error, data) {
-            if (error) throw error;
-
-            var x = d3.scaleBand().rangeRound([0, width]).padding(0.1),
-                y = d3.scaleLinear().rangeRound([height, 0]),
-                colorScale = d3.scaleOrdinal(d3.schemeCategory20);  // set the colour scale
+    // add category dropdown for the first time.
+    function addCategoryDropdown(categoryFile, channelsFile) {
+        d3.tsv(categoryFile, function (data) {
+            // use data here
+            //.filter(function(d) { return d.close < 400 })
+            var select = d3.select('#category_index');
             
+            // remove everything that already exists.
+            d3.select("#category_index").selectAll("*").remove();
+            
+            // add new stuff.
+            select.selectAll('option')
+                .data(data).enter()
+                .append('option')
+                .text(function (d) { return d.category_title; });
+
+
+            let detailsList = document.getElementById("category_index");
+            detailsList.selectedIndex = 0;
+            let selectedText = detailsList.options[detailsList.selectedIndex].text;
+
+            addbarChart(channelsFile, selectedText);
+        });
+    }
+
+    // this is the function which adds bar chart and related fields.
+    function addbarChart(file, selectedCategory) {
+        
+        // clean anything existing
+        d3.selectAll("#detailSvg > *").remove();
+        
+        // details chart!
+        var x = d3.scaleTime().range([0, width]);
+        var y = d3.scaleLinear().range([height, 0]);
+
+        var yAxis = d3.axisLeft(y).tickFormat(d3.format("1", 1e1));
+
+        var detailsChart = d3.select("#detailSvg");
+        var margin = { top: 20, right: 20, bottom: 40, left: 40 };
+        var width = detailsChart.attr("width") - margin.left - margin.right;
+        var height = detailsChart.attr("height") - margin.top - margin.bottom;
+
+        var g =
+            detailsChart.append("g").attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+        let detailsList = document.getElementById("category_index");
+        let selectedText = detailsList.options[detailsList.selectedIndex].text;
+
+        d3.tsv(file, function (data) {
+            // debug
+            // console.log("filename =>", file);
+            // console.log("data =>", data);
+
+            // debug
+            //let filteredData = data.filter(function(d) { console.log("channel title =>", d.channel_title, "slected text => ", selectedText); return d.category_title == selectedText});
+
+            let filteredData = data.filter(function (d) { console.log("channel title =>", d.channel_title, "slected text => ", selectedText); return d.category_title == selectedText });
+
+            let x = d3.scaleBand().rangeRound([0, width]).padding(0.1),
+                y = d3.scaleLinear().rangeRound([height, 0]),
+                colorScale = d3.scaleOrdinal(d3.schemeCategory10);  // set the colour scale
+
             // sort the data based on years of experience.
             //data.sort(function(a,b ) {return d3.descending(a.Metric)});
 
-            x.domain(data.map(function (d) { return d.category_title; }));
-            y.domain([d3.min(data, function (d) { return parseInt(d.Metric); }) - 100, d3.max(data, function (d) { return parseInt(d.Metric);})]);
-            colorScale.domain(data.map(function (d){ console.log("category =>" , d.category_title, " Rank => ", d.rank); return d.rank; }));
-          
+            x.domain(filteredData.map(function (d) { return d.channel_title; }));
+            y.domain([0, d3.max(filteredData, function (d) { return parseInt(d.Metric); })]);
+            colorScale.domain(filteredData.map(function (d) { return parseInt(d.rank); }));
+
             // add bars.
             g.selectAll(".xbar")
-                .data(data)
+                .data(filteredData)
                 .enter().append("rect")
                 .attr("class", "bar")
-                .attr("x", function (d) { return x(d.category_title); })
+                // .attr("debug", function(d){console.log("data equals =>", d);})
+                .attr("x", function (d) { return x(d.channel_title); })
                 .attr("y", function (d) { return y(parseInt(d.Metric)); })
                 .attr("width", x.bandwidth())
                 .attr("height", function (d) { return height - y(parseInt(d.Metric)); })
-                .style("fill", function (d)  { return colorScale(d.rank);   });
+                .style("fill", function (d) { console.log("rank = ", d.rank, "color scale = ", colorScale(d.rank)); return colorScale(d.rank); });
 
             // add x-axis
             g.append("g")
                 .attr("class", "axis axis--x")
                 .attr("transform", "translate(0," + height + ")")
                 .call(d3.axisBottom(x));
+
+            // Add the X Axis rotated
+            // Add the X Axis
 
             // add y-axis
             g.append("g")
@@ -262,10 +300,82 @@
                 .attr("y", 6)
                 .attr("dy", "0.71em")
                 .attr("text-anchor", "end");
-                // .text("Frequency");
-        })
+
+
+        });
+
+        // text label for the x axis
+        detailsChart.append("text")
+            .attr("transform", "translate(" + (width / 2) + " ," + (height + 60) + ")")
+            .style("text-anchor", "middle")
+            .style("font", "18px sans-serif")
+            .style("padding-top", "-15px")
+            .html("Channel Name");
+
+        // text label for the y axis
+        detailsChart.append("text")
+            .attr("transform", "rotate(-90)")
+            .attr("y", 0 - margin.left + 50)
+            .attr("x", 0 - (height / 2) - 50)
+            .attr("dx", "1em")
+            // .attr("dy", "1em")
+            .style("text-anchor", "middle")
+            .style("font", "18px sans-serif")
+            .text("Number of Videos");
+
+        // All chart Title
+        detailsChart.append("text")
+            .attr("x", (width / 2))
+            .attr("y", 0 - (margin.top / 2))
+            .attr("text-anchor", "middle")
+            .style("font-size", "16px")
+            .style("text-decoration", "underline")
+            .text("Value vs Date Graph");
     };
-*/
+
+    function addDetailedGraph() {
+        var detailsList = document.getElementById("category_index");
+        var selectedText = detailsList.options[detailsList.selectedIndex].text;
+        console.log(selectedText);
+
+        // remove previous chart.
+        d3.selectAll("#detailSvg > *").remove();
+        addbarChart(currentDetailsFileName, selectedText);
+    }
+
+    function addDetailsGraphC() {
+        var detailsList = document.getElementById("country_index");
+        var selectedValue = detailsList.options[detailsList.selectedIndex].value;
+        currentDetailsFileName = country_channelmap.get(selectedValue)
+        currentSummaryFileName = country_catmap.get(selectedValue);
+        
+        // this function adds dropdown and populated default bar.
+        addCategoryDropdown(currentSummaryFileName, currentDetailsFileName);
+
+        console.log("Selected value = ", selectedValue, "Selected cat file = ", currentSummaryFileName, "Selected channels file", currentDetailsFileName);
+    }
+
+    let country_catmap = new Map();
+    // setting the values
+    country_catmap.set("USA", "./data/yt_us_popcategories.csv");
+    country_catmap.set("UK", './data/yt_gb_popcategories.csv');
+    country_catmap.set("CA", './data/yt_ca_popcategories.csv');
+
+    let country_channelmap = new Map();
+    // setting the values
+    country_channelmap.set("USA", "./data/yt_us_popchannels.csv");
+    country_channelmap.set("UK", './data/yt_gb_popchannels.csv');
+    country_channelmap.set("CA", './data/yt_ca_popchannels.csv');
+
+    var defaultSummaryFileName = "./data/yt_us_popcategories.csv";
+    var defaultDetailsFileName = "./data/yt_us_popchannels.csv";
+    var defaultCategory = "Entertainment";
+
+    let currentSummaryFileName = defaultSummaryFileName;
+    let currentDetailsFileName = defaultDetailsFileName;
+
+    addCategoryDropdown(defaultSummaryFileName, currentDetailsFileName);
+
 </script>
 
 </html>

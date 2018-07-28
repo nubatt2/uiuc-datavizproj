@@ -1,4 +1,4 @@
-"","category_title","channel_title","Metric"
+"rank","category_title","channel_title","Metric"
 "1","Autos & Vehicles","Doug DeMuro",79
 "2","Autos & Vehicles","Mighty Car Mods",26
 "3","Autos & Vehicles","Adam LZ",19
@@ -8,9 +8,9 @@
 "7","Autos & Vehicles","TheHoonigans",11
 "8","Comedy","Comment Awards",135
 "9","Comedy","CollegeHumor",113
-"10","Comedy","Late Night with Seth Meyers",108
+"10","Comedy","LN with Seth Meyers",108
 "11","Comedy","Team Edge",100
-"12","Comedy","The Tonight Show Starring Jimmy Fallon",98
+"12","Comedy","TNS Jimmy Fallon",98
 "13","Comedy","Comedy Central UK",95
 "14","Comedy","Smosh",72
 "15","Comedy","FailArmy",71
@@ -34,8 +34,8 @@
 "33","Entertainment","Daily Dose Of Internet",120
 "34","Entertainment","SAB TV",120
 "35","Entertainment","TheEllenShow",120
-"36","Entertainment","Good Mythical Morning",117
-"37","Entertainment","Breakfast Club Power 105.1 FM",116
+"36","Entertainment","Good MM",117
+"37","Entertainment","Breakfast Club 105.1 FM",116
 "38","Film & Animation","CinemaSins",100
 "39","Film & Animation","大劇獨播",84
 "40","Film & Animation","Rooster Teeth",72
@@ -43,7 +43,7 @@
 "42","Film & Animation","Screen Junkies",60
 "43","Film & Animation","Real Time with Bill Maher",58
 "44","Film & Animation","Unbox Therapy",37
-"45","Film & Animation","优优独播剧场——YoYo Television Series Exclusive",37
+"45","Film & Animation","优优独播剧场—",37
 "46","Film & Animation","20th Century Fox",31
 "47","Film & Animation","Movieclips Trailers",31
 "48","Gaming","Cow Chop",83
@@ -92,7 +92,7 @@
 "91","People & Blogs","H3 Podcast Highlights",50
 "92","People & Blogs","HUM TV Dramas",49
 "93","People & Blogs","CaseyNeistat",48
-"94","People & Blogs","Full Frontal with Samantha Bee",46
+"94","People & Blogs","Full Frontal Sam Bee",46
 "95","People & Blogs","Sorrow TV",46
 "96","People & Blogs","The Slow Mo Guys",46
 "97","People & Blogs","JRE Clips",42
@@ -118,7 +118,7 @@
 "117","Sports","NHL",109
 "118","Sports","WWE",85
 "119","Sports","Rapid Highlights",84
-"120","Sports","Skip and Shannon: UNDISPUTED",82
+"120","Sports","UNDISPUTED",82
 "121","Sports","Motion Station",75
 "122","Sports","SPORTSNET",65
 "123","Sports","Dude Perfect",48

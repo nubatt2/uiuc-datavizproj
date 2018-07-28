@@ -1,9 +1,9 @@
-"","category_title","channel_title","Metric"
+"rank","category_title","channel_title","Metric"
 "1","Autos & Vehicles","Ram Trucks",14
 "2","Autos & Vehicles","HvdH-Plane-Spotter",13
 "3","Autos & Vehicles","Car Throttle",11
-"4","Comedy","The Tonight Show Starring Jimmy Fallon",151
-"5","Comedy","Late Night with Seth Meyers",140
+"4","Comedy","TNS Jimmy Fallon",151
+"5","Comedy","LN with Seth Meyers",140
 "6","Comedy","Jimmy Kimmel Live",75
 "7","Comedy","Rudy Mancuso",63
 "8","Comedy","PewDiePie",55
@@ -121,7 +121,7 @@
 "120","Sports","ESPN",88
 "121","Sports","FC Barcelona",47
 "122","Sports","NFL",43
-"123","Sports","UFC - Ultimate Fighting Championship",38
+"123","Sports","UFC",38
 "124","Sports","MLG Highlights",37
 "125","Sports","MMAFightingonSBN",37
 "126","Sports","NBA",37

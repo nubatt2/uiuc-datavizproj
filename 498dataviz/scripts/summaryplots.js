@@ -97,7 +97,8 @@ function plotCatData(file, g, height, width) {
 
         x.domain(data.map(function (d) { return d.category_title; }));
         y.domain([d3.min(data, function (d) { return parseInt(d.Metric); }) - 100, d3.max(data, function (d) { return parseInt(d.Metric);})]);
-        colorScale.domain(data.map(function (d){ console.log("category =>" , d.category_title, " Rank => ", d.rank); return d.rank; }));
+        // colorScale.domain(data.map(function (d){ console.log("category =>" , d.category_title, " Rank => ", d.rank); return d.rank; }));
+        colorScale.domain(data.map(function (d){ return d.rank; }));
       
         // add bars.
         g.selectAll(".xbar")
