@@ -1,10 +1,10 @@
-.left-center {
+/* .left-center {
     position: absolute;
-    top: 15%;
+    top: 0%;
     left: 4%;
     color: white;
     text-align: left;
-}
+} */
 
    .bar1 {
     fill: steelblue;
@@ -28,7 +28,7 @@
 
 .left-center {
     position: absolute;
-    top: 11%; 
+    top: 138px; 
     left: 16px;
     color: white;
     text-align: left;
