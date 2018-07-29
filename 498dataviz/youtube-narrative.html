@@ -140,51 +140,72 @@
                     <svg id="detailSvg" width="1050" height="500" style="padding-left:30px;"></svg>
                 </div>
                 <div style="margin:30px">
-                    <p>Hint: For major entertainment and related categories, across countries, big media brands are in mix with independent content creators. They don't appear to dominate as such. </p>
-                    <p>There are several independent youtube channels like casey neistat, 'bad lip reading', 'PewDiePie', who also trend along with big media names.</p>
+                    <p>Hint: For major entertainment and related categories, across countries, big media brands are in mix with
+                        independent content creators. They don't appear to dominate as such. </p>
+                    <p>There are several independent youtube channels like casey neistat, 'bad lip reading', 'PewDiePie', who
+                        also trend along with big media names.</p>
                 </div>
             </div>
         </div>
         <div class="section" id="section3">
-            <div class="">
+            <div style="width:1200px">
                 <div>
                     <h2>About the Visualization</h2>
-                    <p>This visualization is an interactive slideshow which takes the user through the youtube dataset of the trending
-                        Videos for the first half of the calendar year, 2018. I have chosen three countries for this walkthrough: United States, United Kingdom and Canada, reason being that youtube culture is similar in these countries.</p>
-                        We want to explore how dominant is entertainment ? How is gaming fairing and which categories stand-out in these three countries.
-                        <p>User can also explore, for each country, and each trending category, what are the top trending channels (in terms of number of trending videos) explore if big media channels dominate trending videos and how are independent content creators faring.</p>
-                        <p>I have also tried to follow elements of visualization covered in the first half of the course. For example, Bar chart for categorical, right color palette for categorical data etc.</p>
+                    <p>This visualization is an interactive slideshow which takes the user through the youtube dataset of the
+                        trending Videos for the first half of the calendar year, 2018. I have chosen three countries for
+                        this walkthrough: United States, United Kingdom and Canada, reason being that youtube culture is
+                        similar in these countries.</p>
+                    We want to explore how dominant is entertainment ? How is gaming fairing and which categories stand-out in these three countries.
+                    <p>User can also explore, for each country, and each trending category, what are the top trending channels
+                        (in terms of number of trending videos) explore if big media channels dominate trending videos and
+                        how are independent content creators faring.</p>
+                    <p>I have also tried to follow elements of visualization covered in the first half of the course. For example,
+                        Bar chart for categorical, right color palette for categorical data etc.</p>
                 </div>
 
                 <h2>Recommended Settings</h2>
-                <p>This visualizations use a preset static canvas of 1024x768 pixels, the viewing size of the interactive
-                    visualization is at least 1280x800 pixels to accommodate the surrounding text and scene elements.</p>
+                <p>This visualizations use a preset static canvas of 1024x768 pixels, the viewing size of the interactive visualization
+                    is at least 1280x800 pixels to accommodate the surrounding text and scene elements.</p>
+
                 <h2>Template Scenes</h2>
-                <p>I have used custom css and  <a href="https://alvarotrigo.com/fullPage/">FullPage.js</a> which provides a consistent template for the interactive visualization. Each
-                    page is transitioned using the same method and text elements are kept the same (font size and family).
-                    There is page navigation bar on the right side which allows users to skip and move between different
-                    pages. User can use either mouse of keyboard.</p>
+                <p>I have used custom css and
+                    <a href="https://alvarotrigo.com/fullPage/">FullPage.js</a> which provides a consistent template for the interactive visualization. Each page is
+                    transitioned using the same method and text elements are kept the same (font size and family). There
+                    is page navigation bar on the right side which allows users to skip and move between different pages.
+                    User can use either mouse or keyboard.</p>
+
                 <h2>Annotations</h2>
-                <p>Annotations have been used in all three visualizations for the main story - the category with most trending videos. They are used to highlight interesting data points.
-                On this category visualization page, visual cues are present to tell user chart is representing data for which country.
+                <p>Annotations have been used in all three slides for the main story - categories with most trending videos.
+                    They are used to highlight interesting data points. On this category visualization page, visual cues
+                    are present to tell user chart is representing data for which country.
                 </p>
-                <p>The second page of charts, with is the channels drilldown. This is for user exploration. Dynamic tooltip is provided.</p>
+                <p>The next page with visualization is the channels drilldown. This is primarily meant for user exploration.
+                    Dynamic tooltip is provided.</p>
+                <p>Axes and chart labels are present on all chart elements.</p>
 
                 <h2>Parameters and Triggers</h2>
-                <p>Both parameters and triggers are used in all of the three visualizations. For the Bubble Chart Visualization,
-                    parameters for the x,y co-ordinates of each bubble are set to an initial central position for the All
-                    Reviews Visualization. As a user selects menu items to chose between All Reviews, Reviews by State and
-                    Reviews by Stars, it triggers the change of bubble’s x,y co-ordinates parameter to their respective groupings.</p>
+                <p>Both parameters and triggers are used in all of the three visualizations. Allows user to transition from
+                    one view to another and each transition also changes the data displayed in the underlying graphical element.</p>
+                <p>On category visualization, user can explore story, by clicking on the Country Name in the tabs. To transition
+                    to drilldown for any country, user can click button with text 'Click me to explore more for {countryname}.
+                    This drilldown button also changes text {countryname] and target When user selects a country from the
+                    navigation bar on top.</p>
+                <p>If user transitions using drilldown button, on the drilldown chart
+                    <ul>
+                        <li>Chosen country will be selected in the country dropdown</li>
+                        <li>Top categories for that country will be populated in the video category dropdown in order of their
+                            video counts allowing seemless transition from previous experience.</li>
+                        <li>On the chart, top channels, in terms of video count, will be plotted, for the most popular category
+                            for the chosen country.</li>
+                    </ul>
+                </p>
+                <p>On the channels drilldown charts, if user comes to this page without clicking button, he will be presented with cart for United States and top category.
+                    user can explore by using the dropdown for country and categories to explore several permutations.
                 <br />
-                <p>In Zoomable Sunburst Visualization, each mouse click on a region is a trigger for the path and arc parameters.
-                    By clicking within a region, you can zoom into the data to take a look at the information underneath.
-                    Clicking the centre circle will trigger the parameters to return to its values one up in the hierarchy.</p>
-                <br />
-                <p>For Line Chart Visualization.</p>
-                
+
                 <h2>Dataset</h2>
-                <div>This dataset is available on Kaggle and mined from youtube API. I used R langugae to further subset this data and filter for first half of this calendar
-                    year, 2018.</div>
+                <div>This dataset is available on Kaggle and mined from youtube API. I used R langugae to further subset this
+                    data and filter for first half of this calendar year, 2018.</div>
                 <div>It has daily records of the videos that trended on youtube.</div>
                 <div>
                     <a href="https://www.kaggle.com/datasnaek/youtube-new">https://www.kaggle.com/datasnaek/youtube-new</a>
@@ -210,7 +231,7 @@
     var myFullpage = new fullpage('#fullpage', {
         licenseKey: "OPEN-SOURCE-GPLV3-LICENSE",
         anchors: ['firstPage', 'categoryStats', 'channelDrilldown', 'about'],
-        sectionsColor: ['#C63D0F', '###E7F729', '##C0C0C0', '#f1f1f1  ','#CCEDD2', '#CCEDD2', '#7E8F7C'],
+        sectionsColor: ['#C63D0F', '###E7F729', '##C0C0C0', '#f1f1f1  ', '#CCEDD2', '#CCEDD2', '#7E8F7C'],
         navigation: true,
         navigationPosition: 'right',
         navigationTooltips: ['First page', 'Second page', 'Third and last page'],
