@@ -51,7 +51,7 @@ function addbarChart(file, selectedCategory) {
     let selectedText = detailsList.options[detailsList.selectedIndex].text;
 
     d3.csv(file, function (data) {
-        console.log(data)
+        // console.log(data)
         let filteredData = data.filter(function (d) { return d.category_title == selectedText });
 
         let x = d3.scaleBand().rangeRound([0, width]).padding(0.1),
