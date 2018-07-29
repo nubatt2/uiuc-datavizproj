@@ -29,13 +29,11 @@
                     <br>
                     <font size="4">
                         This narrative visualization gives a walkthrough of the categories whose videos often trend.
-                        <br/> This dataset is mined from youtube API and filtered for the first half of this calendar year, 2018.
-                        It has daily records of the videos that trended on youtube.
+                        The data is from first half of this calendar year, 2018.
                         <br/>
                         <br/>
                         <font size="5">This interactive slideshow will explore trending video category stats for 3 countries - USA, UK and
-                            Canada.
-                            <br/>we will be plotting in terms of video count.</font>
+                            Canada.</font>
                         <br> - In terms of trending video content, what are the top cateogories? Is Entertainment dominant? what
                         about games?
                         <br> - User can explore, for each category, what are the top channels and figure how dominant are the
@@ -53,7 +51,7 @@
         </div>
 
         <div class="section" id="section1">
-            <div class="center-align">
+            <div class="center-align" style="margin-left:10%">
                 <div class="tab">
                     <button class="tablinks" onclick="openCountry(event, 'US')" id="btn_us">United States</button>
                     <button class="tablinks" onclick="openCountry(event, 'UK')" id="btn_uk">United Kingdom</button>
@@ -62,15 +60,15 @@
 
                 <div class="tab-content">
                     <div id="US" class="tabcontent">
-                        <div style="margin-left:40%">
+                        <div style="margin-left:25%">
                             <h3>Categories with most trending videos</h3>
                         </div>
                         <svg id="us_cat_svg" width="960" height="600" style="padding-left:45px;"></svg>
                         <div style="margin-bottom:15px">
                             <p>For united states, in terms of number of videos which trend, Entertainment is at the top position.</p>
                             <p>I expect gaming to have more trending vidoes but other categories including education trump it.
-                                Plausable reason for this is that the online gaming have secondary platforms like steam,
-                                xbox live etc. Professional sports has also it's own category "sports".
+                                <br/>Plausable reason for this is that the online gaming have secondary platforms like steam,
+                                xbox live etc. <br/>Professional sports has also it's own category "sports".
                             </p>
 
                         </div>
@@ -79,7 +77,7 @@
                         </span>
                     </div>
                     <div id="UK" class="tabcontent">
-                        <div style="margin-left:40%">
+                        <div style="margin-left:25%">
                             <h3>Categories with most trending videos</h3>
                         </div>
                         <svg id="uk_cat_svg" width="960" height="600" style="padding-left:45px;"></svg>
@@ -96,7 +94,7 @@
                         </div>
                     </div>
                     <div id="CA" class="tabcontent">
-                        <div style="margin-left:40%">
+                        <div style="margin-left:25%">
                             <h3>Categories with most trending videos</h3>
                         </div>
                         <svg id="ca_cat_svg" width="960" height="600" style="padding-left:65px;"></svg>
@@ -131,7 +129,7 @@
                     </span>
                     <select class="selectpicker" id="category_index" onchange="addDetailedGraph()"></select>
                 </div>
-                <div style="margin-left:30%">
+                <div style="margin-left:25%">
                     <h3>
                         <div id="tending_channel_txt">Trending Channels for selected country & category</div>
                     </h3>
@@ -148,24 +146,20 @@
             </div>
         </div>
         <div class="section" id="section3">
-            <div style="width:1200px;margin-left:15px">
+            <div class="center-align" style="width:1100px;margin-left:8%">
                 <div>
                     <h2>About the Visualization</h2>
                     <p>This visualization is an interactive slideshow which takes the user through the youtube dataset of the
                         trending Videos for the first half of the calendar year, 2018. I have chosen three countries for
                         this walkthrough: United States, United Kingdom and Canada, reason being that youtube culture is
                         similar in these countries.</p>
-                    We want to explore how dominant is entertainment ? How is gaming fairing and which categories stand-out in these three countries.
+                    We want to explore top categories (upto 10),  with trending videos and answer questions like how dominant is entertainment ? How is gaming fairing and which categories stand-out in these three countries.
                     <p>User can also explore, for each country, and each trending category, what are the top trending channels
                         (in terms of number of trending videos) explore if big media channels dominate trending videos and
                         how are independent content creators faring.</p>
                     <p>I have also tried to follow elements of visualization covered in the first half of the course. For example,
                         Bar chart for categorical, right color palette for categorical data etc.</p>
                 </div>
-
-                <h2>Recommended Settings</h2>
-                <p>This visualizations use a preset static canvas of 1024x768 pixels, the viewing size of the interactive visualization
-                    is at least 1280x800 pixels to accommodate the surrounding text and scene elements.</p>
 
                 <h2>Template Scenes</h2>
                 <p>I have used custom css and

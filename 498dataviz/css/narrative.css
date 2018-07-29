@@ -28,9 +28,11 @@
 
 .left-center {
     position: absolute;
-    top: 138px; 
+    top: 10%; 
     left: 16px;
-    color: white;
+    /* color: white; */
+    color:white;
+
     text-align: left;
 }
 
