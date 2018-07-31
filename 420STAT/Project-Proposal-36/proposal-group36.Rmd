@@ -1,0 +1,243 @@
+---
+title: "Data Analysis Project Proposal"
+author: "STAT 420, Summer 2018, **Group 36** (Mritunjay Tripathi [mt19], Naseer Batt [nubatt2] and Prem Prakash [premp3])"
+date: '07/17/2018'
+output:
+  html_document: 
+    toc: yes
+  pdf_document: default
+urlcolor: cyan
+---
+
+***
+
+## Team Members
+
+1. Mritunjay Tripathi (**mt19**)
+
+2. Naseer Batt (**nubatt2**)
+
+3. Prem Prakash (**premp3**)
+
+## Project Details
+
+* **Title** - Model to predict house prices in King County, WA
+
+* **Description of the dataset** - This dataset contains house sale prices for King County, WA. It includes data for houses sold between May 2014 and May 2015. Here are the **variables** from dataset;
+    + **id** - ID for sold house
+    + **date** - Date house was sold
+    + **price** - Price house was sold (*This is our prediction target*)
+    + **bedrooms** - Number of Bedrooms
+    + **bathrooms** - Number of bathrooms
+    + **sqft_living** - Square footage of the house
+    + **sqft_lot** - Square footage of the lot
+    + **floors** - Total floors (levels) in house
+    + **waterfront** - Whether house has a view to a waterfront or not
+    + **view** - How good the view of the house was on index from 0 to 4 
+    + **condition** - How good the condition was (Overall) on index from 1 to 5
+    + **grade** - Overall grade given to the housing unit, based on King County grading system. An index from 1 to 13, where 1-3 falls short of building construction and design, 7 has an average level of construction and design, and 11-13 have a high quality level of construction and design.
+    + **sqft_above** - Square footage of house apart from basement
+    + **sqft_basement** - Square footage of the basement
+    + **yr_built** - Built Year
+    + **yr_renovated** - Year when house was last renovated
+    + **zipcode** - Zipcode
+    + **lat** - Latitude coordinate
+    + **long** - Longitude coordinate
+    + **sqft_living15** - Living room area in 2015 (implies-- some renovations). This might or might not have affected the lotsize area.
+    + **sqft_lot15** - Lotsize area in 2015 (implies-- some renovations)  
+                       
+\newline
+
+* **Background information on the dataset** - 
+    + Data source - Kaggle (https://www.kaggle.com/datasets)
+    + This data was subseted for time frame May 2014 to May 2015 from publicly available datasets on King County's Open Data portal (https://data.kingcounty.gov/).
+
+\newline
+
+* **A brief statement of the business, science, research, or personal interest you have in the dataset that you hope to explore** - 
+Seattle (Seattle–Tacoma–Bellevue, WA Metropolitan Statistical Area) is one of America's best major metro cities to live in, according to U.S. News & World Report. Seattle and it's immediate vicinity Bellevue, Kirkland and Redmond fall under King County. King County home values have gone up 13.9% over the past year and Zillow predicts they will rise 8.0% within the next year. We are interested in analyzing the house sale prices and creating a model to predict house prices in King County, WA.
+
+* **Evidence that the data can be loaded into R** - 
+
+```{r echo=FALSE}
+library(ggplot2)
+library(dplyr)
+```
+
+```{r}
+library(readr)
+kc_house_data = read_csv("kc_house_data.csv")
+str(kc_house_data)
+head(kc_house_data)
+```
+
+> This dataset contains **21613 observations** and **21 variables**, has a numeric response variable `price`, at least one categorical predictor e.g. `waterfront`, and at least two numeric predictors. So this dataset meets the required data selection criteria.
+
+
+
+
+  
+## DataSet Analysis
+*Data Exploration. Let's take a look at distribution of some important predictors.*
+```{r}
+#data_df = data.frame((kc_house_data))
+par(mfrow = c(1,2))
+
+#price
+# from  plots, appear there are some outliers in price.
+hist(kc_house_data$price, main = "Price histogram", xlab = "Price", col ="dodgerblue")
+boxplot(kc_house_data$price, main = "Price Boxplot", xlab = "Price", col = "darkorange")
+
+
+#Bedrooms.
+# from box plots, appear there are some outliers in bedrooms or just wrong data.
+hist(kc_house_data$bedrooms, main = "Bedrooms histogram", xlab = "Bedrooms", col ="dodgerblue")
+boxplot(kc_house_data$bedrooms, main = "Bedrooms Boxplot", xlab = "Bedrooms", col = "darkorange")
+
+#Bathrooms
+hist(kc_house_data$bathrooms, main = "Bathrooms histogram", xlab = "Bathrooms", col ="dodgerblue")
+boxplot(kc_house_data$bathrooms, main = "Bathrooms Boxplot", xlab = "Bathrooms", col = "darkorange")
+
+#Floors
+hist(kc_house_data$floors, main = "Floors histogram", xlab = "Floors", col ="dodgerblue")
+boxplot(kc_house_data$floors, main = "Floors Boxplot", xlab = "Floors", col = "darkorange")
+
+#Year Built.
+# Appears that majority of houses were built in 1970- 1980s.
+hist(kc_house_data$yr_built, main = "yr_built histogram", xlab = "yr_built", col ="dodgerblue")
+boxplot(kc_house_data$yr_built, main = "yr_built Boxplot", col = "darkorange")
+
+#Year Built.
+# Looks like there are some extreme values for sqft_living.
+hist(kc_house_data$sqft_living, main = "sqft_living histogram", xlab = "sqft_living", col ="dodgerblue")
+boxplot(kc_house_data$sqft_living, main = "sqft_living Boxplot", xlab = "sqft_living", col = "darkorange")
+
+
+#sqft_lot.
+#There are big plot areas which can have an impact on predictions.
+hist(kc_house_data$sqft_lot, main = "sqft_lot histogram", xlab = "sqft_lot", col ="dodgerblue")
+boxplot(kc_house_data$sqft_lot, main = "sqft_lot Boxplot", xlab = "sqft_lot", col = "darkorange")
+```
+
+
+
+Let's look at correlation between prices and other predictors.
+There are `r ncol(kc_house_data)` variables in our dataset, we will plot few groups at a time.
+
+```{r eval = FALSE}
+# first group variables into few buckets based on heuristic.
+price_primary_variables = c('price', 'bedrooms', 'bathrooms', 'sqft_living', 'sqft_lot')
+price_secondary_variables = c('price', 'floors', 'waterfront', 'view', 'condition', 'grade', 'sqft_above', 'sqft_basement')
+price_geo = c('price', 'zipcode', 'waterfront', 'view', 'condition', 'grade', 'sqft_above', 'sqft_basement')
+price_tertairy = c('price', 'sqft_living', 'sqft_lot', 'sqft_living15', 'sqft_lot15')
+#kc_house_data_subset = subset(kc_house_data, select = price_primary_variables)
+
+
+# primary pairs
+pairs(subset(kc_house_data, select = price_primary_variables), col = "dodgerblue")
+
+#secondary pairs
+#pairs(subset(kc_house_data, select = price_secondary_variables), col = "dodgerblue")
+
+#geo pairs
+pairs(subset(kc_house_data, select = price_geo), col = "dodgerblue")
+
+#tertairy pairs
+pairs(subset(kc_house_data, select = price_tertairy), col = "dodgerblue")
+```
+
+
+```{r}
+#numerical values for correlation
+cors = cor(select(kc_house_data, c(bedrooms, bathrooms, sqft_living, sqft_lot, floors, waterfront, view, condition, grade, sqft_above, sqft_basement, yr_built, yr_renovated)))
+unique(as.numeric(cors))
+sort(unique(as.numeric(cors)), decreasing = TRUE)[1:10]
+```
+
+*TODO: ADD commentary*
+
+```{r}
+#let's look at suspicious big bedroom records. Get count of records for eah bedroom size
+kc_house_data %>% group_by(bedrooms) %>%  tally(bedrooms) 
+
+#peek at records with bedrooms > 8, are these valid.
+kc_house_data %>% add_count(bedrooms) %>% filter(bedrooms > 8) %>% arrange(desc(bedrooms))
+```
+
+At this point, it is safe to assume that bedrooms 33 is outlier and can be dropped from the dataset.
+
+## Data Preparation
+```{r}
+# drop noise from data.
+kc_house_data = kc_house_data %>% filter(bedrooms != 33)
+
+#waterfront is categorical in nature. Let's change the type.
+kc_house_data$waterfront = as.factor(kc_house_data$waterfront)
+
+#don't need Id and date column for training/test
+kc_house_data %>% names()
+kc_house_data = select(kc_house_data, c(-id, -date))
+#verify "id" is no longer a column.
+kc_house_data %>% names()
+#split data into train/test set. 
+train_idx = sample(nrow(kc_house_data), size = 0.70*nrow(kc_house_data))
+kc_house_data.tr = kc_house_data[train_idx,] # 70% training data.
+kc_house_data.te = kc_house_data[-train_idx,] #30% test data.
+```
+
+
+
+## Model Training
+```{r}
+# throw all available predictors
+hp_add = lm(price ~ ., data = kc_house_data)
+
+hp_model = hp_add
+summary(hp_model)
+```
+
+### Model Diagnostics
+```{r}
+par(mfrow=c(1,2))
+plot(resid(hp_model), fitted(hp_model),  col = "grey", pch = 20, xlab = "Fitted", ylab = "Residual", main = "Fitted versus Residuals")
+abline(h = 0, col = "darkorange", lwd = 2)
+
+qqnorm(resid(hp_model), col = "darkgrey")
+qqline(resid(hp_model), col = "dodgerblue", lwd = 2)
+```
+```{r}
+library('lmtest')
+library('faraway')
+bptest(hp_model)
+shapiro.test(resid(hp_model)[1:4900])
+```
+
+- Both equal vairance and normality assumptions are violated.
+- Linear assumption is also violated.
+
+```{r}
+vif(hp_model)
+```
+
+- There are a few with large VIF, which is VIG > 5 `yr_renovated` & Dummy variable `waterfront1`, `view`, `condition`
+
+```{r}
+#high leverage 
+high_lev = hatvalues(hp_model) > 2 * mean(hatvalues(hp_model))
+#how many
+sum(high_lev)
+
+#outliers
+outliers = abs(rstandard(hp_model)) > 2
+#how many
+sum(outliers)
+
+#influence
+influential = cooks.distance(hp_model) > 4 / length(cooks.distance(hp_model))
+#how many
+sum(influential)
+```
+
+
+### Model Evaluation
+## Conclusion
