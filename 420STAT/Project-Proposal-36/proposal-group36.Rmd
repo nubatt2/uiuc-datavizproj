@@ -62,6 +62,7 @@ Seattle (Seattle–Tacoma–Bellevue, WA Metropolitan Statistical Area) is one o
 ```{r echo=FALSE}
 library(ggplot2)
 library(dplyr)
+library(knitr)
 ```
 
 ```{r}
@@ -151,7 +152,7 @@ pairs(subset(kc_house_data, select = price_tertairy), col = "dodgerblue")
 #numerical values for correlation
 cors = cor(select(kc_house_data, c(bedrooms, bathrooms, sqft_living, sqft_lot, floors, waterfront, view, condition, grade, sqft_above, sqft_basement, yr_built, yr_renovated)))
 unique(as.numeric(cors))
-sort(unique(as.numeric(cors)), decreasing = TRUE)[1:10]
+#sort(unique(as.numeric(cors)), decreasing = TRUE)[1:10]
 ```
 
 *TODO: ADD commentary*
@@ -190,7 +191,7 @@ kc_house_data.te = kc_house_data[-train_idx,] #30% test data.
 ## Model Training
 ```{r}
 # throw all available predictors
-hp_add = lm(price ~ ., data = kc_house_data)
+hp_add = lm(price ~ ., data = kc_house_data.tr)
 
 hp_model = hp_add
 summary(hp_model)
