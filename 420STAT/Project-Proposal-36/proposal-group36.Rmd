@@ -63,14 +63,84 @@ Seattle (Seattle–Tacoma–Bellevue, WA Metropolitan Statistical Area) is one o
 library(ggplot2)
 library(dplyr)
 library(knitr)
+library(lmtest)
+library(boot)
 ```
+```{r}
+
+```
+
 
 ```{r}
 library(readr)
 kc_house_data = read_csv("kc_house_data.csv")
 str(kc_house_data)
 head(kc_house_data)
+
 ```
+```{r}
+#helper methods
+get_perc_err = function(actual, predicted) {
+  100 * mean((abs(actual - predicted)) / actual)
+}
+
+
+get_rmse = function(actual, predicted) {
+     sqrt(mean((actual - predicted) ^ 2))
+}
+
+get_loocv_rmse = function(model) {
+  sqrt(mean((resid(model) / (1 - hatvalues(model))) ^ 2))
+}
+
+
+#usage
+#get_perc_err(sac_tst_data$price, predict(sac_mod_lm, sac_tst_data))
+
+diagnostics = function(model, pcol = "grey", lcol = "dodgerblue", alpha = 0.05, 
+                       plotit = TRUE, testit = TRUE) {
+  
+  if (plotit == TRUE) {
+    
+    # side-by-side plots (one row, two columns)
+    par(mfrow = c(1, 2))
+    
+    # fitted versus residuals
+    plot(fitted(model), resid(model), 
+         col = pcol, pch = 20, cex = 1.5, 
+         xlab = "Fitted", ylab = "Residuals", 
+         main = "Fitted versus Residuals")
+    abline(h = 0, col = lcol, lwd = 2)
+      abline(v = 13.1, col = "red", lwd = 2)
+    grid()
+    
+    # qq-plot
+    qqnorm(resid(model), col = pcol, pch = 20, cex = 1.5)
+    qqline(resid(model), col = lcol, lwd = 2)
+    grid()
+  }
+  
+  if (testit == TRUE) {
+    # p-value and decision
+    s_p_val = shapiro.test(resid(model)[3:4800])$p.value
+    s_decision = ifelse(s_p_val < alpha, "Shapiro: Reject", "Shapiro: Fail to Reject")
+    
+    b_p_val = bptest(model)$p.value
+    b_decision = ifelse(b_p_val < alpha, "BPTEST: Reject", "BPTEST: Fail to Reject")
+    
+    dfr = data.frame (TestName = c("Shapiro.Test", "BpTest"),
+                p_values = c(s_p_val, b_p_val),
+                decision = c(s_decision, b_decision)
+               )
+    #knitr::kable(dfr)
+    
+    dfr
+  }
+}
+
+
+```
+
 
 > This dataset contains **21613 observations** and **21 variables**, has a numeric response variable `price`, at least one categorical predictor e.g. `waterfront`, and at least two numeric predictors. So this dataset meets the required data selection criteria.
 
@@ -167,6 +237,48 @@ kc_house_data %>% add_count(bedrooms) %>% filter(bedrooms > 8) %>% arrange(desc(
 
 At this point, it is safe to assume that bedrooms 33 is outlier and can be dropped from the dataset.
 
+```{r}
+#price normality
+par(mfrow=c(1,2))
+
+qqnorm((kc_house_data$price), col = "dodgerblue", main = "BEFORE")
+qqline((kc_house_data$price), col = "darkorange")
+
+qqnorm(log(kc_house_data$price), col = "dodgerblue", main = "AFTER")
+qqline(log(kc_house_data$price), col = "darkorange")
+```
+
+```{r}
+#sqft_living_normality
+par(mfrow=c(1,2))
+
+qqnorm((kc_house_data$sqft_living), col = "dodgerblue", main = "BEFORE")
+qqline((kc_house_data$sqft_living), col = "darkorange")
+
+qqnorm(log(kc_house_data$sqft_living), col = "dodgerblue", main = "AFTER")
+qqline(log(kc_house_data$sqft_living), col = "darkorange")
+```
+
+```{r}
+par(mfrow=c(1,2))
+
+qqnorm((kc_house_data$sqft_above), col = "dodgerblue", main = "BEFORE")
+qqline((kc_house_data$sqft_above), col = "darkorange")
+
+qqnorm(log(kc_house_data$sqft_above), col = "dodgerblue", main = "AFTER")
+qqline(log(kc_house_data$sqft_above), col = "darkorange")
+```
+
+```{r}
+#par(mfrow=c(1,2))
+
+#qqnorm(na.rm(kc_house_data$sqft_basement), col = "dodgerblue", main = "BEFORE")
+#qqline(na.rm(kc_house_data$sqft_basement), col = "darkorange")
+
+#qqnorm(log(kc_house_data$sqft_basement), col = "dodgerblue", main = "AFTER")
+#qqline(log(kc_house_data$sqft_basement), col = "darkorange")
+```
+
 ## Data Preparation
 ```{r}
 # drop noise from data.
@@ -191,20 +303,72 @@ kc_house_data.te = kc_house_data[-train_idx,] #30% test data.
 ## Model Training
 ```{r}
 # throw all available predictors
-hp_add = lm(price ~ ., data = kc_house_data.tr)
+hp_add =
+  lm(log(price) ~ bedrooms + bathrooms + bedrooms:bathrooms + sqft_living +  log(sqft_lot)  + waterfront + view + condition + as.factor(grade)+ sqft_above + yr_built + as.factor(zipcode) + lat + long + sqft_living15 + log(sqft_lot15), data = kc_house_data.tr)
+  
+ #lm(log(price) ~ bedrooms + bathrooms + sqft_living +  log(sqft_lot)  + waterfront + view + condition + as.factor(grade) + sqft_above + yr_built + as.factor(zipcode) + lat + long + sqft_living15 + log(sqft_lot15), data = kc_house_data.tr)
+    #lm(log(price) ~ (bathrooms + log(sqft_living)+  log(sqft_lot)) ^ 3  + condition + grade+ sqft_above + yr_built + zipcode + lat + long + sqft_living15 + log(sqft_lot15), data = kc_house_data.tr)
+  #lm(log(price) ~ bedrooms + bathrooms + sqft_living +  log(sqft_lot)  + condition + grade+ sqft_above + yr_built + zipcode + lat + long + sqft_living15 + log(sqft_lot15), data = kc_house_data.tr) #mritunjay model.
+  #lm(log(price) ~ bedrooms + bathrooms + log(sqft_living) +  log(sqft_lot) + floors + grade+ log(sqft_above) + lat + long, data = kc_house_data.tr) ##constant variance, normalization not violated
+ #lm(log(price) ~ bedrooms + log(sqft_living) +  log(sqft_lot) + floors + grade+ log(sqft_above) + yr_built + yr_renovated + lat + long, data = kc_house_data.tr) ##normalization not violated
+
+#lm(log(price) ~ bedrooms + bathrooms + log(sqft_living) +  log(sqft_lot) + floors + waterfront + view + condition + grade+ log(sqft_above) + yr_built + yr_renovated + lat + long + as.factor(zipcode), data = kc_house_data.tr) ##Multiple R-squared:  0.8818,	Adjusted R-squared:  0.8811 
+hp_step = step(hp_add, direction = "backward", k = log(nrow(kc_house_data.tr)))
 
 hp_model = hp_add
+#hp_model = hp_step
+#  hp_step
+
 summary(hp_model)
+diagnostics(hp_model)
+bptest(hp_model)
+
+#evaluation.
+cv.glm(kc_house_data.tr, hp_model, K = 100)$delta[1]
+
+#ssqrt(mean((resid(hp_model) / (1 - hatvalues(hp_model))) ^ 2))
+#train rmse
+get_perc_err(kc_house_data.tr$price, exp(predict(hp_model, kc_house_data.tr))) #train percentage error.
+get_rmse(kc_house_data.tr$price, exp(predict(hp_model, kc_house_data.tr))) # train rmse
+
+predicted_value = exp(predict(hp_model, kc_house_data.te)) # pre
+get_perc_err(kc_house_data.te$price, predicted_value) # test percentage error.
+get_rmse(kc_house_data.te$price, predicted_value) #test rmse
+
+
+
+#shapiro.test(resid(hp_model)[3:4600])
+
+par(mfrow = c(1,2))
+plot(kc_house_data.te$price, predicted_value, 
+     xlim = c(0, 1000000), ylim = c(0, 1000000), col = "darkgrey",
+     xlab = "Actual Home Prices",
+     ylab = "Predicted Home Prices",
+     main = "king county Home Prices :Test SET")
+grid()
+abline(0, 1, col = "dodgerblue")
+
+
+plot(kc_house_data.tr$price, exp(predict(hp_model, kc_house_data.tr)), 
+     xlim = c(0, 1000000), ylim = c(0, 1000000), col = "darkgrey",
+     xlab = "Actual Home Prices",
+     ylab = "Predicted Home Prices",
+     main = "king county Home Prices - Train SET")
+grid()
+abline(0, 1, col = "dodgerblue")
+
 ```
 
 ### Model Diagnostics
 ```{r}
-par(mfrow=c(1,2))
-plot(resid(hp_model), fitted(hp_model),  col = "grey", pch = 20, xlab = "Fitted", ylab = "Residual", main = "Fitted versus Residuals")
-abline(h = 0, col = "darkorange", lwd = 2)
+diagnostics(hp_model)
 
-qqnorm(resid(hp_model), col = "darkgrey")
-qqline(resid(hp_model), col = "dodgerblue", lwd = 2)
+#par(mfrow=c(1,2))
+#plot(resid(hp_model), fitted(hp_model),  col = "grey", pch = 20, xlab = "Fitted", ylab = "Residual", main = "Fitted versus Residuals")
+#abline(h = 0, col = "darkorange", lwd = 2)
+
+#qqnorm(resid(hp_model), col = "darkgrey")
+#qqline(resid(hp_model), col = "dodgerblue", lwd = 2)
 ```
 ```{r}
 library('lmtest')
