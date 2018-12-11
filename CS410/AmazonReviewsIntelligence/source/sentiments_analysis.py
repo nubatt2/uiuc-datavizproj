@@ -83,7 +83,7 @@ def generate_sentiment_score(df_me):
     print('Done with Table 1 - sentiment scores along with product data')
     
     # Aggregated on date. Group by ProductId and Review Date. Aggregate weighted sentiment score.
-    grouped_product_date = df_vs.sort_values(by=['product_id']).groupby(['product_id', 'review_date'])
+    grouped_product_date = df_vs.sort_values(by=['product_id']).groupby(['product_id', 'product_title', 'review_date'])
     aggregated_score_date = grouped_product_date['weighted_sentiment_score'].agg(np.mean)
     #print(aggregated_score_date)
     
@@ -92,8 +92,8 @@ def generate_sentiment_score(df_me):
     for name in aggregated_score_date.index:
         #print(name)
         #print(aggregated_score_date.loc[name])
-        curr_aggr_data = [name[0], name[1], aggregated_score_date.loc[name]]
-        curr_aggr_df = pd.DataFrame([curr_aggr_data], columns = ['product_id', 'review_date', 'aggr_weighted_sentiment_score'])
+        curr_aggr_data = [name[0], name[1], name[2], aggregated_score_date.loc[name]]
+        curr_aggr_df = pd.DataFrame([curr_aggr_data], columns = ['product_id', 'product_title', 'review_date', 'aggr_weighted_sentiment_score'])
         df_aggregated_score_date = df_aggregated_score_date.append(curr_aggr_df, ignore_index=True)
     #print(df_aggregated_score_date)
     # Write aggregated weighted sentiment score along with product and review date to json file (TABLE 2)
@@ -101,7 +101,7 @@ def generate_sentiment_score(df_me):
     print('Done with Table 2 - aggregated weighted sentiment score along with product and review date')
     
     # Aggregrate for product
-    grouped_product = df_aggregated_score_date.sort_values(by=['product_id']).groupby('product_id')
+    grouped_product = df_aggregated_score_date.sort_values(by=['product_id']).groupby(['product_id', 'product_title'])
     aggregated_score_overall = grouped_product['aggr_weighted_sentiment_score'].agg(np.mean)
     #print(aggregated_score_overall)
     
@@ -110,8 +110,8 @@ def generate_sentiment_score(df_me):
     for name in aggregated_score_overall.index:
         #print(name)
         #print(aggregated_score_overall.loc[name])
-        curr_aggr_overall_data = [name, aggregated_score_overall.loc[name]]
-        curr_aggr_overall_df = pd.DataFrame([curr_aggr_overall_data], columns = ['product_id', 'overall_weighted_sentiment_score'])
+        curr_aggr_overall_data = [name[0], name[1], aggregated_score_overall.loc[name]]
+        curr_aggr_overall_df = pd.DataFrame([curr_aggr_overall_data], columns = ['product_id', 'product_title', 'overall_weighted_sentiment_score'])
         df_aggregated_score_overall = df_aggregated_score_overall.append(curr_aggr_overall_df, ignore_index=True)
     #print(df_aggregated_score_overall)
     # Write overall aggregated weighted sentiment score along with product to json file (TABLE 3)
