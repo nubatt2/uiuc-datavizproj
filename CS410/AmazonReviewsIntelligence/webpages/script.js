@@ -1,8 +1,16 @@
+var product_sentiments_aggregated_overall, product_sentiments_aggregated_dates;
+
 function loadProductsAndSentiments() {
     loadJSON(function (response) {
         // Parsing JSON string into object
         product_sentiments_aggregated_overall = JSON.parse(response);
+        var products=[];
+        for (var i = 0; i < product_sentiments_aggregated_overall.length; i++) { 
+            products.push(product_sentiments_aggregated_overall[i].product_title);
+        }
+        autocomplete(document.getElementById("product_name"), products);
     }, '../data/product_sentiments_aggregated_overall.json');
+    
     loadJSON(function (response) {
         // Parsing JSON string into object
         product_sentiments_aggregated_dates = JSON.parse(response);
