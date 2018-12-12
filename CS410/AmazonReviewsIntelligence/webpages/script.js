@@ -1,8 +1,14 @@
-function loadProductsAndSentiments(filePath) {
+var product_sentiments_aggregated_overall, product_sentiments_aggregated_dates;
+
+function loadProductsAndSentiments() {
     loadJSON(function (response) {
         // Parsing JSON string into object
         product_sentiments_aggregated_overall = JSON.parse(response);
-    }, filePath);
+    }, '../data/product_sentiments_aggregated_overall.json');
+    loadJSON(function (response) {
+        // Parsing JSON string into object
+        product_sentiments_aggregated_dates = JSON.parse(response);
+    }, '../data/product_sentiments_aggregated_dates.json');
 }
 
 function loadJSON(callback, filePath) {
