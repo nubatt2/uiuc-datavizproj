@@ -1,5 +1,3 @@
-var product_sentiments_aggregated_overall, product_sentiments_aggregated_dates;
-
 function loadProductsAndSentiments() {
     loadJSON(function (response) {
         // Parsing JSON string into object
