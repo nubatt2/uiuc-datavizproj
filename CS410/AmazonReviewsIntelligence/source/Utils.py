@@ -12,8 +12,13 @@ from spacy import displacy
 
 # html parser.
 from HtmlStrip import MLStripper
+#############################
+spacy_stopwords = spacy.lang.en.stop_words.STOP_WORDS
+tokenize_blacklist = ['PUNCT', 'SPACE']
+nlp = spacy.load('en_core_web_sm')
 
 #############################
+
 
 def GetDataFrameFor(filePath):
     my_file = Path(filePath)
@@ -43,3 +48,38 @@ def strip_tags(html):
     s = MLStripper()
     s.feed(html)
     return s.get_data()
+
+
+def GetQueryTokens(query, allowed_postags=['NOUN', 'ADJ', 'VERB', 'ADV']):
+    queryTokens = []
+
+    #load spacy doc.
+    doc_sp = nlp(query)
+
+    #1. Tokenize
+    tokens = [
+        token.text.lower() for token in doc_sp
+        if token.pos_ not in tokenize_blacklist
+    ]
+
+    #2. remove stop words
+    stopped_tokens = [
+        token for token in tokens if not token in spacy_stopwords
+    ]
+
+    #3. lemmetize
+    lemmed_tokens = []
+    for stopped_token in stopped_tokens:
+        lemmed_nlp = nlp(stopped_token)
+        lemmed_token = lemmed_nlp[0].lemma_
+
+        # add lemmed token if it in allowed postags, otherwise, raw as is.
+        if (lemmed_token.pos_ in allowed_postags):
+            lemmed_token.append(lemmed_token)
+        else:
+            lemmed_token.append(stopped_token)
+
+    for lemmed_token in lemmed_tokens:
+        queryTokens.append(lemmed_token)
+
+    return queryTokens
