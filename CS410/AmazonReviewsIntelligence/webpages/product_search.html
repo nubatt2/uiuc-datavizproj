@@ -3,17 +3,44 @@
 
 <head>
     <title>Product Search</title>
+    <style>
+        * { box-sizing: border-box; }
+        body {
+        font: 16px Arial; 
+        }
+        .autocomplete {
+        /*the container must be positioned relative:*/
+        position: relative;
+        display: inline-block;
+        }
+        input {
+        border: 1px solid transparent;
+        background-color: #f1f1f1;
+        padding: 10px;
+        font-size: 16px;
+        }
+        input[type=text] {
+        background-color: #f1f1f1;
+        width: 100%;
+        }
+        input[type=submit] {
+        background-color: DodgerBlue;
+        color: #fff;
+        }
+    </style>
 </head>
 
 <body bgcolor="#ffffcc">
 
     <h1>Intelligence from Amazon Reviews</h1>
-    <p>Product Search</p>
+    <p><b>Product Search</b></p>
     <div>
-        <!-- Search Topics Here -->
         <div>
-            <input type="text" name="search_text">
-            <input type="button" id="btnSearch" value="Search" onclick="">
+            <!-- Search Topics Here -->
+            <div class="autocomplete" style="width:500px;">
+                <input id="search_text" type="text" name="search_text">
+            </div>
+            <input type="button" id="btnSearch" value="Search in Products" onclick="">
         </div>
         <!-- Display Products with Overall Sentiments Here -->
         <div>

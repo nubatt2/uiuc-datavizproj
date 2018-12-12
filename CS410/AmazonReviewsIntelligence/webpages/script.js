@@ -1,17 +1,14 @@
-var product_sentiments_aggregated_overall = null
-var product_sentiments_aggregated_dates = null
-
-function loadProductsAndSentiments() {
+function loadProductsAndSentiments(filePath) {
     loadJSON(function (response) {
         // Parsing JSON string into object
         product_sentiments_aggregated_overall = JSON.parse(response);
-    });
+    }, filePath);
 }
 
-function loadJSON(callback) {
+function loadJSON(callback, filePath) {
     var xobj = new XMLHttpRequest();
     xobj.overrideMimeType("application/json");
-    xobj.open('GET', '../data/product_sentiments_aggregated_overall.json', true);
+    xobj.open('GET', filePath, true);
     xobj.onreadystatechange = function () {
         if (xobj.readyState == 4 && xobj.status == "200") {
             // Required use of an anonymous callback as .open will NOT return a value but simply returns undefined in asynchronous mode
