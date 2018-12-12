@@ -9,16 +9,15 @@ from pathlib import Path
 # nlp library
 import spacy
 from spacy import displacy
+import en_core_web_sm
 
 # html parser.
 from HtmlStrip import MLStripper
 #############################
-spacy_stopwords = spacy.lang.en.stop_words.STOP_WORDS
 tokenize_blacklist = ['PUNCT', 'SPACE']
 nlp = spacy.load('en_core_web_sm')
-
+spacy_stopwords = spacy.lang.en.stop_words.STOP_WORDS
 #############################
-
 
 def GetDataFrameFor(filePath):
     my_file = Path(filePath)
@@ -68,18 +67,18 @@ def GetQueryTokens(query, allowed_postags=['NOUN', 'ADJ', 'VERB', 'ADV']):
     ]
 
     #3. lemmetize
-    lemmed_tokens = []
-    for stopped_token in stopped_tokens:
-        lemmed_nlp = nlp(stopped_token)
-        lemmed_token = lemmed_nlp[0].lemma_
+#     lemmed_tokens = []
+#     for stopped_token in stopped_tokens:
+#         lemmed_nlp = nlp(stopped_token)
+#         lemmed_token = lemmed_nlp[0].lemma_
 
-        # add lemmed token if it in allowed postags, otherwise, raw as is.
-        if (lemmed_token.pos_ in allowed_postags):
-            lemmed_token.append(lemmed_token)
-        else:
-            lemmed_token.append(stopped_token)
+#         # add lemmed token if it in allowed postags, otherwise, raw as is.
+#         if (lemmed_nlp.pos_ in allowed_postags):
+#             lemmed_token.append(lemmed_token)
+#         else:
+#             lemmed_token.append(stopped_token)
 
-    for lemmed_token in lemmed_tokens:
-        queryTokens.append(lemmed_token)
+#     for lemmed_token in lemmed_tokens:
+#         queryTokens.append(lemmed_token)
 
-    return queryTokens
+    return stopped_tokens
