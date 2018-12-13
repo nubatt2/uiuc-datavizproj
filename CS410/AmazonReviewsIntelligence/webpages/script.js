@@ -7,7 +7,7 @@ function loadProductsAndSentimentsFull() {
         product_sentiments_aggregated_overall = JSON.parse(response);
         var products = [];
         for (var i = 0; i < product_sentiments_aggregated_overall.length; i++) {
-            products.push(encodeURI(product_sentiments_aggregated_overall[i].product_title));
+            products.push(product_sentiments_aggregated_overall[i].product_title);
         }
         autocomplete(document.getElementById("product_name"), products);
     }, '../data/product_sentiments_aggregated_overall.json');
@@ -41,10 +41,10 @@ function loadJSON(callback, filePath) {
 function showAnalytics(product_title) {
     if (product_title && last_product_title != product_title) {
         var product_id;
-        var product_overall_details = getProductOverallSentimentDetails(decodeURI(product_title));
+        var product_overall_details = getProductOverallSentimentDetails(product_title);
         if (product_overall_details && product_overall_details.length >= 1) {
             product_id = product_overall_details[0]["product_id"];
-            document.getElementById('current_product').innerHTML = encodeURI(product_overall_details[0]["product_title"]);
+            document.getElementById('current_product').innerHTML = product_overall_details[0]["product_title"];
             var sentiment_score = convertToFixedDecimalPlaces(product_overall_details[0]["overall_weighted_sentiment_score"]);
             document.getElementById('overall_sentiment_score').innerHTML = sentiment_score + " (" + getSentimentCategory(sentiment_score) + ")";
         
