@@ -65,7 +65,7 @@ def generate_sentiment_score(df_me):
             #print("{:-<65} {}".format(row[14], str(vs)))
             #print(vs['compound'])
             # Store sentiment score and weighted sentiment score in dataframe
-            curr_data = [row[4], row[6], row[9], row[10], row[12], row[13], row[14], row[15], vs['compound'], get_weighted_sentiment_score(row[12], row[9], row[10], vs['compound'])]
+            curr_data = [row[4], row[6], row[9], row[10], row[12], row[13], row[14], row[15], round(vs['compound'], 2), round(get_weighted_sentiment_score(row[12], row[9], row[10], vs['compound']), 2)]
             curr_df = pd.DataFrame([curr_data], columns = ['product_id', 'product_title', 'helpful_votes', 'total_votes', 'verified_purchase', 'review_headline', 'review_body', 'review_date', 'sentiment_score', 'weighted_sentiment_score' ])
             #print(row[0])
             #print(curr_data)
@@ -83,7 +83,7 @@ def generate_sentiment_score(df_me):
     print('Done with Table 1 - sentiment scores along with product data')
     
     # Aggregated on date. Group by ProductId and Review Date. Aggregate weighted sentiment score.
-    grouped_product_date = df_vs.sort_values(by=['product_id']).groupby(['product_id', 'product_title', 'review_date'])
+    grouped_product_date = df_vs.sort_values(by=['product_id', 'review_date']).groupby(['product_id', 'product_title', 'review_date'])
     aggregated_score_date = grouped_product_date['weighted_sentiment_score'].agg(np.mean)
     #print(aggregated_score_date)
     
@@ -92,7 +92,7 @@ def generate_sentiment_score(df_me):
     for name in aggregated_score_date.index:
         #print(name)
         #print(aggregated_score_date.loc[name])
-        curr_aggr_data = [name[0], name[1], name[2], aggregated_score_date.loc[name]]
+        curr_aggr_data = [name[0], name[1], name[2], round(aggregated_score_date.loc[name], 2)]
         curr_aggr_df = pd.DataFrame([curr_aggr_data], columns = ['product_id', 'product_title', 'review_date', 'aggr_weighted_sentiment_score'])
         df_aggregated_score_date = df_aggregated_score_date.append(curr_aggr_df, ignore_index=True)
     #print(df_aggregated_score_date)
@@ -110,7 +110,7 @@ def generate_sentiment_score(df_me):
     for name in aggregated_score_overall.index:
         #print(name)
         #print(aggregated_score_overall.loc[name])
-        curr_aggr_overall_data = [name[0], name[1], aggregated_score_overall.loc[name]]
+        curr_aggr_overall_data = [name[0], name[1], round(aggregated_score_overall.loc[name], 2)]
         curr_aggr_overall_df = pd.DataFrame([curr_aggr_overall_data], columns = ['product_id', 'product_title', 'overall_weighted_sentiment_score'])
         df_aggregated_score_overall = df_aggregated_score_overall.append(curr_aggr_overall_df, ignore_index=True)
     #print(df_aggregated_score_overall)

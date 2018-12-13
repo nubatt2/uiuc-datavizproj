@@ -3,52 +3,209 @@
 
 <head>
     <title>Product Analytics</title>
-    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
-    <script type="text/javascript" src="../webpages/script.js"></script>
+    <!--script src="https://code.jquery.com/jquery-1.10.2.js"></script-->
+    <script type="text/javascript" src="script.js"></script>
+    <script src="https://d3js.org/d3.v5.min.js"></script>
+    <style>
+        * { box-sizing: border-box; }
+        body {
+        font: 16px Arial; 
+        }
+        .divclass {
+        /*the container must be positioned relative:*/
+        position: relative;
+        display: inline-block;
+        }
+        .div-left{
+        float:left;
+        padding-left:10px;
+        }
+        .div-right{
+        float:right;
+        padding-right:10px;
+        }
+        .divider {
+        width:5px;
+        height:auto;
+        display:inline-block;
+        }
+        .autocomplete {
+        /*the container must be positioned relative:*/
+        position: relative;
+        display: inline-block;
+        }
+        input {
+        border: 1px solid transparent;
+        background-color: #f1f1f1;
+        padding: 10px;
+        font-size: 16px;
+        }
+        input[type=text] {
+        background-color: #f1f1f1;
+        width: 100%;
+        }
+        input[type=submit] {
+        background-color: DodgerBlue;
+        color: #fff;
+        }
+        input[type=button]:hover {
+        background-color: #008CBA;
+        color: white;
+        }
+        .autocomplete-items {
+        position: absolute;
+        border: 1px solid #d4d4d4;
+        border-bottom: none;
+        border-top: none;
+        z-index: 99;
+        /*position the autocomplete items to be the same width as the container:*/
+        top: 100%;
+        left: 0;
+        right: 0;
+        }
+        .autocomplete-items div {
+        padding: 10px;
+        cursor: pointer;
+        background-color: #fff; 
+        border-bottom: 1px solid #d4d4d4; 
+        }
+        .autocomplete-items div:hover {
+        /*when hovering an item:*/
+        background-color: #e9e9e9; 
+        }
+        .autocomplete-active {
+        /*when navigating through the items using the arrow keys:*/
+        background-color: DodgerBlue !important; 
+        color: #ffffff; 
+        }
+
+        
+        div#container {
+        width: 900px;
+        height: 400px;
+        background-color: #2F4A6D;
+        }
+        svg {
+        width: 100%;
+        height: 100%;
+        }
+
+        .bar {
+        fill: #80cbc4;
+        }
+
+        text {
+        font-size: 12px;
+        fill: #fff;
+        }
+
+        path {
+        stroke: gray;
+        }
+
+        line {
+        stroke: gray;
+        }
+
+        line#limit {
+        stroke: #FED966;
+        stroke-width: 3;
+        stroke-dasharray: 3 6;
+        }
+
+        .grid path {
+        stroke-width: 0;
+        }
+
+        .grid .tick line {
+        stroke: #9FAAAE;
+        stroke-opacity: 0.3;
+        }
+
+        text.divergence {
+        font-size: 14px;
+        fill: #2F4A6D;
+        }
+
+        text.value {
+        font-size: 14px;
+        }
+
+        text.title {
+        font-size: 22px;
+        font-weight: 600;
+        }
+
+        text.label {
+        font-size: 14px;
+        font-weight: 400;
+        }
+
+        text.source {
+        font-size: 10px;
+        }
+    </style>
 </head>
 
-<body bgcolor="#ffffcc" onload="">
+<body bgcolor="#ffffcc" onload="loadProductsAndSentimentsFull()">
 
     <h1>Intelligence from Amazon Reviews</h1>
-    <p>Product Analytics</p>
+    <p><b>Product Analytics</b></p>
     <div>
-        <!-- Right Side Div Having Sentiment Details -->
-        <div>
+        <!-- Left Side Div Having Sentiment Details -->
+        <div class="div-left">
             <!-- Product Details and Overall Sentiment Score Here -->
             <div>
                 <!-- Find Product Here -->
-                <div>
-                    <label for="Product">Product:</label>
-                    <input type="text" name="product_name">
-                    <input type="button" id="btnFind" value="Find" onclick="">
-                </div>
+                <form autocomplete="off">
+                    <label>Product:</label>
+                    <div class="autocomplete" style="width:650px;">
+                        <input type="text" id="product_name" name="product_name">
+                    </div>
+                    <div class="divider"></div>
+                    <input type="button" id="btnFind" value="Show Analytics" onclick="showAnalytics(document.getElementById('product_name').value)">
+                </form>
                 <!-- Show Product with Overall Sentiment Here -->
+                <br>
                 <div>
-
+                    <label>Current Product: </label>
+                    <div class="divclass" id="current_product"></div>
+                    <br>
+                    <label>Overall Sentiment Score: </label>
+                    <div class="divclass" id="overall_sentiment_score"></div>
                 </div>
+                <br>
                 <!-- Show Overall Topics/WordCloud Here -->
                 <div>
-
+                    <label>Overall Sentiments Word Cloud: </label>
                 </div>
             </div>
+            <br>
             <!-- Sentiment Trend Here -->
             <div>
-
+                <label>Sentiment Trends: </label>
+                <br>
+                <div id="container">
+                        <svg></svg>
+                </div>
             </div>
         </div>
-        <!-- Left Side Div Having Topics/WordCloud Details -->
-        <div>
+        <!-- Right Side Div Having Topics/WordCloud Details -->
+        <div class="div-right">
             <!-- Positive Word Cloud Here -->
             <div>
-
+                <label>Positive Sentiments Word Cloud: </label>
             </div>
             <!-- Negative Word Cloud Here -->
             <div>
-
+                <label>Negative Sentiments Word Cloud: </label>
             </div>
         </div>
     </div>
 
+    <script type="text/javascript">
+
+    </script>
 </body>
 
 </html>

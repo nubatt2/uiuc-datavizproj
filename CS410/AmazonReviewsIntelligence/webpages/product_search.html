@@ -3,24 +3,69 @@
 
 <head>
     <title>Product Search</title>
+    <script type="text/javascript" src="script.js"></script>
+    <script src="https://d3js.org/d3.v5.min.js"></script>
+    <style>
+        * { box-sizing: border-box; }
+        body {
+        font: 16px Arial; 
+        }
+        .divider {
+        width:5px;
+        height:auto;
+        display:inline-block;
+        }
+        .searchdiv {
+        /*the container must be positioned relative:*/
+        position: relative;
+        display: inline-block;
+        }
+        input {
+        border: 1px solid transparent;
+        background-color: #f1f1f1;
+        padding: 10px;
+        font-size: 16px;
+        }
+        input[type=text] {
+        background-color: #f1f1f1;
+        width: 100%;
+        }
+        input[type=submit] {
+        background-color: DodgerBlue;
+        color: #fff;
+        }
+        input[type=button]:hover {
+        background-color: #008CBA;
+        color: white;
+        }
+    </style>
 </head>
 
-<body bgcolor="#ffffcc">
+<body bgcolor="#ffffcc" onload="loadProductsAndOverallSentiments()">
 
     <h1>Intelligence from Amazon Reviews</h1>
-    <p>Product Search</p>
+    <p><b>Product Search</b></p>
     <div>
-        <!-- Search Topics Here -->
         <div>
-            <input type="text" name="search_text">
-            <input type="button" id="btnSearch" value="Search" onclick="">
+            <!-- Search Topics Here -->
+            <div class="searchdiv" style="width:650px;">
+                <input id="search_text" type="text" name="search_text">
+            </div>
+            <div class="divider"></div>
+            <input type="button" id="btnSearch" value="Search in Products" onclick="showProducts()">
         </div>
+        <br>
         <!-- Display Products with Overall Sentiments Here -->
         <div>
-
+            <label>Products:</label>
+            <br>
+            <div id="product_details">
+            </div>
         </div>
     </div>
+    <script type="text/javascript">
 
+    </script>
 </body>
 
 </html>
