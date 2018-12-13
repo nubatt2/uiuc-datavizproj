@@ -5,6 +5,8 @@ imports
 import pandas as pd
 from pathlib import Path # for file path validation
 
+from gensim.utils import tokenize
+
 # nlp library
 import spacy
 from spacy import displacy
@@ -16,6 +18,7 @@ from HtmlStrip import MLStripper
 tokenize_blacklist = ['PUNCT', 'SPACE']
 # perf optimization. don't need ner and parser.
 nlp = spacy.load('en_core_web_sm', disable=['parser', 'ner', 'tagger', 'entityrecognizer'])
+nlp.max_length = 20000000
 spacy_stopwords = spacy.lang.en.stop_words.STOP_WORDS
 #############################
 
@@ -53,18 +56,21 @@ def GetQueryTokens(query, allowed_postags=['NOUN', 'ADJ', 'VERB', 'ADV']):
     queryTokens = []
 
     #load spacy doc.
-    doc_sp = nlp(query)
+    #doc_sp = nlp(query)
 
     #1. Tokenize
-    tokens = [
-        token.text.lower() for token in doc_sp
-        if token.pos_ not in tokenize_blacklist
-    ]
-
-    #2. remove stop words
-    stopped_tokens = [
-        token for token in tokens if not token in spacy_stopwords
-    ]
+    # tokens = [
+    #     token.text.lower() for token in doc_sp
+    #     if token.pos_ not in tokenize_blacklist
+    # ]
+    
+    #Tokenize using gensim and remove stop words.
+    tokens = [token for token in tokenize(query, deacc=True, errors='ignore') if not token in spacy_stopwords ] 
+    
+    # #2. remove stop words
+    # stopped_tokens = [
+    #     token for token in tokens if not token in spacy_stopwords
+    # ]
 
     #3. lemmetize
     # lemmed_tokens = []
@@ -81,4 +87,4 @@ def GetQueryTokens(query, allowed_postags=['NOUN', 'ADJ', 'VERB', 'ADV']):
     # for lemmed_token in lemmed_tokens:
     #     queryTokens.append(lemmed_token)
 
-    return stopped_tokens
+    return tokens

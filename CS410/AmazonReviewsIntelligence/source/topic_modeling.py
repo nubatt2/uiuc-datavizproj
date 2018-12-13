@@ -52,12 +52,16 @@ def GetDataForModeling(df_data):
     Choses columns of interest and create one row for each product - all reviews.
     '''
     # chose columns of interest, and group. Only take products witha tleast 10 reviews.
-    df_grouped = df_data[[
-        'product_id', 'review_body'
-    ]].groupby(by='product_id').filter(lambda x: len(x) >= 10)
-
+    # df_grouped = df_data[[
+    #     'product_id', 'review_body'
+    # ]].groupby(by='product_id').filter(lambda x: len(x) >= 10)
+    
+    # blacklisted product.
+    df_data = df_data[df_data['product_id'] != 'B003L1ZYYM']
+    df_candidate = df_data[['product_id', 'review_body']].groupby(by='product_id')['review_body'].apply(lambda x:' '.join(str(v) for v in x)).reset_index()
+    
     # return joined
-    df_candidate = df_grouped.groupby(by='product_id')['review_body'].apply(lambda x:' '.join(str(v) for v in x)).reset_index()
+    # df_candidate = df_grouped.groupby(by='product_id')['review_body'].apply(lambda x:' '.join(str(v) for v in x)).reset_index()
     return df_candidate
 
     # product_id_lst = []
@@ -116,31 +120,32 @@ def TrainAndPredictTopicModel(texts):
 
 @timeit
 def GetTopicsFor(df_data):
-    print("######Combine and get candidates for topic modelling!######")
+    print(">>>> Combine and get candidates for topic modelling!")
     products_to_topicalize = GetDataForModeling(df_data)
 
+    print("Number of products to get topics for {}".format(len(products_to_topicalize)))
     ## write to file for intermediate storage
     products_to_topicalize.to_json("dataformodeling.json", orient='records')
 
     # tokenize, cleanup, lemmitize text.
-    print("###### : Tokenize sentences ######")
+    print(">>>> Tokenize sentences!")
     products_to_topicalize['candidate_texts'] = products_to_topicalize['review_body'].apply(GetCandidateTexts)
 
     ## write to file for intermediate storage
     products_to_topicalize[['product_id', 'candidate_texts']].to_json("tokenized.json", orient='records')
 
-    print("###### : Train topic model ######")
+    print(">>>> Train topic model!")
     products_to_topicalize['Overall_Topics'] = products_to_topicalize['candidate_texts'].apply(TrainAndPredictTopicModel)
 
     return products_to_topicalize
 
 
 if __name__ == '__main__':
-    print('loading dataset...')
+    print('>>>> loading dataset...')
     #df = Utils.GetDataFrameFor(r'../data/amazon_reviews_us_Mobile_Electronics_v1_00.tsv.gz')
-    df = Utils.GetDataFrameFor(r'../data/amazon_reviews_us_Electronics_v1_00.tsv.gz')
+    df = Utils.GetDataFrameFor(r'../data/amazon_reviews_us_Electronics_v1_00.candidates.tsv')
 
-    df_withtopics = GetTopicsFor(df)
+    df_withtopics = GetTopicsFor(df[:1000000])
     #df_withtopics = GetTopicsFor(df)
 
     # orient is important, tells how to index json.
