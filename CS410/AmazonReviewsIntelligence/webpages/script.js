@@ -47,8 +47,8 @@ function showAnalytics(product_title) {
             document.getElementById('current_product').innerHTML = product_overall_details[0]["product_title"];
             var sentiment_score = convertToFixedDecimalPlaces(product_overall_details[0]["overall_weighted_sentiment_score"]);
             document.getElementById('overall_sentiment_score').innerHTML = sentiment_score + " (" + getSentimentCategory(sentiment_score) + ")";
-        
-            var product_dates_details = getProductSentimentDetailsByDate(product_id); 
+
+            var product_dates_details = getProductSentimentDetailsByDate(product_id);
             plotBarChart(product_dates_details);
 
             last_product_title = product_title;
@@ -57,18 +57,26 @@ function showAnalytics(product_title) {
 }
 
 function getProductOverallSentimentDetails(product_title) {
-    if(product_title) {
-    return product_sentiments_aggregated_overall.filter(
-        function (data) { return data.product_title == product_title }
-    );
+    if (product_title) {
+        return product_sentiments_aggregated_overall.filter(
+            function (data) { return data.product_title == product_title }
+        );
+    }
+}
+
+function getProductOverallSentimentDetailsById(product_id) {
+    if (product_id) {
+        return product_sentiments_aggregated_overall.filter(
+            function (data) { return data.product_id == product_id }
+        );
     }
 }
 
 function getProductSentimentDetailsByDate(product_id) {
-    if(product_id) {
-    return product_sentiments_aggregated_dates.filter(
-        function (data) { return data.product_id == product_id }
-    );
+    if (product_id) {
+        return product_sentiments_aggregated_dates.filter(
+            function (data) { return data.product_id == product_id }
+        );
     }
 }
 
@@ -222,13 +230,13 @@ function plotBarChart(product_data) {
     chart.append('g')
         .attr('transform', `translate(0, ${height})`)
         .call(d3.axisBottom(xScale))
-        .selectAll("text")	
-            .style("text-anchor", "end")
-            .attr("dx", "-.8em")
-            .attr("dy", ".15em")
-            .attr("transform", function(d) {
-                return "rotate(-90)" 
-                });
+        .selectAll("text")
+        .style("text-anchor", "end")
+        .attr("dx", "-.8em")
+        .attr("dy", ".15em")
+        .attr("transform", function (d) {
+            return "rotate(-90)"
+        });
 
 
     chart.append('g')
@@ -350,10 +358,61 @@ function plotBarChart(product_data) {
         .attr('x', width - margin / 2)
         .attr('y', height + margin * 1.7)
         .attr('text-anchor', 'start')
-        //.text('Source: Amazon Reviews')
+    //.text('Source: Amazon Reviews')
 
 }
 
 function showProducts() {
+    var product_ids = ["0528007262", "0594012015", "1084814315", "1400532736"];
 
+    // CREATE DYNAMIC TABLE.
+    var table = document.createElement("table");
+    table.style.width = '800px';
+    table.setAttribute('border', '1');
+    table.setAttribute('cellspacing', '0');
+    table.setAttribute('cellpadding', '5');
+
+    var col = ["Product", "Overall Sentiment Score"];
+
+    // CREATE TABLE HEAD .
+    var tHead = document.createElement("thead");
+
+    // CREATE ROW FOR TABLE HEAD .
+    var hRow = document.createElement("tr");
+
+    // ADD COLUMN HEADER TO ROW OF TABLE HEAD.
+    for (var i = 0; i < col.length; i++) {
+        var th = document.createElement("th");
+        th.innerHTML = col[i];
+        hRow.appendChild(th);
+    }
+    tHead.appendChild(hRow);
+    table.appendChild(tHead);
+
+    // CREATE TABLE BODY .
+    var tBody = document.createElement("tbody");
+
+    for (var i = 0; i < product_ids.length; i++) {
+        var curr_product_overall_details = getProductOverallSentimentDetailsById(product_ids[i]);
+        if (curr_product_overall_details && curr_product_overall_details.length >= 1) {
+            var bRow = document.createElement("tr"); // CREATE ROW FOR EACH RECORD .
+
+            var sentiment_score = convertToFixedDecimalPlaces(curr_product_overall_details[0]["overall_weighted_sentiment_score"]);
+
+            var td1 = document.createElement("td");
+            td1.innerHTML = curr_product_overall_details[0]["product_title"];
+            bRow.appendChild(td1);
+
+            var td2 = document.createElement("td");
+            td2.innerHTML = sentiment_score + " (" + getSentimentCategory(sentiment_score) + ")";
+            bRow.appendChild(td2);
+
+            tBody.appendChild(bRow);
+        }
+    }
+    table.appendChild(tBody);
+
+    var tablediv = document.getElementById('product_details');
+    tablediv.innerHTML = "";
+    tablediv.appendChild(table);
 }
