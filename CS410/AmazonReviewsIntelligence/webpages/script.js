@@ -1,13 +1,13 @@
 var product_sentiments_aggregated_overall, product_sentiments_aggregated_dates;
 var last_product_title;
 
-function loadProductsAndSentiments() {
+function loadProductsAndSentimentsFull() {
     loadJSON(function (response) {
         // Parsing JSON string into object
         product_sentiments_aggregated_overall = JSON.parse(response);
         var products = [];
         for (var i = 0; i < product_sentiments_aggregated_overall.length; i++) {
-            products.push(product_sentiments_aggregated_overall[i].product_title);
+            products.push(encodeURI(product_sentiments_aggregated_overall[i].product_title));
         }
         autocomplete(document.getElementById("product_name"), products);
     }, '../data/product_sentiments_aggregated_overall.json');
@@ -16,6 +16,13 @@ function loadProductsAndSentiments() {
         // Parsing JSON string into object
         product_sentiments_aggregated_dates = JSON.parse(response);
     }, '../data/product_sentiments_aggregated_dates.json');
+}
+
+function loadProductsAndOverallSentiments() {
+    loadJSON(function (response) {
+        // Parsing JSON string into object
+        product_sentiments_aggregated_overall = JSON.parse(response);
+    }, '../data/product_sentiments_aggregated_overall.json');
 }
 
 function loadJSON(callback, filePath) {
@@ -34,47 +41,52 @@ function loadJSON(callback, filePath) {
 function showAnalytics(product_title) {
     if (product_title && last_product_title != product_title) {
         var product_id;
-        var product_overall_details = getProductOverallSentimentDetails(product_title);
-        if (product_overall_details.length == 1) {
+        var product_overall_details = getProductOverallSentimentDetails(decodeURI(product_title));
+        if (product_overall_details && product_overall_details.length >= 1) {
             product_id = product_overall_details[0]["product_id"];
-            document.getElementById('current_product').innerHTML = product_overall_details[0]["product_title"];
+            document.getElementById('current_product').innerHTML = encodeURI(product_overall_details[0]["product_title"]);
             var sentiment_score = convertToFixedDecimalPlaces(product_overall_details[0]["overall_weighted_sentiment_score"]);
             document.getElementById('overall_sentiment_score').innerHTML = sentiment_score + " (" + getSentimentCategory(sentiment_score) + ")";
+        
+            var product_dates_details = getProductSentimentDetailsByDate(product_id); 
+            plotBarChart(product_dates_details);
+
+            last_product_title = product_title;
         }
-        var product_dates_details = getProductSentimentDetailsByDate(product_id); 
-        plotBarChart(product_dates_details);
-        last_product_title = product_title;
     }
 }
 
 function getProductOverallSentimentDetails(product_title) {
+    if(product_title) {
     return product_sentiments_aggregated_overall.filter(
         function (data) { return data.product_title == product_title }
     );
+    }
 }
 
 function getProductSentimentDetailsByDate(product_id) {
+    if(product_id) {
     return product_sentiments_aggregated_dates.filter(
         function (data) { return data.product_id == product_id }
     );
-    
+    }
 }
 
 function getSentimentCategory(sentiment_score) {
     if (sentiment_score >= -3 && sentiment_score < -2) {
-        return "Very Negative";
+        return "<span style='color:#cc0000'>Very Negative</span>";
     }
     else if (sentiment_score >= -2 && sentiment_score < -1) {
-        return "Negative";
+        return "<span style='color:#ff6666'>Negative</span>";
     }
     else if (sentiment_score >= -1 && sentiment_score <= 1) {
-        return "Neutral";
+        return "<span>Neutral</span>";
     }
     else if (sentiment_score > 1 && sentiment_score <= 2) {
-        return "Very Positive";
+        return "<span style='color:#00e600'>Positive</span>";
     }
     else if (sentiment_score > 2 && sentiment_score <= 3) {
-        return "Positive";
+        return "<span style='color:#006600'>Very Positive</span>";
     }
 }
 
@@ -343,5 +355,5 @@ function plotBarChart(product_data) {
 }
 
 function showProducts() {
-    
+
 }

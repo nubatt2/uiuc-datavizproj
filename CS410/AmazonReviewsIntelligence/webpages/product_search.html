@@ -15,7 +15,7 @@
         height:auto;
         display:inline-block;
         }
-        .autocomplete {
+        .searchdiv {
         /*the container must be positioned relative:*/
         position: relative;
         display: inline-block;
@@ -41,14 +41,14 @@
     </style>
 </head>
 
-<body bgcolor="#ffffcc" onload="loadProductsAndSentiments()">
+<body bgcolor="#ffffcc" onload="loadProductsAndOverallSentiments()">
 
     <h1>Intelligence from Amazon Reviews</h1>
     <p><b>Product Search</b></p>
     <div>
         <div>
             <!-- Search Topics Here -->
-            <div class="autocomplete" style="width:650px;">
+            <div class="searchdiv" style="width:650px;">
                 <input id="search_text" type="text" name="search_text">
             </div>
             <div class="divider"></div>
