@@ -28,6 +28,7 @@ import time
 
 MIN_REVIEWS = 10
 
+
 def timeit(method):
     def timed(*args, **kw):
         ts = time.time()
@@ -44,6 +45,7 @@ def timeit(method):
 
     return timed
 
+
 @timeit
 def GetDataForModeling(df_data):
     '''
@@ -51,30 +53,36 @@ def GetDataForModeling(df_data):
     '''
     # chose columns of interest, and group. Only take products witha tleast 10 reviews.
     df_grouped = df_data[[
-        'product_id', 'review_body', 'review_headline'
-    ]].groupby(by='product_id') #.filter(lambda x: len(x) >= 10)
+        'product_id', 'review_body'
+    ]].groupby(by='product_id').filter(lambda x: len(x) >= 10)
 
-    product_id_lst = []
-    reviews_lst = []
-    for product_id, group in df_grouped:
-        text = []
-        for row, data in group.iterrows():
-            review_body = data['review_body']
-            text.append(review_body)
+    # return joined
+    df_candidate = df_grouped.groupby(by='product_id')['review_body'].apply(lambda x:' '.join(str(v) for v in x)).reset_index()
+    return df_candidate
 
-        concatenated_reviews = ' '.join(str(v) for v in text)
+    # product_id_lst = []
+    # reviews_lst = []
+    # for product_id, group in df_grouped:
+    #     text = []
+    #     for row, data in group.iterrows():
+    #         review_body = data['review_body']
+    #         text.append(review_body)
 
-        reviews_lst.append(concatenated_reviews)
-        product_id_lst.append(product_id)
+    #     concatenated_reviews = ' '.join(str(v) for v in text)
 
-    return pd.DataFrame({
-        'product_ids': product_id_lst,
-        'reviews': reviews_lst
-    })
+    #     reviews_lst.append(concatenated_reviews)
+    #     product_id_lst.append(product_id)
+
+    # return pd.DataFrame({
+    #     'product_ids': product_id_lst,
+    #     'reviews': reviews_lst
+    # })
+
 
 def GetCandidateTexts(input_string):
     query_strippedhtml = Utils.strip_tags(input_string)
     return Utils.GetQueryTokens(query_strippedhtml)
+
 
 def TrainAndPredictTopicModel(texts):
     # print(type(texts))
@@ -105,32 +113,38 @@ def TrainAndPredictTopicModel(texts):
     topics_list = lda_model.show_topic(0)
     return topics_list
 
+
 @timeit
 def GetTopicsFor(df_data):
     print("######Combine and get candidates for topic modelling!######")
     products_to_topicalize = GetDataForModeling(df_data)
 
+    ## write to file for intermediate storage
+    products_to_topicalize.to_json("dataformodeling.json", orient='records')
+
     # tokenize, cleanup, lemmitize text.
     print("###### : Tokenize sentences ######")
-    products_to_topicalize['candidate_texts'] = products_to_topicalize[
-        'reviews'].apply(GetCandidateTexts)
+    products_to_topicalize['candidate_texts'] = products_to_topicalize['review_body'].apply(GetCandidateTexts)
+
+    ## write to file for intermediate storage
+    products_to_topicalize[['product_id', 'candidate_texts']].to_json("tokenized.json", orient='records')
 
     print("###### : Train topic model ######")
-    products_to_topicalize['Overall_Topics'] = products_to_topicalize[
-        'candidate_texts'].apply(TrainAndPredictTopicModel)
+    products_to_topicalize['Overall_Topics'] = products_to_topicalize['candidate_texts'].apply(TrainAndPredictTopicModel)
 
     return products_to_topicalize
 
 
 if __name__ == '__main__':
     print('loading dataset...')
-    df = Utils.GetDataFrameFor(
-        r'../data/amazon_reviews_us_Mobile_Electronics_v1_00.tsv.gz')
+    #df = Utils.GetDataFrameFor(r'../data/amazon_reviews_us_Mobile_Electronics_v1_00.tsv.gz')
+    df = Utils.GetDataFrameFor(r'../data/amazon_reviews_us_Electronics_v1_00.tsv.gz')
 
-    #df_withtopics = GetTopicsFor(df[:10000])
     df_withtopics = GetTopicsFor(df)
+    #df_withtopics = GetTopicsFor(df)
 
     # orient is important, tells how to index json.
-    df_withtopics[['product_ids', 'Overall_Topics']].to_json("topic_models.json", orient = 'records')
+    df_withtopics[['product_id', 'Overall_Topics']].to_json(
+        "topic_models.json", orient='records')
     print("##COMPLETE!!!!! ###")
     #print(df_withtopics.head())

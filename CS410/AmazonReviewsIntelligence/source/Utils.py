@@ -3,8 +3,7 @@ imports
 '''
 #############################
 import pandas as pd
-# for file path validation
-from pathlib import Path
+from pathlib import Path # for file path validation
 
 # nlp library
 import spacy
@@ -15,7 +14,8 @@ import en_core_web_sm
 from HtmlStrip import MLStripper
 #############################
 tokenize_blacklist = ['PUNCT', 'SPACE']
-nlp = spacy.load('en_core_web_sm')
+# perf optimization. don't need ner and parser.
+nlp = spacy.load('en_core_web_sm', disable=['parser', 'ner', 'tagger', 'entityrecognizer'])
 spacy_stopwords = spacy.lang.en.stop_words.STOP_WORDS
 #############################
 
@@ -67,18 +67,18 @@ def GetQueryTokens(query, allowed_postags=['NOUN', 'ADJ', 'VERB', 'ADV']):
     ]
 
     #3. lemmetize
-#     lemmed_tokens = []
-#     for stopped_token in stopped_tokens:
-#         lemmed_nlp = nlp(stopped_token)
-#         lemmed_token = lemmed_nlp[0].lemma_
+    # lemmed_tokens = []
+    # for stopped_token in stopped_tokens:
+    #     lemmed_nlp = nlp(stopped_token)
+    #     lemmed_token = lemmed_nlp[0].lemma_
 
-#         # add lemmed token if it in allowed postags, otherwise, raw as is.
-#         if (lemmed_nlp.pos_ in allowed_postags):
-#             lemmed_token.append(lemmed_token)
-#         else:
-#             lemmed_token.append(stopped_token)
+    #     # add lemmed token if it in allowed postags, otherwise, raw as is.
+    #     if (lemmed_nlp.pos_ in allowed_postags):
+    #         lemmed_token.append(lemmed_token)
+    #     else:
+    #         lemmed_token.append(stopped_token)
 
-#     for lemmed_token in lemmed_tokens:
-#         queryTokens.append(lemmed_token)
+    # for lemmed_token in lemmed_tokens:
+    #     queryTokens.append(lemmed_token)
 
     return stopped_tokens
