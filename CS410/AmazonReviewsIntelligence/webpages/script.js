@@ -39,6 +39,7 @@ function loadJSON(callback, filePath) {
 }
 
 function showAnalytics(product_title) {
+    GetWordClouds(product_title);
     if (product_title && last_product_title != product_title) {
         var product_id;
         var product_overall_details = getProductOverallSentimentDetails(product_title);
@@ -53,8 +54,118 @@ function showAnalytics(product_title) {
 
             last_product_title = product_title;
         }
+        GetWordClouds(product_title);
     }
 }
+
+function GetWordClouds(product_id) {
+    loadJSON(function (response) {
+        // Parsing JSON string into object
+        var wcResponse = JSON.parse(response);
+
+        // get data for the productId of interest.
+        wcResponse = wcResponse.filter(function (data) { return data.product_id === 'B00004XOYC' });
+        topics_ar_dct = []
+        if(wcResponse.length > 0) {
+            topics = wcResponse[0]['Overall_Topics']
+            for (var i = 0; i < topics.length; i++) {
+                var topic_transform = {text : topics[i][0], weight : Math.round(parseFloat(topics[i][1]) * 100, 2)};
+                topics_ar_dct.push(topic_transform);
+            }
+        }
+        console.log(wcResponse);
+        console.log(topics_ar_dct);
+
+        renderWordCloudJq(topics_ar_dct);
+
+    }, '../data/topic_models.json');
+}
+
+function renderWordCloudJq(wordsToDraw) {
+    console.log("in render word cloud jq");
+    console.log(wordsToDraw);
+
+    // $('#overallTopicsDiv').jQCloud(wordsToDraw);
+
+    var basic_words = [
+        { text: "Lorem", weight: 13 },
+        { text: "Ipsum", weight: 10.5 },
+        { text: "Dolor", weight: 9.4 },
+        { text: "Sit", weight: 8 },
+        { text: "Amet", weight: 6.2 },
+        { text: "Consectetur", weight: 5 },
+        { text: "Adipiscing", weight: 5 },
+        /* ... */
+    ];
+
+    $('#overallTopicsDiv').jQCloud(wordsToDraw, {
+        shape: 'rectangular',
+        width: 400,
+        height: 400
+    });
+}
+// function RenderWordClouds(wordsToDraw) {
+//     if (wordsToDraw) {
+//         var width = 500;
+//         var height = 500;
+//         var fill = d3.scaleOrdinal(d3.schemeCategory10); //d3.scale.category20();
+
+//         d3.layout.cloud()
+//             .size([width, height])
+//             .words(wordsToDraw)
+//             .rotate(function () {
+//                 return ~~(Math.random() * 2) * 90;
+//             })
+//             .font("Impact")
+//             .fontSize(function (d) {
+//                 return d.size;
+//             })
+//             .on("end", drawSkillCloud)
+//             .start();
+
+//         // Finally implement `drawSkillCloud`, which performs the D3 drawing:
+
+//         // apply D3.js drawing API
+//         function drawSkillCloud(words) {
+//             d3.select("#overallTopicsDiv").append("svg")
+//                 .attr("width", width)
+//                 .attr("height", height)
+//                 .append("g")
+//                 .attr("transform", "translate(" + ~~(width / 2) + "," + ~~(height / 2) + ")")
+//                 .selectAll("text")
+//                 .data(words)
+//                 .enter().append("text")
+//                 .style("font-size", function (d) {
+//                     return d.size + "px";
+//                 })
+//                 .style("-webkit-touch-callout", "none")
+//                 .style("-webkit-user-select", "none")
+//                 .style("-khtml-user-select", "none")
+//                 .style("-moz-user-select", "none")
+//                 .style("-ms-user-select", "none")
+//                 .style("user-select", "none")
+//                 .style("cursor", "default")
+//                 .style("font-family", "Impact")
+//                 .style("fill", function (d, i) {
+//                     return fill(i);
+//                 })
+//                 .attr("text-anchor", "middle")
+//                 .attr("transform", function (d) {
+//                     return "translate(" + [d.x, d.y] + ")rotate(" + d.rotate + ")";
+//                 })
+//                 .text(function (d) {
+//                     return d.text;
+//                 });
+//         }
+
+//         // set the viewbox to content bounding box (zooming in on the content, effectively trimming whitespace)
+
+//         var svg = document.getElementsByTagName("svg")[0];
+//         var bbox = svg.getBBox();
+//         var viewBox = [bbox.x, bbox.y, bbox.width, bbox.height].join(" ");
+//         svg.setAttribute("viewBox", viewBox);
+//     }
+// }
 
 function getProductOverallSentimentDetails(product_title) {
     if (product_title) {
