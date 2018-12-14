@@ -7,8 +7,8 @@ def GetDataForAnalysis(input_file):
     '''
     df_data = Utils.GetDataFrameFor(input_file)
     
-    # chose columns of interest, and group. Only take products witha tleast 10 reviews.
-    df_grouped = df_data.groupby(by='product_id').filter(lambda x: len(x) >= 10 and len(x) < 5000)
+    # chose columns of interest, and group. Only take products witha tleast 200 reviews.
+    df_grouped = df_data.groupby(by='product_id').filter(lambda x: len(x) >= 200 and len(x) < 5000)
 
     return df_grouped
 
@@ -17,7 +17,7 @@ if __name__ == '__main__':
     print('loading dataset...')
 
     inputFilePath = '../data/amazon_reviews_us_Electronics_v1_00.tsv.gz'
-    outputFilePath = '../data/amazon_reviews_us_Electronics_v1_00.candidates.tsv'
+    outputFilePath = '../data/amazon_reviews_us_Electronics_v1_00.candidates.21K.tsv'
     
     #df = Utils.GetDataFrameFor(r'../data/amazon_reviews_us_Mobile_Electronics_v1_00.tsv.gz')
     df =GetDataForAnalysis(inputFilePath)

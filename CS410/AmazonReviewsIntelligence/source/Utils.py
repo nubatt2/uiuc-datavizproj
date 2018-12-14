@@ -53,25 +53,13 @@ def strip_tags(html):
 
 
 def GetQueryTokens(query, allowed_postags=['NOUN', 'ADJ', 'VERB', 'ADV']):
-    queryTokens = []
-
-    #load spacy doc.
-    #doc_sp = nlp(query)
-
-    #1. Tokenize
-    # tokens = [
-    #     token.text.lower() for token in doc_sp
-    #     if token.pos_ not in tokenize_blacklist
-    # ]
-    
     #Tokenize using gensim and remove stop words.
-    tokens = [token for token in tokenize(query, deacc=True, errors='ignore') if not token in spacy_stopwords ] 
-    
-    # #2. remove stop words
-    # stopped_tokens = [
-    #     token for token in tokens if not token in spacy_stopwords
-    # ]
+    custom_stopwords = ['i', 'me', 'he', 'she', 'him', 'her']
+    stopwords_integrated = spacy_stopwords.union(custom_stopwords)
 
+    tokens = [token for token in tokenize(query, deacc=True, errors='ignore') if not token in stopwords_integrated ] 
+    
+    
     #3. lemmetize
     # lemmed_tokens = []
     # for stopped_token in stopped_tokens:
