@@ -89,6 +89,7 @@ def GetCandidateTexts(input_string):
 
 
 def TrainAndPredictTopicModel(texts):
+    NUMBER_OF_WORDS_PER_TOPIC = 20
     # print(type(texts))
     candidate_text = texts
     if (len(candidate_text) < 3):
@@ -114,7 +115,7 @@ def TrainAndPredictTopicModel(texts):
         per_word_topics=True)
 
     #get keywords for the first topic.
-    topics_list = lda_model.show_topic(0)
+    topics_list = lda_model.show_topic(0, NUMBER_OF_WORDS_PER_TOPIC)
     return topics_list
 
 
@@ -143,9 +144,9 @@ def GetTopicsFor(df_data):
 if __name__ == '__main__':
     print('>>>> loading dataset...')
     #df = Utils.GetDataFrameFor(r'../data/amazon_reviews_us_Mobile_Electronics_v1_00.tsv.gz')
-    df = Utils.GetDataFrameFor(r'../data/amazon_reviews_us_Electronics_v1_00.candidates.tsv')
+    df = Utils.GetDataFrameFor(r'../data/amazon_reviews_us_Electronics_v1_00.candidates.21K.tsv')
 
-    df_withtopics = GetTopicsFor(df[:1000000])
+    df_withtopics = GetTopicsFor(df)
     #df_withtopics = GetTopicsFor(df)
 
     # orient is important, tells how to index json.

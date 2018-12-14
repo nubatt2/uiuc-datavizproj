@@ -57,7 +57,7 @@ def GetQueryTokens(query, allowed_postags=['NOUN', 'ADJ', 'VERB', 'ADV']):
     custom_stopwords = ['i', 'me', 'he', 'she', 'him', 'her']
     stopwords_integrated = spacy_stopwords.union(custom_stopwords)
 
-    tokens = [token for token in tokenize(query, deacc=True, errors='ignore') if not token in stopwords_integrated ] 
+    tokens = [token for token in tokenize(query, deacc=True, lowercase=True, errors='ignore') if not token in stopwords_integrated and len(token) > 1 ] 
     
     
     #3. lemmetize
