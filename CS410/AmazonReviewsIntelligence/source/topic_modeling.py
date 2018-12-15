@@ -151,6 +151,6 @@ if __name__ == '__main__':
 
     # orient is important, tells how to index json.
     df_withtopics[['product_id', 'Overall_Topics']].to_json(
-        "topic_models.json", orient='records')
+        "topic_models.21K.json", orient='records')
     print("##COMPLETE!!!!! ###")
     #print(df_withtopics.head())
