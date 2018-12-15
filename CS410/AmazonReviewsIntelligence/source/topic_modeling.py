@@ -18,6 +18,8 @@ import pyLDAvis  # visualize topic models.
 import spacy
 from spacy import displacy
 
+import swifter
+
 import Utils
 
 import warnings
@@ -126,17 +128,17 @@ def GetTopicsFor(df_data):
 
     print("Number of products to get topics for {}".format(len(products_to_topicalize)))
     ## write to file for intermediate storage
-    products_to_topicalize.to_json("dataformodeling.json", orient='records')
+    #products_to_topicalize.to_json("dataformodeling.json", orient='records')
 
     # tokenize, cleanup, lemmitize text.
     print(">>>> Tokenize sentences!")
-    products_to_topicalize['candidate_texts'] = products_to_topicalize['review_body'].apply(GetCandidateTexts)
+    products_to_topicalize['candidate_texts'] = products_to_topicalize['review_body'].swifter.apply(GetCandidateTexts)
 
     ## write to file for intermediate storage
-    products_to_topicalize[['product_id', 'candidate_texts']].to_json("tokenized.json", orient='records')
+    #products_to_topicalize[['product_id', 'candidate_texts']].to_json("tokenized.json", orient='records')
 
     print(">>>> Train topic model!")
-    products_to_topicalize['Overall_Topics'] = products_to_topicalize['candidate_texts'].apply(TrainAndPredictTopicModel)
+    products_to_topicalize['Overall_Topics'] = products_to_topicalize['candidate_texts'].swifter.apply(TrainAndPredictTopicModel)
 
     return products_to_topicalize
 
@@ -144,13 +146,39 @@ def GetTopicsFor(df_data):
 if __name__ == '__main__':
     print('>>>> loading dataset...')
     #df = Utils.GetDataFrameFor(r'../data/amazon_reviews_us_Mobile_Electronics_v1_00.tsv.gz')
-    df = Utils.GetDataFrameFor(r'../data/amazon_reviews_us_Electronics_v1_00.candidates.21K.tsv')
-
-    df_withtopics = GetTopicsFor(df)
+    #df = Utils.GetDataFrameFor(r'../data/amazon_reviews_us_Electronics_v1_00.candidates.21K.tsv')
+    
+    #df_withtopics = GetTopicsFor(df)
     #df_withtopics = GetTopicsFor(df)
 
     # orient is important, tells how to index json.
-    df_withtopics[['product_id', 'Overall_Topics']].to_json(
-        "topic_models.21K.json", orient='records')
-    print("##COMPLETE!!!!! ###")
+    #df_withtopics[['product_id', 'Overall_Topics']].to_json(
+    #    "topic_models.21K.json", orient='records')
+    #print("##COMPLETE!!!!! ###")
     #print(df_withtopics.head())
+    
+    # read sentiment data for positive and negative labels.
+    product_sentiment_data = pd.read_json(r'../data/product_sentiments.json')
+    positives_reviews_data = product_sentiment_data[product_sentiment_data['weighted_sentiment_score'] > 0.5]
+    negative_reviews_data = product_sentiment_data[product_sentiment_data['weighted_sentiment_score'] < -0.5]
+    
+    
+    print(">>>> START: POSITIVE topic modelling")
+    df_withtopics = GetTopicsFor(positives_reviews_data)
+    #df_withtopics = GetTopicsFor(df)
+    
+    df_withtopics['Positive_Topics'] = df_withtopics['Overall_Topics']
+    df_withtopics.drop(columns=['Overall_Topics']).to_json("topic_models.positive.21K.json", orient='records')
+    print(">>>> END: POSITIVE topic modelling")
+    
+
+    print(">>>> START: NEGATIVE topic modelling")
+    df_withtopics = GetTopicsFor(negative_reviews_data)
+    #df_withtopics = GetTopicsFor(df)
+    
+    df_withtopics['Negative_Topics'] = df_withtopics['Overall_Topics']
+    df_withtopics.drop(columns=['Overall_Topics']).to_json("topic_models.negative.21K.json", orient='records')
+    print(">>>> END: NEGATIVE topic modelling")
+          
+          
+    

@@ -5,6 +5,9 @@ imports
 import pandas as pd
 from pathlib import Path # for file path validation
 
+from nltk.corpus import stopwords
+from nltk.stem import SnowballStemmer
+
 from gensim.utils import tokenize
 
 # nlp library
@@ -20,6 +23,8 @@ tokenize_blacklist = ['PUNCT', 'SPACE']
 nlp = spacy.load('en_core_web_sm', disable=['parser', 'ner', 'tagger', 'entityrecognizer'])
 nlp.max_length = 20000000
 spacy_stopwords = spacy.lang.en.stop_words.STOP_WORDS
+
+snowball_stemmer = SnowballStemmer('english')
 #############################
 
 def GetDataFrameFor(filePath):
@@ -55,24 +60,30 @@ def strip_tags(html):
 def GetQueryTokens(query, allowed_postags=['NOUN', 'ADJ', 'VERB', 'ADV']):
     #Tokenize using gensim and remove stop words.
     custom_stopwords = ['i', 'me', 'he', 'she', 'him', 'her']
-    stopwords_integrated = spacy_stopwords.union(custom_stopwords)
+    nltk_stop_words = set(stopwords.words('english'))
+    stopwords_integrated = nltk_stop_words.union(custom_stopwords)
+    #stopwords_integrated = spacy_stopwords.union(custom_stopwords)
 
-    tokens = [token for token in tokenize(query, deacc=True, lowercase=True, errors='ignore') if not token in stopwords_integrated and len(token) > 1 ] 
-    
+    candidate_tokens = [token for token in tokenize(query, deacc=True, lowercase=True, errors='ignore') if not token in stopwords_integrated and len(token) > 1 ] 
     
     #3. lemmetize
-    # lemmed_tokens = []
-    # for stopped_token in stopped_tokens:
-    #     lemmed_nlp = nlp(stopped_token)
-    #     lemmed_token = lemmed_nlp[0].lemma_
+    stemmed_tokens = []
+    for candidate_token in candidate_tokens:
+            stemmed_tokens.append(snowball_stemmer.stem(candidate_token))
+    
+#     lemmed_tokens = []
+#     for candidate_token in candidate_tokens:
+#         lemmed_nlp = nlp(candidate_token)
+#         lemmed_candidate = lemmed_nlp[0]
+#         lemmed_token = lemmed_candidate.lemma_
 
-    #     # add lemmed token if it in allowed postags, otherwise, raw as is.
-    #     if (lemmed_nlp.pos_ in allowed_postags):
-    #         lemmed_token.append(lemmed_token)
-    #     else:
-    #         lemmed_token.append(stopped_token)
+#         # add lemmed token if it in allowed postags, otherwise, raw as is.
+#         if (lemmed_candidate.pos_ in allowed_postags):
+#             lemmed_tokens.append(lemmed_token)
+#         else:
+#             lemmed_tokens.append(candidate_token)
 
-    # for lemmed_token in lemmed_tokens:
-    #     queryTokens.append(lemmed_token)
+#     for lemmed_token in lemmed_tokens:
+#         queryTokens.append(lemmed_token)
 
-    return tokens
+    return stemmed_tokens
