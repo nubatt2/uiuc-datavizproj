@@ -21,6 +21,6 @@ if __name__ == '__main__':
     
     #df = Utils.GetDataFrameFor(r'../data/amazon_reviews_us_Mobile_Electronics_v1_00.tsv.gz')
     df =GetDataForAnalysis(inputFilePath)
-    df.to_csv(outputFilePath, sep='\t')
+    #df.to_csv(outputFilePath, sep='\t')
     print("Complete!")
     #df_withtopics = GetTopicsFor(df)

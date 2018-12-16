@@ -5,7 +5,6 @@ Created on Mon Dec 10 00:50:59 2018
 
 @author: nubatt2@illinois.edu
 """
-
 ############################################
 import pandas as pd
 
@@ -14,10 +13,7 @@ from gensim import corpora, models
 import gensim
 import pyLDAvis  # visualize topic models.
 
-# nlp library
-import spacy
-from spacy import displacy
-
+# making apply fast!
 import swifter
 
 import Utils
@@ -25,64 +21,18 @@ import Utils
 import warnings
 warnings.filterwarnings('ignore')
 
-import time
 ############################################
-
 MIN_REVIEWS = 10
+SENTIMENT_SCORE_THRESHOLD  = 1
 
-
-def timeit(method):
-    def timed(*args, **kw):
-        ts = time.time()
-        result = method(*args, **kw)
-        te = time.time()
-
-        if 'log_time' in kw:
-            name = kw.get('log_name', method.__name__.upper())
-            kw['log_time'][name] = int((te - ts) * 1000)
-        else:
-            print ('%r  %2.2f ms' % \
-                  (method.__name__, (te - ts) * 1000))
-        return result
-
-    return timed
-
-
-@timeit
 def GetDataForModeling(df_data):
     '''
     Choses columns of interest and create one row for each product - all reviews.
     '''
-    # chose columns of interest, and group. Only take products witha tleast 10 reviews.
-    # df_grouped = df_data[[
-    #     'product_id', 'review_body'
-    # ]].groupby(by='product_id').filter(lambda x: len(x) >= 10)
-    
     # blacklisted product.
-    df_data = df_data[df_data['product_id'] != 'B003L1ZYYM']
-    df_candidate = df_data[['product_id', 'review_body']].groupby(by='product_id')['review_body'].apply(lambda x:' '.join(str(v) for v in x)).reset_index()
-    
-    # return joined
-    # df_candidate = df_grouped.groupby(by='product_id')['review_body'].apply(lambda x:' '.join(str(v) for v in x)).reset_index()
+    #df_data = df_data[df_data['product_id'] != 'B003L1ZYYM']
+    df_candidate = df_data[['product_id', 'review_body']].groupby(by='product_id')['review_body'].apply(lambda x:' '.join(str(v) for v in x)).reset_index()    
     return df_candidate
-
-    # product_id_lst = []
-    # reviews_lst = []
-    # for product_id, group in df_grouped:
-    #     text = []
-    #     for row, data in group.iterrows():
-    #         review_body = data['review_body']
-    #         text.append(review_body)
-
-    #     concatenated_reviews = ' '.join(str(v) for v in text)
-
-    #     reviews_lst.append(concatenated_reviews)
-    #     product_id_lst.append(product_id)
-
-    # return pd.DataFrame({
-    #     'product_ids': product_id_lst,
-    #     'reviews': reviews_lst
-    # })
 
 
 def GetCandidateTexts(input_string):
@@ -91,9 +41,18 @@ def GetCandidateTexts(input_string):
 
 
 def TrainAndPredictTopicModel(texts):
+    '''
+    This mehod trains a LDA model
+    Number of topics fixed to 1
+    Number of words per topic fixed to 20
+
+    These thresholds based on offline eval.
+    '''
     NUMBER_OF_WORDS_PER_TOPIC = 20
-    # print(type(texts))
+    
+    #candidates.
     candidate_text = texts
+    #just a guard against unexpected!
     if (len(candidate_text) < 3):
         return
 
@@ -120,8 +79,6 @@ def TrainAndPredictTopicModel(texts):
     topics_list = lda_model.show_topic(0, NUMBER_OF_WORDS_PER_TOPIC)
     return topics_list
 
-
-@timeit
 def GetTopicsFor(df_data):
     print(">>>> Combine and get candidates for topic modelling!")
     products_to_topicalize = GetDataForModeling(df_data)
@@ -144,19 +101,7 @@ def GetTopicsFor(df_data):
 
 
 if __name__ == '__main__':
-    print('>>>> loading dataset...')
-    #df = Utils.GetDataFrameFor(r'../data/amazon_reviews_us_Mobile_Electronics_v1_00.tsv.gz')
-    #df = Utils.GetDataFrameFor(r'../data/amazon_reviews_us_Electronics_v1_00.candidates.21K.tsv')
-    
-    #df_withtopics = GetTopicsFor(df)
-    #df_withtopics = GetTopicsFor(df)
-
-    # orient is important, tells how to index json.
-    #df_withtopics[['product_id', 'Overall_Topics']].to_json(
-    #    "topic_models.21K.json", orient='records')
-    #print("##COMPLETE!!!!! ###")
-    #print(df_withtopics.head())
-    
+    print('>>>> loading dataset...')    
     # read sentiment data for positive and negative labels.
     product_sentiment_data = pd.read_json(r'../data/product_sentiments.json')
     positives_reviews_data = product_sentiment_data[product_sentiment_data['weighted_sentiment_score'] > 0.5]

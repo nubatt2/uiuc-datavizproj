@@ -1,0 +1,9 @@
+prefix = "."
+dataset = "productsearchdata"
+index = "idxproduct"
+corpus = "line.toml"
+stop-words = "stopwords.txt"
+[[analyzers]]
+	filter = "default-unigram-chain"
+	ngram = 1
+	method = "ngram-word"
