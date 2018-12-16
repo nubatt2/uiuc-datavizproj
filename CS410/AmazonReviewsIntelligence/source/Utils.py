@@ -11,30 +11,23 @@ Created on Mon Dec 10 00:50:59 2018
 imports
 '''
 #############################
+from pathlib import Path
 import pandas as pd
-from pathlib import Path  # for file path validation
 
 from nltk.corpus import stopwords
-from nltk.stem import SnowballStemmer
-
 from gensim.utils import tokenize
-
-# nlp library
-import spacy
-from spacy import displacy
-import en_core_web_sm
 
 # html parser.
 from HtmlStrip import MLStripper
 #############################
-tokenize_blacklist = ['PUNCT', 'SPACE']
-# perf optimization. don't need ner and parser.
-nlp = spacy.load('en_core_web_sm', disable=[
-                 'parser', 'ner', 'tagger', 'entityrecognizer'])
-nlp.max_length = 20000000
-spacy_stopwords = spacy.lang.en.stop_words.STOP_WORDS
+# tokenize_blacklist = ['PUNCT', 'SPACE']
+# # perf optimization. don't need ner and parser.
+# nlp = spacy.load('en_core_web_sm', disable=[
+#                  'parser', 'ner', 'tagger', 'entityrecognizer'])
+# nlp.max_length = 20000000
+# spacy_stopwords = spacy.lang.en.stop_words.STOP_WORDS
 
-snowball_stemmer = SnowballStemmer('english')
+#snowball_stemmer = SnowballStemmer('english')
 #############################
 
 
