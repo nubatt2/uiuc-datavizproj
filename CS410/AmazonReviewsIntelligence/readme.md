@@ -1,7 +1,7 @@
 ### Intelligence from Amazon Reviews - Sentiments and Topics
 ***
 
-####Introduction
+#### Introduction
 Amazon is a leader of the retail industry. Multibillion transactions happen on Amazon every year.Product reviews on Amazon are an important factor in the purchase decisions made by the consumers. Poor reviews can potentially tank sales of a product. We wanted to build a tool which the product owners can use to get a pulse of their customers - get to know what they feel about the product, and what things about the product standout as positive, negative or neutral facets.
 
 So, for this project, our goal is to mine intelligence from the product reviews. 
@@ -13,7 +13,7 @@ For example, if the user is searching for 'best noise cancelling head phones' - 
 
 In our original proposal, our goal was to run this analysis using facebook data. That is, scrape public pages of facebook - extract individual posts, do named entity extraction, sentiment analsis and topic modelling. For each extracted entity we would have shown sentiment trend and topics that users are talking about. But, we didn't get facebook approval for using their Graph API and risked our project. With the help and support of our TA, Yuncheng Wu, we were able to change dataset for our project and slightly alter the scope (amazon dataset didn't require entity extraction)
 
-####Description of the dataset
+#### Description of the dataset
 ***
 For the purpose of this project we used an existing Amazon reviews dataset made available by Amazon: https://s3.amazonaws.com/amazon-reviews-pds/readme.html 
 
@@ -81,16 +81,16 @@ This project ahs several python package dependencies. Please make sure they are 
 #### Description.
 Exploratory data analysis.
 
-#####Sentiment Analysis
+##### Sentiment Analysis
 talk about logic used
-#####Algorithm for weighted score.
-#####Topic Modeling
+##### Algorithm for weighted score.
+##### Topic Modeling
 Using gensim topic modeling library
 
-####Faceted product search
+#### Faceted product search
 
-####Demo
-#####Website
-#####IPYNB for faceted product search.
+#### Demo
+##### Website
+##### IPYNB for faceted product search.
 
 
