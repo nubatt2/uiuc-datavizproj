@@ -22,6 +22,7 @@ Amazon reviews dataset is available for several product categories. we decided t
 It's a tab separated text file without any escape characters. First line is header, and each line represents one record.
 
 **Data Columns:**
+
 | ColumnName|Column Description      |
 |:----------|:-------------|
 | marketplace|2 letter country code of the marketplace where the review was written. |
@@ -41,6 +42,7 @@ It's a tab separated text file without any escape characters. First line is head
 | review_date   | The date the review was written. |
 
 Example data:
+
 | ColumnName|Column Description      |
 |:----------|:-------------|
 | marketplace|US|
