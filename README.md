@@ -1,2 +1,2 @@
 # uiuc-projects
-Repository of projects related to courses at UIUC
+Repository of projects related to coursework at UIUC
